@@ -1,0 +1,22 @@
+{
+  "name": "new_home_page",
+  "version": "0.0.1",
+  "authors": [
+    "Andrew M. <me@r3nya.ru>"
+  ],
+  "description": "My home page",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "~2.0.4",
+    "font-awesome": "~4.3.0"
+  }
+}
