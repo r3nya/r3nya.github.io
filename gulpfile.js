@@ -25,7 +25,7 @@ gulp.task('css-minify', function () {
 });
 
 gulp.task('copy-fonts', function () {
-    gulp.src(['components/font-awesome/fonts/**/*'])
+    return gulp.src(['components/font-awesome/fonts/**/*'])
         .pipe(gulp.dest('dist/fonts'));
 });
 
