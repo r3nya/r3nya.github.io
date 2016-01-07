@@ -1,3 +1,6 @@
+@import 'skeleton';
+@import 'font-awesome';
+
 body {
     font-family: 'Oswald', sans-serif;
     background: #ECEFF1;
@@ -6,10 +9,10 @@ body {
 a {
     text-decoration: none;
     color: #00796B;
-}
 
-a:hover {
-    color: #4DB6AC;
+    &:hover {
+        color: #4DB6AC;
+    }
 }
 
 #content {
