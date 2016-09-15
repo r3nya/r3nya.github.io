@@ -10,24 +10,16 @@ gulp.task('html', () => {
 
 gulp.task('css', () => {
   let postcss = require('gulp-postcss')
-  let autoprefixer = require('autoprefixer')
-  let postcssImport = require('postcss-import')
-  let postcssSimpleVars = require('postcss-simple-vars')
-  let postcssNesting = require('postcss-nesting')
-  let customMedia = require('postcss-custom-media')
-  let mqpacker = require('css-mqpacker')
-
   let minifyCss = require('gulp-minify-css')
   let cncat = require('gulp-concat')
   let purify = require('gulp-purifycss')
 
   const processors = [
-    autoprefixer({ browsers: ['> 5%'] }),
-    postcssImport(),
-    postcssNesting(),
-    postcssSimpleVars(),
-    customMedia(),
-    mqpacker()
+    require('autoprefixer')({ browsers: ['> 5%'] }),
+    require('postcss-import')(),
+    require('postcss-nesting')(),
+    require('postcss-custom-media')(),
+    require('css-mqpacker')()
   ]
 
   return gulp.src('src/style/main.css')
