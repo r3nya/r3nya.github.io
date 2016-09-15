@@ -29,6 +29,9 @@
   "dependencies": {
     "font-awesome": "^4.5.0"
   },
+  "babel": {
+    "presets": [ "es2015" ]
+  },
   "stylelint": {
     "extends": "stylelint-config-standard"
   }
