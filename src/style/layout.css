@@ -1,0 +1,32 @@
+body {
+  background: var(--background);
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  color: var(--palette-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+}
+
+i {
+  width: 2rem;
+}
+
+section {
+  font-size: 1.2rem;
+
+  &:first-child {
+    margin-top: 2.67rem;
+  }
+}
+
+.link {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}

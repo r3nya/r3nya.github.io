@@ -1,38 +1,57 @@
-import gulp from 'gulp';
+import gulp from 'gulp'
 
-gulp.task('html-minify', () => {
-  let htmlmin = require('gulp-htmlmin');
+gulp.task('html', () => {
+  let pug = require('gulp-pug')
 
-  return gulp.src('index.html')
-    .pipe(htmlmin({collapseWhitespace: true}))
+  return gulp.src('src/html/index.pug')
+    .pipe(pug())
     .pipe(gulp.dest('dist'))
-});
+})
 
-gulp.task('css-minify', () => {
-  let sass = require('gulp-sass');
-  let minifyCss = require('gulp-minify-css');
-  let cncat = require('gulp-concat');
-  let uncss = require('gulp-uncss');
+gulp.task('css', () => {
+  let postcss = require('gulp-postcss')
+  let minifyCss = require('gulp-minify-css')
+  let cncat = require('gulp-concat')
+  let purify = require('gulp-purifycss')
 
-  return gulp.src('style.scss')
-    .pipe(sass({
-      outputStyle: 'compressed',
-      includePaths: [
-        './node_modules/skeleton-scss/scss/',
-        './node_modules/font-awesome/scss/'
-      ]
-    }))
+  const processors = [
+    require('autoprefixer')({ browsers: ['> 5%'] }),
+    require('postcss-import')(),
+    require('postcss-nesting')(),
+    require('postcss-custom-media')(),
+    require('css-mqpacker')()
+  ]
+
+  return gulp.src('src/style/main.css')
+    .pipe(postcss(processors))
     .pipe(cncat('style.css'))
-    .pipe(uncss({
-        html: ['index.html']
-    }))
-    .pipe(minifyCss({keepSpecialComments : 0}))
-    .pipe(gulp.dest('dist/css'));
-});
+    .pipe(purify(['dist/index.html']))
+    .pipe(minifyCss({ keepSpecialComments: 0 }))
+    .pipe(gulp.dest('dist/css'))
+})
 
-gulp.task('copy-fonts', () => {
+gulp.task('fonts', () => {
   return gulp.src(['./node_modules/font-awesome/fonts/**/*'])
-    .pipe(gulp.dest('dist/fonts'));
-});
+    .pipe(gulp.dest('dist/fonts'))
+})
 
-gulp.task('default', ['css-minify', 'html-minify', 'copy-fonts']);
+gulp.task('clean', () => {
+  let del = require('del')
+
+  return del([ 'dist' ])
+})
+
+gulp.task('w', () => {
+  return gulp.watch(
+    'src/**/*.(pug|css)',
+    gulp.parallel('html', 'css')
+  )
+})
+
+gulp.task('default',
+  gulp.series('clean',
+    gulp.series('html',
+      gulp.parallel('css', 'fonts')
+    )
+  )
+)
