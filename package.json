@@ -20,6 +20,7 @@
     "gulp-postcss": "^6.2.0",
     "gulp-pug": "^3.0.4",
     "gulp-purifycss": "^0.2.0",
+    "postcss-css-variables": "^0.5.2",
     "postcss-custom-media": "^5.0.1",
     "postcss-import": "^8.1.2",
     "postcss-nesting": "^2.3.1",
@@ -30,7 +31,9 @@
     "font-awesome": "^4.5.0"
   },
   "babel": {
-    "presets": [ "es2015" ]
+    "presets": [
+      "es2015"
+    ]
   },
   "stylelint": {
     "extends": "stylelint-config-standard"

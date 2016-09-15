@@ -19,6 +19,7 @@ gulp.task('css', () => {
     require('postcss-import')(),
     require('postcss-nesting')(),
     require('postcss-custom-media')(),
+    require('postcss-css-variables')(),
     require('css-mqpacker')()
   ]
 
