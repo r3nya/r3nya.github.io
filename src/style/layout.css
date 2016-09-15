@@ -18,7 +18,7 @@ i {
   width: 2rem;
 }
 
-.links {
+section {
   font-size: 1.2rem;
 
   &:first-child {
