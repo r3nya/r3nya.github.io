@@ -27,8 +27,7 @@
     "stylelint-config-standard": "^13.0.0"
   },
   "dependencies": {
-    "font-awesome": "^4.5.0",
-    "skeleton-scss": "^2.0.4"
+    "font-awesome": "^4.5.0"
   },
   "stylelint": {
     "extends": "stylelint-config-standard"
