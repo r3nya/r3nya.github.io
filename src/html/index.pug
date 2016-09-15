@@ -1,0 +1,61 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Homepage :: Andrey Makarov aka r3nya
+    meta(name='description', content='Homepage')
+    meta(name='author', content='Andrew M.')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet', type='text/css')
+
+  body
+    .container
+      .one-half
+        h1.name Andrey Makarov
+        hr
+        h5.about JS Developer / DevOps
+
+      .one-half.links
+        .link
+          a(href='https://github.com/r3nya')
+            i.fa.fa-github
+            | Github
+
+        .link
+          a(href='https://twitter.com/r3nya')
+            i.fa.fa-twitter
+            | Twitter
+        .link
+          a(href='http://instagram.com/r3nya')
+            i.fa.fa-instagram
+            | Instagram
+        .link
+          a(href='http://www.lastfm.ru/user/true_renya')
+            i.fa.fa-lastfm
+            | Last.fm
+        .link
+          a(href='https://telegram.me/r3nya')
+            i.fa.fa-paper-plane
+            | Telegram
+
+  // Yandex.Metrika counter
+  script(type='text/javascript').
+    (function (d, w, c) {
+      (w[c] = w[c] || []).push(function() {
+        try { w.yaCounter16899220 = new Ya.Metrika({id:16899220, enableAll: true}); }
+        catch(e) { }
+      });
+
+      var n = d.getElementsByTagName("script")[0], s = d.createElement("script"),
+          f = function () { n.parentNode.insertBefore(s, n); };
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+      if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+
+  noscript
+    div
+      img(src='//mc.yandex.ru/watch/16899220' style='position:absolute; left:-9999px;' alt='')
