@@ -1,8 +1,8 @@
 body {
-  background: var(--background);
+  background: var(--main-background);
   font-family: 'Karla', sans-serif;
   font-size: 16px;
-  color: var(--palette-color);
+  color: var(--main-color);
 }
 
 a {

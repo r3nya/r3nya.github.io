@@ -3,7 +3,7 @@ h1 {
 }
 
 h5 {
-  color: var(--palette-h5);
+  color: var(--h5-color);
 }
 
 @media (--sm-viewport) {
@@ -28,5 +28,5 @@ h5 {
 
 hr {
   border-width: 0;
-  border-top: 1px solid var(--palette-hr);
+  border-top: 1px solid var(--hr-color);
 }

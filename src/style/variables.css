@@ -1,10 +1,21 @@
 :root {
-  --background: #eceff1;
-  --palette-color: #222;
-  --palette-h5: #757575;
-  --palette-hr: #e1e1e1;
-  --link-color: #00796b;
-  --link-hover-color: #4db6ac;
+  /* palette */
+  --palette-1: #eceff1;
+  --palette-2: #222;
+  --palette-3: #757575;
+  --palette-4: #e1e1e1;
+  --palette-5: #00796b;
+  --palette-6: #4db6ac;
+
+  /* colors */
+  --main-background: var(--palette-1);
+  --main-color: var(--palette-2);
+  --h5-color: var(--palette-3);
+  --hr-color: var(--palette-4);
+
+  /* links block */
+  --link-color: var(--palette-5);
+  --link-hover-color: var(--palette-6);
 }
 
 @custom-media --sm-viewport only screen and (min-width: 48em);
