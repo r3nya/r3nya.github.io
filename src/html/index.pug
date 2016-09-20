@@ -1,50 +1,13 @@
-include mixins
+extends ./layout
 
-doctype html
-html(lang='en')
-  head
-    meta(charset='utf-8')
-    title Andrey Makarov aka r3nya
-    meta(name='description', content='Homepage')
-    meta(name='author', content='Andrew M.')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name='theme-color', content='#00796b')
-    meta(name='apple-mobile-web-app-status-bar-style', content='#00796b')
-    meta(name='msapplication-navbutton-color', content='#00796b')
-    link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
-    link(href='css/style.css', rel='stylesheet', type='text/css')
+block head
+  include ./blocks/head
 
-  body
-    .container
-      header.one-half(role='banner')
-        h1.name Andrey Makarov
-        hr
-        h5.about JS Developer / DevOps
+block name
+  include ./blocks/name
 
-      main.one-half
-        +link('Github', 'github', 'https://github.com/r3nya')
-        +link('Twitter', 'twitter', 'https://twitter.com/r3nya')
-        +link('Instagram', 'instagram', 'http://instagram.com/r3nya')
-        +link('Last.fm', 'lastfm', 'http://www.lastfm.ru/user/true_renya')
-        +link('Telegram', 'paper-plane', 'https://telegram.me/r3nya')
+block links
+  include ./blocks/links
 
-    // Yandex.Metrika counter
-    script(type='text/javascript').
-      (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-          try { w.yaCounter16899220 = new Ya.Metrika({id:16899220, enableAll: true}); }
-          catch(e) { }
-        });
-
-        var n = d.getElementsByTagName("script")[0], s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f); } else { f(); }
-      })(document, window, "yandex_metrika_callbacks");
-
-    noscript
-      div
-        img(src='//mc.yandex.ru/watch/16899220' style='position:absolute; left:-9999px;' alt='')
+block metrika
+  include ./blocks/metrika
