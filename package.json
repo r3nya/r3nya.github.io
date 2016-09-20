@@ -17,6 +17,7 @@
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.5.2",
+    "gulp-humans": "^2.0.2",
     "gulp-postcss": "^6.2.0",
     "gulp-pug": "^3.0.4",
     "gulp-purifycss": "^0.2.0",

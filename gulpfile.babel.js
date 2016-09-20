@@ -36,6 +36,24 @@ gulp.task('fonts', () => {
     .pipe(gulp.dest('dist/fonts'))
 })
 
+gulp.task('humans', () => {
+  let humans = require('gulp-humans')
+
+  return gulp.src('dist/index.html')
+    .pipe(humans({
+      team: [
+        'Author: Andrey M.',
+        'Email: me@r3nya.ru'
+      ],
+      site: [
+        'Standards: HTML5, CSS3',
+        'Components: Normalize.css',
+        'Software: Atom'
+      ]
+    }))
+    .pipe(gulp.dest('dist/'))
+})
+
 gulp.task('clean', () => {
   let del = require('del')
 
@@ -52,7 +70,7 @@ gulp.task('w', () => {
 gulp.task('default',
   gulp.series('clean',
     gulp.series('html',
-      gulp.parallel('css', 'fonts')
+      gulp.parallel('css', 'fonts', 'humans')
     )
   )
 )
