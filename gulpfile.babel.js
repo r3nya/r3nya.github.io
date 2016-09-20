@@ -10,7 +10,7 @@ gulp.task('html', () => {
 
 gulp.task('css', () => {
   let postcss = require('gulp-postcss')
-  let minifyCss = require('gulp-minify-css')
+  let cleanCss = require('gulp-clean-css')
   let cncat = require('gulp-concat')
   let purify = require('gulp-purifycss')
 
@@ -27,7 +27,7 @@ gulp.task('css', () => {
     .pipe(postcss(processors))
     .pipe(cncat('style.css'))
     .pipe(purify(['dist/index.html']))
-    .pipe(minifyCss({ keepSpecialComments: 0 }))
+    .pipe(cleanCss({ keepSpecialComments: 0 }))
     .pipe(gulp.dest('dist/css'))
 })
 

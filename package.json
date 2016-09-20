@@ -15,8 +15,8 @@
     "css-mqpacker": "^5.0.1",
     "del": "^2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.5.2",
-    "gulp-minify-css": "^1.2.3",
     "gulp-postcss": "^6.2.0",
     "gulp-pug": "^3.0.4",
     "gulp-purifycss": "^0.2.0",
@@ -28,7 +28,8 @@
     "stylelint-config-standard": "^13.0.0"
   },
   "dependencies": {
-    "font-awesome": "^4.5.0"
+    "font-awesome": "^4.5.0",
+    "normalize.css": "^4.2.0"
   },
   "babel": {
     "presets": [
