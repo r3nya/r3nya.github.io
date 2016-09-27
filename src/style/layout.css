@@ -1,6 +1,8 @@
 body {
   background: var(--main-background);
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell",
+    "Open Sans", sans-serif;
   font-size: 16px;
   color: var(--main-color);
 }
