@@ -11,6 +11,9 @@ a {
 
   &:hover {
     color: var(--link-hover-color);
+    text-decoration-skip: ink;
+    -webkit-text-decoration-skip: ink;
+    text-decoration: underline;
   }
 }
 
