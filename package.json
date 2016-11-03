@@ -21,16 +21,17 @@
     "gulp-postcss": "^6.2.0",
     "gulp-pug": "^3.0.4",
     "gulp-purifycss": "^0.2.0",
-    "postcss-css-variables": "^0.5.2",
+    "postcss-css-variables": "^0.6.0",
     "postcss-custom-media": "^5.0.1",
     "postcss-import": "^8.1.2",
+    "postcss-load-config": "^1.0.0",
     "postcss-nesting": "^2.3.1",
     "stylelint": "^7.2.0",
-    "stylelint-config-standard": "^13.0.0"
+    "stylelint-config-standard": "^14.0.0"
   },
   "dependencies": {
     "font-awesome": "^4.5.0",
-    "normalize.css": "^4.2.0"
+    "normalize.css": "^5.0.0"
   },
   "babel": {
     "presets": [
