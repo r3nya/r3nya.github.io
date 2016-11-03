@@ -36,3 +36,23 @@ main {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
+
+@media (--md-viewport) {
+  i {
+    width: 2rem;
+  }
+
+  .link {
+    font-size: 1.6rem;
+  }
+}
+
+@media (--lg-viewport) {
+  i {
+    width: 2.4rem;
+  }
+
+  .link {
+    font-size: 2rem;
+  }
+}

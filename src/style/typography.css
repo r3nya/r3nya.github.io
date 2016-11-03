@@ -26,6 +26,16 @@ h5 {
   }
 }
 
+@media (--lg-viewport) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h5 {
+    font-size: 2rem;
+  }
+}
+
 hr {
   border-width: 0;
   border-top: 1px solid var(--hr-color);
