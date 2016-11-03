@@ -8,21 +8,21 @@ h5 {
 
 @media (--sm-viewport) {
   h1 {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
   }
 
   h5 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 }
 
 @media (--md-viewport) {
   h1 {
-    font-size: 3rem;
+    font-size: 3.2rem;
   }
 
   h5 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -33,6 +33,16 @@ h5 {
 
   h5 {
     font-size: 2rem;
+  }
+}
+
+@media (--xlg-viewport) {
+  h1 {
+    font-size: 6rem;
+  }
+
+  h5 {
+    font-size: 3rem;
   }
 }
 

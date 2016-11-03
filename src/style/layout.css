@@ -56,3 +56,14 @@ main {
     font-size: 2rem;
   }
 }
+
+@media (--xlg-viewport) {
+  i {
+    width: 3.2rem;
+  }
+
+  .link {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+  }
+}

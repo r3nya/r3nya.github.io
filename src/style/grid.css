@@ -21,10 +21,15 @@
     align-items: baseline;
     justify-content: space-between;
     margin-top: 10vh;
-    max-width: var;
+    padding: 0 2rem 0 4rem;
+    max-width: var(--sm-container);
 
     & .one-half {
-      width: calc(100% / 2 - (2rem * 2));
+      width: calc(60% - 2rem);
+    }
+
+    & .one-half:last-child {
+      width: calc(40% - 2rem);
     }
   }
 }
@@ -37,11 +42,11 @@
     margin-top: 10vh;
 
     & .one-half {
-      width: calc(60% - (2rem * 2));
+      width: calc(60% - 2rem);
     }
 
     & .one-half:last-child {
-      width: calc(40% - (2rem * 2));
+      width: calc(40% - 2rem);
     }
   }
 }
@@ -49,5 +54,11 @@
 @media (--lg-viewport) {
   .container {
     max-width: var(--lg-container);
+  }
+}
+
+@media (--xlg-viewport) {
+  .container {
+    max-width: var(--xlg-container);
   }
 }
