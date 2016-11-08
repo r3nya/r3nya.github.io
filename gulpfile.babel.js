@@ -15,6 +15,7 @@ gulp.task('css', () => {
   let purify = require('gulp-purifycss')
 
   const processors = [
+    require('postcss-devtools')(),
     require('autoprefixer')({ browsers: ['> 5%'] }),
     require('postcss-import')(),
     require('postcss-nesting')(),

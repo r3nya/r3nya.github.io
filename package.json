@@ -23,6 +23,7 @@
     "gulp-purifycss": "^0.2.0",
     "postcss-css-variables": "^0.6.0",
     "postcss-custom-media": "^5.0.1",
+    "postcss-devtools": "^1.1.1",
     "postcss-import": "^8.1.2",
     "postcss-load-config": "^1.0.0",
     "postcss-nesting": "^2.3.1",
