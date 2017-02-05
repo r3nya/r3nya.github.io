@@ -1,7 +1,7 @@
 import gulp from 'gulp'
 
 gulp.task('html', () => {
-  let pug = require('gulp-pug')
+  const pug = require('gulp-pug')
 
   return gulp.src('src/html/index.pug')
     .pipe(pug())
@@ -9,10 +9,10 @@ gulp.task('html', () => {
 })
 
 gulp.task('css', () => {
-  let postcss = require('gulp-postcss')
-  let cleanCss = require('gulp-clean-css')
-  let cncat = require('gulp-concat')
-  let purify = require('gulp-purifycss')
+  const postcss = require('gulp-postcss')
+  const cleanCss = require('gulp-clean-css')
+  const cncat = require('gulp-concat')
+  const purify = require('gulp-purifycss')
 
   const processors = [
     require('postcss-devtools')(),
@@ -38,7 +38,7 @@ gulp.task('fonts', () => {
 })
 
 gulp.task('humans', () => {
-  let humans = require('gulp-humans')
+  const humans = require('gulp-humans')
 
   return gulp.src('dist/index.html')
     .pipe(humans({
@@ -56,17 +56,17 @@ gulp.task('humans', () => {
 })
 
 gulp.task('clean', () => {
-  let del = require('del')
+  const del = require('del')
 
   return del([ 'dist' ])
 })
 
-gulp.task('w', () => {
-  return gulp.watch(
+gulp.task('w', () => (
+  gulp.watch(
     'src/**/*.(pug|css)',
     gulp.parallel('html', 'css')
   )
-})
+))
 
 gulp.task('default',
   gulp.series('clean',
