@@ -2711,9 +2711,9 @@ postcss-devtools:
     pretty-hrtime "^1.0.1"
     text-table "^0.2.0"
 
-postcss-import@9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-9.0.0.tgz#751fcd21c53eec6eb468890384ce3c114968b391"
+postcss-import@9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-import/-/postcss-import-9.1.0.tgz#95fe9876a1e79af49fbdc3589f01fe5aa7cc1e80"
   dependencies:
     object-assign "^4.0.1"
     postcss "^5.0.14"
@@ -3388,9 +3388,9 @@ stylehacks@^2.3.0:
     text-table "^0.2.0"
     write-file-stdout "0.0.2"
 
-stylelint-config-standard@15.0.1:
-  version "15.0.1"
-  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-15.0.1.tgz#f588e036bca6bb52391ea784198e773a9ca70efe"
+stylelint-config-standard@16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-16.0.0.tgz#bb7387bff1d7dd7186a52b3ebf885b2405d691bf"
 
 stylelint@^7.2.0:
   version "7.5.0"
