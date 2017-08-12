@@ -49,7 +49,7 @@ gulp.task('humans', () => {
       site: [
         'Standards: HTML5, CSS3',
         'Components: Normalize.css',
-        'Software: Atom'
+        'Software: VSCode'
       ]
     }))
     .pipe(gulp.dest('dist/'))
@@ -59,6 +59,13 @@ gulp.task('clean', () => {
   const del = require('del')
 
   return del([ 'dist' ])
+})
+
+gulp.task('open', () => {
+  const open = require('gulp-open')
+
+  return gulp.src('dist/index.html')
+    .pipe(open())
 })
 
 gulp.task('w', () => (
