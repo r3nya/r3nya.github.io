@@ -28,7 +28,7 @@ gulp.task('css', () => {
     .pipe(postcss(processors))
     .pipe(cncat('style.css'))
     .pipe(purify(['dist/index.html']))
-    .pipe(cleanCss({ keepSpecialComments: 0 }))
+    .pipe(cleanCss({ specialComments: 0 }))
     .pipe(gulp.dest('dist/css'))
 })
 
