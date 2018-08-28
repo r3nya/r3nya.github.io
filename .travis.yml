@@ -20,4 +20,4 @@ deploy:
   target-branch: master
   local-dir: dist
   on:
-    branch: master
+    branch: develop
