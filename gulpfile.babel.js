@@ -2,9 +2,11 @@ import gulp from 'gulp'
 
 gulp.task('html', () => {
   const pug = require('gulp-pug')
+  const minifyInline = require('gulp-minify-inline')
 
   return gulp.src('src/html/index.pug')
     .pipe(pug())
+    .pipe(minifyInline())
     .pipe(gulp.dest('dist'))
 })
 
@@ -58,7 +60,7 @@ gulp.task('humans', () => {
 gulp.task('clean', () => {
   const del = require('del')
 
-  return del([ 'dist' ])
+  return del(['dist'])
 })
 
 gulp.task('open', () => {

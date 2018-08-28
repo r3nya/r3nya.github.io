@@ -960,7 +960,7 @@ character-reference-invalid@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/character-reference-invalid/-/character-reference-invalid-1.1.1.tgz#942835f750e4ec61a308e60c2ef8cc1011202efc"
 
-cheerio@*:
+cheerio@*, cheerio@^0.22.0:
   version "0.22.0"
   resolved "https://registry.yarnpkg.com/cheerio/-/cheerio-0.22.0.tgz#a9baa860a3f9b595a6b81b1a86873121ed3a269e"
   dependencies:
@@ -1025,7 +1025,7 @@ clean-css@^3.2.10:
     commander "2.8.x"
     source-map "0.4.x"
 
-clean-css@^4.1.11:
+clean-css@^4.1.11, clean-css@^4.1.4:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.1.tgz#2d411ef76b8569b6d0c84068dabe85b0aa5e5c17"
   dependencies:
@@ -1126,6 +1126,10 @@ commander@2.8.x:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.8.1.tgz#06be367febfda0c330aa1e2a072d3dc9762425d4"
   dependencies:
     graceful-readlink ">= 1.0.0"
+
+commander@~2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
 
 component-emitter@^1.2.1:
   version "1.2.1"
@@ -2100,6 +2104,16 @@ gulp-humans@^2.0.2:
   dependencies:
     humans-generator "*"
 
+gulp-minify-inline@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-minify-inline/-/gulp-minify-inline-1.0.0.tgz#8a6b6a53ad88271fdc8fa7c7c0f47d7d37153ccd"
+  dependencies:
+    cheerio "^0.22.0"
+    clean-css "^4.1.4"
+    gulp-util "^3.0.8"
+    through2 "^2.0.3"
+    uglify-es "^3.0.21"
+
 gulp-open@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/gulp-open/-/gulp-open-3.0.1.tgz#a2f747b4aa31abec9399b527158b0368c57e2102"
@@ -2139,7 +2153,7 @@ gulp-purifycss@^0.2.0:
     purify-css "^1.0.8"
     through2 "^2.0.0"
 
-gulp-util@3.0.8:
+gulp-util@3.0.8, gulp-util@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -4571,7 +4585,7 @@ source-map@^0.1.38:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@^0.6.1, source-map@~0.6.0:
+source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
@@ -4983,6 +4997,13 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
+
+uglify-es@^3.0.21:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/uglify-es/-/uglify-es-3.3.9.tgz#0c1c4f0700bed8dbc124cdb304d2592ca203e677"
+  dependencies:
+    commander "~2.13.0"
+    source-map "~0.6.1"
 
 uglify-js@^2.6.1:
   version "2.7.4"
