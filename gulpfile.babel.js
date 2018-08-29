@@ -37,6 +37,19 @@ gulp.task('css', () => {
     .pipe(gulp.dest('dist/css'))
 })
 
+gulp.task('sw-toolbox', () => {
+  return gulp.src(['./node_modules/sw-toolbox/sw-toolbox.js'])
+    .pipe(gulp.dest('dist/js'))
+})
+
+gulp.task('sw', () => {
+  const uglify = require('gulp-uglify')
+
+  return gulp.src(['./src/js/sw.js'])
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'))
+})
+
 gulp.task('fonts', () => {
   return gulp.src(['./node_modules/font-awesome/fonts/**/*'])
     .pipe(gulp.dest('dist/fonts'))
@@ -88,7 +101,7 @@ gulp.task('w', () => (
 gulp.task('default',
   gulp.series('clean',
     gulp.series('html',
-      gulp.parallel('css', 'fonts', 'humans', 'cname')
+      gulp.parallel('css', 'fonts', 'humans', 'cname', 'sw', 'sw-toolbox')
     )
   )
 )
