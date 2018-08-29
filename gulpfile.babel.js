@@ -72,6 +72,11 @@ gulp.task('open', () => {
     .pipe(open())
 })
 
+gulp.task('cname', () => {
+  return gulp.src('./src/CNAME')
+    .pipe(gulp.dest('./dist'))
+})
+
 gulp.task('w', () => (
   gulp.watch(
     'src/**/*.(pug|css)',
@@ -82,7 +87,7 @@ gulp.task('w', () => (
 gulp.task('default',
   gulp.series('clean',
     gulp.series('html',
-      gulp.parallel('css', 'fonts', 'humans')
+      gulp.parallel('css', 'fonts', 'humans', 'cname')
     )
   )
 )
