@@ -10,7 +10,6 @@ before_script:
   - npm audit
   - npm run lint
 script: npm run build
-after_script: greenkeeper-lockfile-upload
 before_deploy:
   - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
   - npm install -g greenkeeper-lockfile
@@ -24,3 +23,4 @@ deploy:
   local-dir: dist
   on:
     branch: develop
+after_deploy: greenkeeper-lockfile-upload
