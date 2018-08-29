@@ -24,6 +24,7 @@ gulp.task('css', () => {
     require('postcss-nesting')(),
     require('postcss-custom-media')(),
     require('postcss-css-variables')(),
+    require('postcss-flexbugs-fixes')(),
     require('css-mqpacker')()
   ]
 
