@@ -7,13 +7,14 @@ node_js:
   - 'lts/*'
 install: npm install
 before_script:
-  - greenkeeper-lockfile-update
+  - npm audit
   - npm run lint
 script: npm run build
 after_script: greenkeeper-lockfile-upload
 before_deploy:
   - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
   - npm install -g greenkeeper-lockfile
+  - greenkeeper-lockfile-update
 deploy:
   provider: pages
   skip-cleanup: true
