@@ -15,6 +15,7 @@ gulp.task('css', () => {
   const cleanCss = require('gulp-clean-css')
   const cncat = require('gulp-concat')
   const purify = require('gulp-purifycss')
+  const csso = require('gulp-csso')
 
   const processors = [
     require('postcss-devtools')(),
@@ -30,7 +31,8 @@ gulp.task('css', () => {
     .pipe(postcss(processors))
     .pipe(cncat('style.css'))
     .pipe(purify(['dist/index.html']))
-    .pipe(cleanCss({ specialComments: 0 }))
+    .pipe(cleanCss({ level: { 1: { specialComments: false } } }))
+    .pipe(csso())
     .pipe(gulp.dest('dist/css'))
 })
 
