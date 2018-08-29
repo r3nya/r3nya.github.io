@@ -7,7 +7,6 @@ node_js:
   - 'lts/*'
 install: npm install
 before_script:
-  - npm audit
   - npm run lint
 script: npm run build
 before_deploy:
