@@ -57,6 +57,7 @@ gulp.task('fonts', () => {
 
 gulp.task('humans', () => {
   const humans = require('gulp-humans')
+  const lastUpdate = (new Date()).toISOString().split('T')[0].split('-').join('/')
 
   return gulp.src('dist/index.html')
     .pipe(humans({
@@ -65,6 +66,7 @@ gulp.task('humans', () => {
         'Email: me@r3nya.ru'
       ],
       site: [
+        `Last update: ${lastUpdate}`,
         'Standards: HTML5, CSS3',
         'Components: Normalize.css',
         'Software: VSCode'
