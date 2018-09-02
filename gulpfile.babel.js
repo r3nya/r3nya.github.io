@@ -75,6 +75,17 @@ gulp.task('humans', () => {
     .pipe(gulp.dest('dist/'))
 })
 
+gulp.task('favicon', () => (
+  gulp.src([
+    './src/assets/apple-touch-icon.png',
+    './src/assets/favicon-16x16.png',
+    './src/assets/favicon-32x32.png',
+    './src/assets/favicon.ico',
+    './src/assets/safari-pinned-tab.svg',
+  ])
+    .pipe(gulp.dest('./dist'))
+));
+
 gulp.task('clean', () => {
   const del = require('del')
 
@@ -103,7 +114,7 @@ gulp.task('w', () => (
 gulp.task('default',
   gulp.series('clean',
     gulp.series('html',
-      gulp.parallel('css', 'fonts', 'humans', 'cname', 'sw', 'sw-toolbox')
+      gulp.parallel('css', 'fonts', 'humans', 'cname', 'sw', 'sw-toolbox', 'favicon')
     )
   )
 )
