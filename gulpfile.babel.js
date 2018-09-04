@@ -1,4 +1,5 @@
 import gulp from 'gulp'
+import size from 'gulp-filesize'
 
 gulp.task('html', () => {
   const pug = require('gulp-pug')
@@ -8,6 +9,7 @@ gulp.task('html', () => {
     .pipe(pug())
     .pipe(minifyInline())
     .pipe(gulp.dest('dist'))
+    .pipe(size())
 })
 
 gulp.task('css', () => {
@@ -35,6 +37,7 @@ gulp.task('css', () => {
     .pipe(cleanCss({ level: { 1: { specialComments: false } } }))
     .pipe(csso())
     .pipe(gulp.dest('dist/css'))
+    .pipe(size())
 })
 
 gulp.task('sw-toolbox', () => {
@@ -53,6 +56,7 @@ gulp.task('sw', () => {
 gulp.task('fonts', () => {
   return gulp.src(['./node_modules/font-awesome/fonts/**/*'])
     .pipe(gulp.dest('dist/fonts'))
+    .pipe(size())
 })
 
 gulp.task('humans', () => {
