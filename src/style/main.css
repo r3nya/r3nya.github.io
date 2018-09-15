@@ -1,6 +1,6 @@
 @import "normalize.css";
-@import "font-awesome";
 @import "./variables";
+@import "./fontello.css";
 @import "./grid";
 @import "./typography";
 @import "./layout";

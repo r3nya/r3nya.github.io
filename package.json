@@ -38,7 +38,6 @@
     "stylelint-config-standard": "^18.2.0"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0",
     "normalize.css": "^8.0.0",
     "sw-toolbox": "^3.6.0"
   },
@@ -48,7 +47,10 @@
     ]
   },
   "stylelint": {
-    "extends": "stylelint-config-standard"
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "font-family-no-missing-generic-family-keyword": null
+    }
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."

@@ -4,7 +4,7 @@ toolbox.options.debug = true;
 toolbox.precache([
   '/index.html',
   '/css/style.css',
-  '/fonts/fontawesome-webfont.woff',
-  '/fonts/fontawesome-webfont.woff2'
+  '/fonts/fontello.woff',
+  '/fonts/fontello.woff2'
 ]);
 toolbox.router.get('/', toolbox.fastest);
