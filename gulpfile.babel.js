@@ -53,11 +53,16 @@ gulp.task('sw', () => {
     .pipe(gulp.dest('dist/js'))
 })
 
-gulp.task('fonts', () => {
-  return gulp.src(['./node_modules/font-awesome/fonts/**/*'])
+gulp.task('fonts', () => (
+  gulp.src([
+    './src/fonts/fontello.eot',
+    './src/fonts/fontello.svg',
+    './src/fonts/fontello.ttf',
+    './src/fonts/fontello.woff',
+    './src/fonts/fontello.woff2',
+  ])
     .pipe(gulp.dest('dist/fonts'))
-    .pipe(size())
-})
+))
 
 gulp.task('humans', () => {
   const humans = require('gulp-humans')
