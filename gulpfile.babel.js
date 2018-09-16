@@ -113,6 +113,14 @@ gulp.task('cname', () => {
     .pipe(gulp.dest('./dist'))
 })
 
+gulp.task('sri', () => {
+  const sriHash = require('gulp-sri-hash')
+
+  return gulp.src('./dist/*.html')
+    .pipe(sriHash())
+    .pipe(gulp.dest('./dist/'))
+})
+
 gulp.task('w', () => (
   gulp.watch(
     'src/**/*.(pug|css)',
@@ -123,7 +131,9 @@ gulp.task('w', () => (
 gulp.task('default',
   gulp.series('clean',
     gulp.series('html',
-      gulp.parallel('css', 'fonts', 'humans', 'cname', 'sw', 'sw-toolbox', 'favicon')
+      gulp.series('css',
+        gulp.parallel('fonts', 'humans', 'cname', 'sw', 'sw-toolbox', 'favicon', 'sri')
+      )
     )
   )
 )
