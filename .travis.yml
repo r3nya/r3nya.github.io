@@ -22,4 +22,5 @@ deploy:
   local-dir: dist
   on:
     branch: develop
+    node: 'node'
 after_deploy: greenkeeper-lockfile-upload
