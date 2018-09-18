@@ -10,7 +10,7 @@ Author: Andrey M.
 Email: me@r3nya.ru
 
 /* SITE */
-Last update: 2018/09/16
+Last update: 2018/09/18
 Standards: HTML5, CSS3
 Components: Normalize.css
 Software: VSCode
