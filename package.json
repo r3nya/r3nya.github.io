@@ -28,7 +28,7 @@
     "gulp-purifycss": "^0.2.0",
     "gulp-sri-hash": "^1.7.0",
     "gulp-uglify": "^3.0.1",
-    "postcss-css-variables": "^0.9.0",
+    "postcss-css-variables": "^0.10.0",
     "postcss-custom-media": "^7.0.3",
     "postcss-devtools": "^1.1.1",
     "postcss-flexbugs-fixes": "^4.1.0",
