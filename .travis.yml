@@ -17,7 +17,7 @@ before_script:
 script: npm run build
 
 after_script:
-  - npm run serve -- --silent &
+  - npm run serve -- &
   - npm run cy:all -- --record --parallel
   - kill $(jobs -p) || true
 
