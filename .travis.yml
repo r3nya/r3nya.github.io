@@ -1,18 +1,31 @@
 language: node_js
-cache:
-  directories:
-  - node_modules
+
 node_js:
-  - 'node'
-  - 'lts/*'
+  - 10
+
+cache:
+  npm: true
+  directories:
+    - ~/.cache
+
 install: npm install
+
 before_script:
   - npm run lint
+  - npm run cy:verify
+
 script: npm run build
+
+after_script:
+  - npm run serve -- &
+  - npm run cy:run
+  - kill $(jobs -p) || true
+
 before_deploy:
   - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
   - npm install -g greenkeeper-lockfile
   - greenkeeper-lockfile-update
+
 deploy:
   provider: pages
   skip-cleanup: true
@@ -23,4 +36,5 @@ deploy:
   on:
     branch: develop
     node: 'node'
+
 after_deploy: greenkeeper-lockfile-upload
