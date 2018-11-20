@@ -8,8 +8,9 @@
     "w": "gulp w",
     "open": "gulp open",
     "lint": "stylelint src/style/*.css",
-    "cypress": "cypress open",
-    "cypress:run": "cypress run all",
+    "cy": "cypress open",
+    "cy:run": "cypress run",
+    "cy:verify": "cypress verify",
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
