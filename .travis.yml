@@ -22,6 +22,9 @@ after_script:
   - npm run cy:run
   - kill $(jobs -p) || true
 
+after_success:
+  - npm run lh -- --perf=96 https://r3nya.ru
+
 before_deploy:
   - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
   - npm install -g greenkeeper-lockfile
@@ -39,6 +42,3 @@ deploy:
     node: 'node'
 
 after_deploy: greenkeeper-lockfile-upload
-
-after_success:
-  - npm run lh -- --perf=96 https://r3nya.ru
