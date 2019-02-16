@@ -41,4 +41,4 @@ deploy:
 after_deploy: greenkeeper-lockfile-upload
 
 after_success:
-  - npm run lh -- https://r3nya.ru
+  - npm run lh -- --perf=96 https://r3nya.ru
