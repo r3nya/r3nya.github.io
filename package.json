@@ -48,7 +48,8 @@
   },
   "dependencies": {
     "normalize.css": "^8.0.0",
-    "sw-toolbox": "^3.6.0"
+    "sw-toolbox": "^3.6.0",
+    "typeface-karla": "0.0.54"
   },
   "babel": {
     "presets": [

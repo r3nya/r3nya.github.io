@@ -60,6 +60,10 @@ gulp.task('fonts', () => (
     './src/fonts/fontello.ttf',
     './src/fonts/fontello.woff',
     './src/fonts/fontello.woff2',
+    'node_modules/typeface-karla/files/karla-latin-400.woff',
+    'node_modules/typeface-karla/files/karla-latin-400.woff2',
+    'node_modules/typeface-karla/files/karla-latin-700.woff',
+    'node_modules/typeface-karla/files/karla-latin-700.woff2',
   ])
     .pipe(gulp.dest('dist/fonts'))
 ))
