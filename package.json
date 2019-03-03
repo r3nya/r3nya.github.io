@@ -42,6 +42,7 @@
     "parcel-plugin-static-files-copy": "^2.0.0",
     "parcel-plugin-sw-cache": "^0.2.7",
     "postcss-flexbugs-fixes": "^4.1.0",
+    "sass": "^1.17.2",
     "serve": "10.1.2",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0"
