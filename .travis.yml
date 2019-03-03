@@ -39,6 +39,6 @@ deploy:
   local-dir: dist
   on:
     branch: develop
-    node: 'node'
+    tags: true
 
 after_deploy: greenkeeper-lockfile-upload
