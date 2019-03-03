@@ -4,7 +4,7 @@
   flex-flow: column;
   margin: 0 auto;
   padding: 0 2rem;
-  max-width: var(--xs-container);
+  max-width: $xs-container;
 
   & .one-half {
     width: 100%;
@@ -15,14 +15,14 @@
   }
 }
 
-@media (--sm-viewport) {
+@media only screen and (min-width: $sm) {
   .container {
     flex-flow: row nowrap;
     align-items: baseline;
     justify-content: space-between;
     margin-top: 10vh;
     padding: 0 2rem 0 4rem;
-    max-width: var(--sm-container);
+    max-width: $sm-container;
 
     & .one-half {
       width: calc(60% - 2rem);
@@ -34,7 +34,7 @@
   }
 }
 
-@media (--md-viewport) {
+@media only screen and (min-width: $md) {
   .container {
     flex-flow: row nowrap;
     align-items: baseline;
@@ -51,14 +51,14 @@
   }
 }
 
-@media (--lg-viewport) {
+@media only screen and (min-width: $lg) {
   .container {
-    max-width: var(--lg-container);
+    max-width: $lg-container;
   }
 }
 
-@media (--xlg-viewport) {
+@media only screen and (min-width: $xlg) {
   .container {
-    max-width: var(--xlg-container);
+    max-width: $xlg-container;
   }
 }

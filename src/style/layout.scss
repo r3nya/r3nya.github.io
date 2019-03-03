@@ -3,19 +3,19 @@ html {
 }
 
 body {
-  background: var(--main-background);
+  background: $main-background;
   font-family: "Karla", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  color: var(--main-color);
+  color: $main-color;
 }
 
 a {
   text-decoration: none;
-  color: var(--link-color);
+  color: $link-color;
 
   &:hover {
-    color: var(--link-hover-color);
+    color: $link-hover-color;
     text-decoration-skip: ink;
     -webkit-text-decoration-skip: ink;
     text-decoration: underline;
@@ -39,7 +39,7 @@ main {
   margin-bottom: 0.5rem;
 }
 
-@media (--md-viewport) {
+@media only screen and (min-width: $md) {
   i {
     width: 2rem;
   }
@@ -49,7 +49,7 @@ main {
   }
 }
 
-@media (--lg-viewport) {
+@media only screen and (min-width: $lg) {
   i {
     width: 2.4rem;
   }
@@ -59,7 +59,7 @@ main {
   }
 }
 
-@media (--xlg-viewport) {
+@media only screen and (min-width: $xlg) {
   i {
     width: 3.2rem;
   }

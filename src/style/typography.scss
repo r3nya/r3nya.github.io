@@ -5,10 +5,10 @@ h1 {
 
 h5 {
   font-size: 1.2rem;
-  color: var(--h5-color);
+  color: $h5-color;
 }
 
-@media (--sm-viewport) {
+@media only screen and (min-width: $sm) {
   h1 {
     font-size: 2.6rem;
   }
@@ -18,7 +18,7 @@ h5 {
   }
 }
 
-@media (--md-viewport) {
+@media only screen and (min-width: $md) {
   h1 {
     font-size: 3.2rem;
   }
@@ -28,7 +28,7 @@ h5 {
   }
 }
 
-@media (--lg-viewport) {
+@media only screen and (min-width: $lg) {
   h1 {
     font-size: 4rem;
   }
@@ -38,7 +38,7 @@ h5 {
   }
 }
 
-@media (--xlg-viewport) {
+@media only screen and (min-width: $xlg) {
   h1 {
     font-size: 6rem;
   }
@@ -50,5 +50,5 @@ h5 {
 
 hr {
   border-width: 0;
-  border-top: 1px solid var(--hr-color);
+  border-top: 1px solid $hr-color;
 }
