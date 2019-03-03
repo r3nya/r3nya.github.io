@@ -1,1 +1,0 @@
-importScripts("/js/sw-toolbox.js"),toolbox.options.debug=!0,toolbox.precache(["/index.html","/css/style.css","/fonts/fontello.woff","/fonts/fontello.woff2"]),toolbox.router.get("/",toolbox.fastest);
