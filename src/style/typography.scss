@@ -1,0 +1,54 @@
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h5 {
+  font-size: 1.2rem;
+  color: $h5-color;
+}
+
+@media only screen and (min-width: $sm) {
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  h5 {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: $md) {
+  h1 {
+    font-size: 3.2rem;
+  }
+
+  h5 {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  h1 {
+    font-size: 4rem;
+  }
+
+  h5 {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-width: $xlg) {
+  h1 {
+    font-size: 6rem;
+  }
+
+  h5 {
+    font-size: 3rem;
+  }
+}
+
+hr {
+  border-width: 0;
+  border-top: 1px solid $hr-color;
+}

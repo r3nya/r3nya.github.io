@@ -1,0 +1,71 @@
+html {
+  touch-action: manipulation;
+}
+
+body {
+  background: $main-background;
+  font-family: "Karla", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  color: $main-color;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration-skip: ink;
+    -webkit-text-decoration-skip: ink;
+    text-decoration: underline;
+  }
+}
+
+i {
+  width: 1.6rem;
+}
+
+main {
+  font-size: 1.2rem;
+
+  &:first-child {
+    margin-top: 2.67rem;
+  }
+}
+
+.link {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+@media only screen and (min-width: $md) {
+  i {
+    width: 2rem;
+  }
+
+  .link {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: $lg) {
+  i {
+    width: 2.4rem;
+  }
+
+  .link {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-width: $xlg) {
+  i {
+    width: 3.2rem;
+  }
+
+  .link {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+  }
+}
