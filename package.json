@@ -2,10 +2,11 @@
   "name": "new_home_page",
   "version": "1.0.0",
   "scripts": {
-    "clean": "gulp clean",
-    "build": "gulp",
-    "watch": "gulp w",
-    "w": "gulp w",
+    "clean": "rimraf ./dist",
+    "prebuild": "npm run clean",
+    "build": "parcel build src/html/index.pug",
+    "start": "concurrently \"npm run watch\" \"npx parcel serve src/html/index.pug\"",
+    "watch": "parcel watch src/html/index.pug",
     "open": "gulp open",
     "lint": "stylelint src/style/*.css",
     "lh": "lighthousebot",
@@ -15,9 +16,11 @@
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.0.0",
     "autoprefixer": "^9.1.2",
+    "concurrently": "^4.1.0",
     "css-mqpacker": "^7.0.0",
     "cypress": "3.1.5",
     "del": "3.0.0",
@@ -35,13 +38,10 @@
     "gulp-sri-hash": "^1.7.0",
     "gulp-uglify": "3.0.2",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
-    "postcss-css-variables": "^0.12.0",
-    "postcss-custom-media": "^7.0.3",
-    "postcss-devtools": "^1.1.1",
+    "parcel-bundler": "^1.11.0",
+    "parcel-plugin-static-files-copy": "^2.0.0",
+    "parcel-plugin-sw-cache": "^0.2.7",
     "postcss-flexbugs-fixes": "^4.1.0",
-    "postcss-import": "^12.0.0",
-    "postcss-load-config": "^2.0.0",
-    "postcss-nesting": "^7.0.0",
     "serve": "10.1.2",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0"
@@ -61,6 +61,11 @@
     "rules": {
       "font-family-no-missing-generic-family-keyword": null
     }
+  },
+  "cache": {
+    "inDev": true,
+    "swDest": "service-worker.js",
+    "strategy": "default"
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
