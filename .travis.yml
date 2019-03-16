@@ -19,7 +19,7 @@ script: npm run build
 
 after_script:
   - npm run serve -- &
-  # - npm run cy:run
+  - npm run cy:run
   - kill $(jobs -p) || true
 
 after_success:
