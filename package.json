@@ -16,26 +16,26 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
-    "autoprefixer": "^9.4.9",
-    "browserslist": "^4.4.2",
+    "autoprefixer": "9.4.9",
+    "browserslist": "4.4.2",
     "concurrently": "^4.1.0",
     "css-mqpacker": "^7.0.0",
     "cypress": "3.2.0",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
-    "parcel-bundler": "^1.11.0",
+    "parcel-bundler": "1.12.2",
     "parcel-plugin-static-files-copy": "^2.0.0",
-    "parcel-plugin-sw-cache": "^0.2.7",
+    "parcel-plugin-sw-cache": "0.2.7",
     "postcss-flexbugs-fixes": "^4.1.0",
     "pug": "^2.0.3",
-    "sass": "^1.17.2",
+    "sass": "^1.17.3",
     "serve": "10.1.2",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1",
+    "normalize.css": "8.0.1",
     "typeface-karla": "0.0.72"
   },
   "babel": {
