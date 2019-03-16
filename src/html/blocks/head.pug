@@ -1,6 +1,10 @@
 head
   meta(charset='utf-8')
   title Andrey Makarov aka r3nya
+
+  if process.env.NODE_ENV === 'production'
+    meta(http-equiv='Content-Security-Policy' content='default-src https:')
+
   meta(name='description', content='Andrey Makarov\'s homepage')
   meta(name='author', content='Andrew M.')
   meta(name='viewport', content='width=device-width, initial-scale=1')
