@@ -3,7 +3,7 @@ head
   title Andrey Makarov aka r3nya
 
   if process.env.NODE_ENV === 'production'
-    meta(http-equiv='Content-Security-Policy' content='default-src https:')
+    meta(http-equiv='Content-Security-Policy' content='default-src https: \'unsafe-inline\'')
 
   meta(name='description', content='Andrey Makarov\'s homepage')
   meta(name='author', content='Andrew M.')
