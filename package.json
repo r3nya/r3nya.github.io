@@ -26,6 +26,7 @@
     "cypress": "3.2.0",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
     "parcel-bundler": "1.12.2",
+    "parcel-plugin-purifycss": "^1.0.5",
     "parcel-plugin-static-files-copy": "^2.0.0",
     "parcel-plugin-sw-cache": "0.2.7",
     "postcss-flexbugs-fixes": "^4.1.0",
