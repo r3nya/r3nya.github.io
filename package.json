@@ -19,7 +19,7 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
-    "autoprefixer": "9.4.9",
+    "autoprefixer": "9.5.0",
     "browserslist": "4.5.1",
     "concurrently": "^4.1.0",
     "css-mqpacker": "^7.0.0",
