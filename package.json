@@ -32,7 +32,7 @@
     "postcss-flexbugs-fixes": "^4.1.0",
     "pug": "^2.0.3",
     "sass": "^1.17.3",
-    "serve": "10.1.2",
+    "serve": "11.0.0",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0"
   },
