@@ -8,7 +8,7 @@
     "build": "NODE_ENV=production parcel build src/html/index.pug",
     "start": "concurrently \"npm run watch\" \"npx parcel serve src/html/index.pug\"",
     "watch": "parcel watch src/html/index.pug",
-    "lint": "stylelint src/style/*.css",
+    "lint": "stylelint src/style/*.scss",
     "lh": "lighthousebot",
     "cy": "cypress open",
     "cy:run": "cypress run",
