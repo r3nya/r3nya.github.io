@@ -11,7 +11,7 @@ cache:
 install: npm install
 
 before_script:
-  - npm audit
+  # - npm audit
   - npm run lint
   # - npm run cy:verify
 
