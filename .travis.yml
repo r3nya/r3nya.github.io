@@ -13,7 +13,7 @@ install: npm install
 before_script:
   - npm audit
   - npm run lint
-  - npm run cy:verify
+  # - npm run cy:verify
 
 script: npm run build
 
