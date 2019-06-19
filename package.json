@@ -29,7 +29,7 @@
     "parcel-plugin-purifycss": "^1.0.5",
     "parcel-plugin-static-files-copy": "^2.1.2",
     "postcss-flexbugs-fixes": "^4.1.0",
-    "pug": "^2.0.3",
+    "pug": "^2.0.4",
     "sass": "^1.21.0",
     "serve": "11.0.1",
     "stylelint": "^10.1.0",
