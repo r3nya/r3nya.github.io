@@ -10,6 +10,12 @@ cache:
 
 install: npm install
 
+before_install:
+  - sudo apt-get install -y libgconf-2-4
+addons:
+  apt:
+    update: true
+
 before_script:
   # - npm audit
   - npm run lint
@@ -19,7 +25,7 @@ script: npm run build
 
 after_script:
   - npm run serve -- &
-  # - npm run cy:run
+  - npm run cy:run
   - kill $(jobs -p) || true
 
 after_success:
