@@ -21,7 +21,7 @@
     "@babel/register": "^7.5.5",
     "autoprefixer": "9.6.1",
     "browserslist": "4.6.6",
-    "concurrently": "^4.1.1",
+    "concurrently": "^4.1.2",
     "css-mqpacker": "^7.0.0",
     "cypress": "3.4.1",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
