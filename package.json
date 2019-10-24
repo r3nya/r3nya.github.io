@@ -23,7 +23,7 @@
     "browserslist": "4.7.1",
     "concurrently": "^5.0.0",
     "css-mqpacker": "^7.0.0",
-    "cypress": "3.4.1",
+    "cypress": "3.5.0",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
     "parcel-bundler": "1.12.4",
     "parcel-plugin-purifycss": "^1.0.5",
