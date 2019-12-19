@@ -16,7 +16,7 @@
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
+    "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/register": "^7.7.4",
     "autoprefixer": "9.7.3",
