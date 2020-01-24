@@ -27,7 +27,7 @@
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
     "parcel-bundler": "1.12.4",
     "parcel-plugin-purifycss": "^1.0.5",
-    "parcel-plugin-static-files-copy": "^2.2.2",
+    "parcel-plugin-static-files-copy": "^2.3.1",
     "postcss-flexbugs-fixes": "^4.1.0",
     "pug": "^2.0.4",
     "sass": "^1.25.0",
