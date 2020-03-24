@@ -1,12 +1,13 @@
-name: Build and Deploy
+name: Tests
 
-on:
-  push:
-    branches:
-      - develop
+on: [push]
+# on:
+#   push:
+#     branches:
+#       - develop
 
 jobs:
-  deploy:
+  cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -29,14 +30,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build 🔧
-        run: npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: develop
-          BRANCH: master
-          FOLDER: dist
-#           CLEAN: true
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
