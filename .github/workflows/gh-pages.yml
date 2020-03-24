@@ -41,5 +41,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  
           BASE_BRANCH: develop
           BRANCH: master
-          FOLDER: build
+          FOLDER: dist
 #           CLEAN: true
