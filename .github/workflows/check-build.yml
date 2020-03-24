@@ -3,7 +3,7 @@ name: Check build
 on: pull_request
 
 jobs:
-  lint:
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
