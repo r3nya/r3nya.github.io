@@ -13,14 +13,27 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and Build 🔧
-        run: |
-          npm install
-          npm run build
+      - name: Cache node modules
+        uses: actions/cache@v1
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-          
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build 🔧
+        run: npm build
           
       - name: Install rsync 📚
         run: |
-          apt-get update && apt-get install -y rsync
+          sudo apt-get update && sudo apt-get install -y rsync
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
