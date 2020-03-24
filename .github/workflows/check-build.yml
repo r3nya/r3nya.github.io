@@ -1,17 +1,15 @@
-name: Build and Deploy
-on:
-  push:
-    branches:
-      - develop
+name: Check build
+
+on: pull_request
 
 jobs:
-  deploy:
+  check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          fetch-depth: 1
 
       - name: Cache node modules
         uses: actions/cache@v1
@@ -28,14 +26,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Lint ✅
+        run: npm run lint
+
       - name: Build 🔧
         run: npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: develop
-          BRANCH: master
-          FOLDER: dist
-#           CLEAN: true
