@@ -31,20 +31,20 @@ after_script:
 after_success:
   - npm run lh -- --perf=96 https://r3nya.ru
 
-before_deploy:
-  - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
-  - npm install -g greenkeeper-lockfile
-  - greenkeeper-lockfile-update
+# before_deploy:
+#   - '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
+#   - npm install -g greenkeeper-lockfile
+#   - greenkeeper-lockfile-update
 
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN
-  keep-history: true
-  target-branch: master
-  local-dir: dist
-  on:
-    branch: develop
-    tags: true
+# deploy:
+#   provider: pages
+#   skip-cleanup: true
+#   github-token: $GITHUB_TOKEN
+#   keep-history: true
+#   target-branch: master
+#   local-dir: dist
+#   on:
+#     branch: develop
+#     tags: true
 
-after_deploy: greenkeeper-lockfile-upload
+# after_deploy: greenkeeper-lockfile-upload
