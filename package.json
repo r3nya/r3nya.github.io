@@ -30,7 +30,7 @@
     "parcel-plugin-static-files-copy": "^2.3.1",
     "postcss-flexbugs-fixes": "^4.2.1",
     "pug": "^3.0.0",
-    "sass": "^1.26.5",
+    "sass": "^1.26.7",
     "serve": "11.3.1",
     "stylelint": "^13.5.0",
     "stylelint-config-standard": "^20.0.0"
