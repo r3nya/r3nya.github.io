@@ -20,7 +20,7 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/register": "^7.10.5",
     "autoprefixer": "9.8.6",
-    "browserslist": "4.13.0",
+    "browserslist": "4.14.0",
     "concurrently": "^5.2.0",
     "css-mqpacker": "^7.0.0",
     "cypress": "4.12.1",
