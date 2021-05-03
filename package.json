@@ -33,7 +33,7 @@
     "sass": "^1.32.11",
     "serve": "11.3.2",
     "stylelint": "^13.13.0",
-    "stylelint-config-standard": "^21.0.0"
+    "stylelint-config-standard": "^22.0.0"
   },
   "dependencies": {
     "normalize.css": "8.0.1",
