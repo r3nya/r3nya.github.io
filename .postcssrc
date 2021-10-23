@@ -1,7 +1,7 @@
 {
   "plugins": {
     "postcss-flexbugs-fixes": {},
-    "css-mqpacker": {},
+    "postcss-combine-media-query": {},
     "autoprefixer": {}
   }
 }
