@@ -13,8 +13,8 @@
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.0.0",
-    "@parcel/transformer-sass": "^2.0.0",
+    "@parcel/transformer-pug": "^2.0.1",
+    "@parcel/transformer-sass": "^2.0.1",
     "autoprefixer": "10.4.0",
     "browserslist": "4.17.5",
     "concurrently": "^6.3.0",
