@@ -3,6 +3,5 @@ dist
 *.log
 *.log.*
 .DS_Store
-/cypress/videos
 .cache
 .parcel-cache
