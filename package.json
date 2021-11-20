@@ -10,9 +10,6 @@
     "watch": "parcel watch src/html/index.pug",
     "lint": "stylelint src/style/*.scss",
     "lh": "lighthousebot",
-    "cy": "cypress open",
-    "cy:run": "cypress run",
-    "cy:verify": "cypress verify",
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
@@ -21,7 +18,6 @@
     "autoprefixer": "10.4.0",
     "browserslist": "4.17.5",
     "concurrently": "^6.3.0",
-    "cypress": "5.4.0",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
     "parcel": "^2.0.0",
     "parcel-plugin-static-files-copy": "^2.6.0",
