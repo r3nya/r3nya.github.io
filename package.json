@@ -13,13 +13,13 @@
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.0.1",
-    "@parcel/transformer-sass": "^2.0.1",
+    "@parcel/transformer-pug": "^2.2.0",
+    "@parcel/transformer-sass": "^2.2.0",
     "autoprefixer": "10.4.1",
     "browserslist": "4.19.1",
     "concurrently": "^6.5.1",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
-    "parcel": "^2.0.0",
+    "parcel": "^2.2.0",
     "parcel-plugin-static-files-copy": "^2.6.0",
     "postcss": "^8.4.5",
     "postcss-combine-media-query": "^1.0.1",
