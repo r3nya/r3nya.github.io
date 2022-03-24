@@ -1,7 +1,6 @@
 {
   "plugins": {
     "postcss-flexbugs-fixes": {},
-    "postcss-combine-media-query": {},
-    "autoprefixer": {}
+    "postcss-combine-media-query": {}
   }
 }
