@@ -19,7 +19,7 @@
     "@parcel/transformer-sass": "^2.4.1",
     "autoprefixer": "10.4.4",
     "browserslist": "4.20.2",
-    "concurrently": "^7.0.0",
+    "concurrently": "^7.1.0",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
     "parcel": "^2.4.1",
     "parcel-plugin-static-files-copy": "^2.6.0",
