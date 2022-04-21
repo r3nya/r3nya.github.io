@@ -28,8 +28,8 @@
     "pug": "^3.0.2",
     "rimraf": "^3.0.2",
     "serve": "13.0.2",
-    "stylelint": "^13.13.1",
-    "stylelint-config-standard": "^22.0.0"
+    "stylelint": "^14.7.1",
+    "stylelint-config-standard": "^25.0.0"
   },
   "dependencies": {
     "normalize.css": "8.0.1",
