@@ -4,7 +4,7 @@ html {
 
 body {
   background: $main-background;
-  font-family: "Karla", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
+  font-family: Karla, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   color: $main-color;
@@ -17,7 +17,6 @@ a {
   &:hover {
     color: $link-hover-color;
     text-decoration-skip: ink;
-    -webkit-text-decoration-skip: ink;
     text-decoration: underline;
   }
 }

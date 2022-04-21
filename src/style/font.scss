@@ -1,25 +1,25 @@
 /* karla-400normal - latin */
 @font-face {
-  font-family: 'Karla';
+  font-family: Karla;
   font-style: normal;
   font-display: swap;
   font-weight: 400;
   src:
-    local('Karla Regular '),
-    local('Karla-Regular'),
-    url('../../node_modules/typeface-karla/files/karla-latin-400.woff2') format('woff2'),
-    url('../../node_modules/typeface-karla/files/karla-latin-400.woff') format('woff');
+    local("Karla Regular "),
+    local("Karla-Regular"),
+    url("../../node_modules/typeface-karla/files/karla-latin-400.woff2") format("woff2"),
+    url("../../node_modules/typeface-karla/files/karla-latin-400.woff") format("woff");
 }
 
 /* karla-700normal - latin */
 @font-face {
-  font-family: 'Karla';
+  font-family: Karla;
   font-style: normal;
   font-display: swap;
   font-weight: 700;
   src:
-    local('Karla Bold '),
-    local('Karla-Bold'),
-    url('../../node_modules/typeface-karla/files/karla-latin-700.woff2') format('woff2'),
-    url('../../node_modules/typeface-karla/files/karla-latin-700.woff') format('woff');
+    local("Karla Bold "),
+    local("Karla-Bold"),
+    url("../../node_modules/typeface-karla/files/karla-latin-700.woff2") format("woff2"),
+    url("../../node_modules/typeface-karla/files/karla-latin-700.woff") format("woff");
 }
