@@ -27,7 +27,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "pug": "^3.0.2",
     "rimraf": "^3.0.2",
-    "serve": "13.0.2",
+    "serve": "14.0.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0"
   },
