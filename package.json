@@ -13,10 +13,10 @@
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
-    "@parcel/optimizer-css": "^2.6.2",
+    "@parcel/optimizer-css": "^2.7.0",
     "@parcel/transformer-css-experimental": "^2.3.2",
-    "@parcel/transformer-pug": "^2.6.2",
-    "@parcel/transformer-sass": "^2.6.2",
+    "@parcel/transformer-pug": "^2.7.0",
+    "@parcel/transformer-sass": "^2.7.0",
     "autoprefixer": "10.4.8",
     "browserslist": "4.21.3",
     "concurrently": "^7.3.0",
