@@ -16,5 +16,7 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "stylelint*"
     assignees:
       - "r3nya"
