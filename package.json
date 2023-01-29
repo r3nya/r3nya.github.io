@@ -21,7 +21,7 @@
     "browserslist": "4.21.4",
     "concurrently": "^7.6.0",
     "lighthousebot": "git+https://github.com/GoogleChromeLabs/lighthousebot.git",
-    "parcel": "^2.8.2",
+    "parcel": "^2.8.3",
     "parcel-plugin-static-files-copy": "^2.6.0",
     "postcss-combine-media-query": "^1.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
