@@ -13,7 +13,7 @@
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
-    "@parcel/optimizer-css": "^2.8.3",
+    "@parcel/optimizer-css": "^2.9.2",
     "@parcel/transformer-css-experimental": "^2.3.2",
     "@parcel/transformer-pug": "^2.8.3",
     "@parcel/transformer-sass": "^2.8.3",
