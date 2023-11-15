@@ -3,9 +3,9 @@ h1 {
   font-weight: 700;
 }
 
-h5 {
+h2 {
   font-size: 1.2rem;
-  color: $h5-color;
+  color: $h2-color;
 }
 
 @media only screen and (min-width: $sm) {
@@ -13,7 +13,7 @@ h5 {
     font-size: 2.6rem;
   }
 
-  h5 {
+  h2 {
     font-size: 1.6rem;
   }
 }
@@ -23,7 +23,7 @@ h5 {
     font-size: 3.2rem;
   }
 
-  h5 {
+  h2 {
     font-size: 1.8rem;
   }
 }
@@ -33,7 +33,7 @@ h5 {
     font-size: 4rem;
   }
 
-  h5 {
+  h2 {
     font-size: 2rem;
   }
 }
@@ -43,7 +43,7 @@ h5 {
     font-size: 6rem;
   }
 
-  h5 {
+  h2 {
     font-size: 3rem;
   }
 }
