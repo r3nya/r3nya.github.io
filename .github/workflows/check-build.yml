@@ -2,6 +2,9 @@ name: Check build
 
 on: pull_request
 
+env:
+  NODE_ENV: production
+
 jobs:
   check:
     runs-on: ubuntu-latest

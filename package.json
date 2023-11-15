@@ -5,7 +5,7 @@
     "clean": "rimraf ./dist",
     "prebuild": "npm run clean",
     "server": "parcel serve -p 3000 --no-hmr ./src/html/index.pug",
-    "build": "NODE_ENV=production parcel build src/html/index.pug",
+    "build": "parcel build src/html/index.pug",
     "start": "concurrently \"npm run watch\" \"npx parcel serve src/html/index.pug\"",
     "watch": "parcel watch src/html/index.pug",
     "lint": "stylelint src/style/*.scss",
