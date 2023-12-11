@@ -1,0 +1,9 @@
+ci:
+  collect:
+    staticDistDir: './dist'
+    startServerCommand: 'npm run serve'
+    url:
+      - 'http://localhost:3000'
+
+  assert:
+    preset: "lighthouse:recommended"
