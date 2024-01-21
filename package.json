@@ -12,14 +12,14 @@
     "serve": "serve -l 3000 ./dist"
   },
   "devDependencies": {
-    "@parcel/optimizer-css": "^2.10.3",
+    "@parcel/optimizer-css": "^2.11.0",
     "@parcel/transformer-css-experimental": "^2.3.2",
-    "@parcel/transformer-pug": "^2.10.3",
-    "@parcel/transformer-sass": "^2.10.3",
+    "@parcel/transformer-pug": "^2.11.0",
+    "@parcel/transformer-sass": "^2.11.0",
     "autoprefixer": "10.4.16",
     "browserslist": "4.22.2",
     "concurrently": "^8.2.2",
-    "parcel": "^2.10.3",
+    "parcel": "^2.11.0",
     "parcel-plugin-static-files-copy": "^2.6.0",
     "postcss-combine-media-query": "^1.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
