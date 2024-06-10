@@ -23,7 +23,7 @@
     "parcel-plugin-static-files-copy": "^2.6.0",
     "postcss-combine-media-query": "^1.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
-    "pug": "^3.0.2",
+    "pug": "^3.0.3",
     "rimraf": "^5.0.7",
     "serve": "14.2.3",
     "stylelint": "^13.13.1",
