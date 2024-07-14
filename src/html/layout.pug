@@ -1,11 +1,9 @@
-include ./mixins.pug
+include includes/mixins.pug
 
 doctype html
 html(lang='en')
-  block head
+  include includes/head.pug
 
   body
     .container
-      block name
-
-      block links
+      block content

@@ -1,10 +1,5 @@
 extends ./layout.pug
 
-block head
-  include ./blocks/head.pug
-
-block name
-  include ./blocks/name.pug
-
-block links
-  include ./blocks/links.pug
+block content
+  include includes/name.pug
+  include includes/links.pug
