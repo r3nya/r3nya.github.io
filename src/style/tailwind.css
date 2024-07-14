@@ -42,14 +42,10 @@
 
 [class^="icon-"]::before,
 [class*=" icon-"]::before {
+  @apply font-normal inline-block w-4 mr-2 text-center;
   font-family: 'fontello';
   font-style: normal;
-  font-weight: normal;
-  display: inline-block;
   text-decoration: inherit;
-  width: 1em;
-  margin-right: 0.2em;
-  text-align: center;
   font-variant: normal;
   text-transform: none;
   line-height: 1em;
@@ -60,16 +56,12 @@
 .icon-twitter::before { content: '\f099'; }
 .icon-github::before { content: '\f09b'; }
 .icon-linkedin::before { content: '\f0e1'; }
-.icon-instagram::before { content: '\f16d'; }
 .icon-paper-plane::before { content: '\f1d8'; }
-.icon-lastfm::before { content: '\f202'; }
 
 .icon-github, .icon-linkedin, .icon-twitter, .icon-paper-plane {
-  @apply inline-flex items-center justify-center;
-  width: 1.5em;
-  height: 1.5em;
+  @apply inline-flex items-center justify-center w-6 h-6;
 }
 
 a:hover i {
-  text-decoration: none !important;
+  @apply no-underline;
 }

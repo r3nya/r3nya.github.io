@@ -16,6 +16,12 @@ module.exports = {
       },
     },
   },
+  safelist: [
+    'icon-twitter',
+    'icon-github',
+    'icon-linkedin',
+    'icon-paper-plane',
+  ],
   plugins: [],
 }
 
