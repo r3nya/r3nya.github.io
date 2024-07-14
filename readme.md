@@ -3,3 +3,12 @@
 
 
 # [My homepage](http://r3nya.ru) :sunglasses:
+
+## Available scripts
+
+| Script    | Description                                               |
+|-----------|-----------------------------------------------------------|
+| `clean`   | Removes the `./dist` directory                            |
+| `dev`     | Starts a development server on port 3000 using Parcel     |
+| `build`   | Builds the project for production using Parcel            |
+| `format`  | Formats all `.pug` files using Prettier                   |
