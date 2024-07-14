@@ -1,10 +1,10 @@
 include includes/mixins.pug
 
 doctype html
-html.bg-palette-1(lang="en")
+html(lang='en' class="bg-palette-1-light dark:bg-palette-1-dark")
   include includes/head.pug
 
-  body.font-karla.text-base.text-palette-2.antialiased
-    .container.mx-auto.px-4.max-w-4xl(class="sm:px-6 sm:mt-4 lg:px-8")
-      main.grid.grid-cols-1.gap-8.py-8(class="md:grid-cols-2")
+  body(class="font-karla text-base text-palette-2-light dark:text-palette-2-dark antialiased")
+    .container(class="mx-auto px-4 sm:px-6 sm:mt-4 lg:px-8 max-w-4xl")
+      div(class="grid grid-cols-1 md:grid-cols-2 gap-8 py-8")
         block content
