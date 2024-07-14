@@ -6,12 +6,12 @@
   font-family: 'Karla';
   font-style: normal;
   font-display: swap;
-  font-weight: 400;
+  font-weight: 500;
   src:
     local('Karla Regular '),
     local('Karla-Regular'),
-    url('../../node_modules/typeface-karla/files/karla-latin-400.woff2') format('woff2'),
-    url('../../node_modules/typeface-karla/files/karla-latin-400.woff') format('woff');
+    url('../../node_modules/@fontsource/karla/files/karla-latin-500-normal.woff2') format('woff2'),
+    url('../../node_modules/@fontsource/karla/files/karla-latin-500-normal.woff') format('woff');
 }
 
 @font-face {
@@ -22,8 +22,8 @@
   src:
     local('Karla Bold '),
     local('Karla-Bold'),
-    url('../../node_modules/typeface-karla/files/karla-latin-700.woff2') format('woff2'),
-    url('../../node_modules/typeface-karla/files/karla-latin-700.woff') format('woff');
+    url('../../node_modules/@fontsource/karla/files/karla-latin-700-normal.woff2') format('woff2'),
+    url('../../node_modules/@fontsource/karla/files/karla-latin-700-normal.woff') format('woff');
 }
 
 @font-face {
