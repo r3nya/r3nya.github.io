@@ -6,7 +6,6 @@
     { title: 'Telegram', icon: 'paper-plane', url: 'https://t.me/r3nya' }
   ]
 
-main.col-span-1
-  .grid.gap-2
-    each link in links
-      +link(link.title, link.icon, link.url)
+section.col-span-1.grid.gap-2
+  each link in links
+    +link(link.title, link.icon, link.url)
