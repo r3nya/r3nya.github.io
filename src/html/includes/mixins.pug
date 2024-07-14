@@ -1,5 +1,4 @@
 mixin link(title, icon, url)
-  .link(role='link')
-    a(href=url)
-      i(class='icon-' +icon)
-      = title
+  a(href=url class="flex items-center text-2xl text-palette-5 hover:text-palette-6 group")
+    i(class=`icon-${icon} w-8 mr-2 flex-shrink-0`)
+    span(class="group-hover:underline")= title
