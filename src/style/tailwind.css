@@ -2,7 +2,30 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* Your custom styles here */
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    local('Karla Regular '),
+    local('Karla-Regular'),
+    url('../../node_modules/typeface-karla/files/karla-latin-400.woff2') format('woff2'),
+    url('../../node_modules/typeface-karla/files/karla-latin-400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src:
+    local('Karla Bold '),
+    local('Karla-Bold'),
+    url('../../node_modules/typeface-karla/files/karla-latin-700.woff2') format('woff2'),
+    url('../../node_modules/typeface-karla/files/karla-latin-700.woff') format('woff');
+}
+
 @font-face {
   font-family: 'fontello';
   src: url('../fonts/fontello.eot?51692027');
@@ -29,6 +52,7 @@
   text-align: center;
   font-variant: normal;
   text-transform: none;
+  line-height: 1em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,3 +63,13 @@
 .icon-instagram::before { content: '\f16d'; }
 .icon-paper-plane::before { content: '\f1d8'; }
 .icon-lastfm::before { content: '\f202'; }
+
+.icon-github, .icon-linkedin, .icon-twitter, .icon-paper-plane {
+  @apply inline-flex items-center justify-center;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+a:hover i {
+  text-decoration: none !important;
+}

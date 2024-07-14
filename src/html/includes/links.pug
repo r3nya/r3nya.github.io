@@ -6,6 +6,7 @@
     { title: 'Telegram', icon: 'paper-plane', url: 'https://t.me/r3nya' }
   ]
 
-main.one-half
-  each link in links
-    +link(link.title, link.icon, link.url)
+main(class="col-span-1")
+  div(class="grid gap-2")
+    each link in links
+      +link(link.title, link.icon, link.url)
