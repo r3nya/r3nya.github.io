@@ -20,7 +20,7 @@
     "prettier": "^3.3.3",
     "pug": "^3.0.3",
     "rimraf": "^5.0.7",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.7"
   },
   "dependencies": {
     "@fontsource/karla": "^5.0.20"
