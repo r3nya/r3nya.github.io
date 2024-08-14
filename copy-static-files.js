@@ -1,28 +1,33 @@
-const fs = require('node:fs');
+const fs = require('node:fs/promises');
 const path = require('node:path');
 
 const staticDir = path.join(__dirname, 'static');
 const distDir = path.join(__dirname, 'dist');
 
-function copyFiles(sourceDir, targetDir) {
-  if (!fs.existsSync(targetDir)) {
+async function copyFiles(sourceDir, targetDir) {
+  try {
+    await fs.access(targetDir);
+  } catch (error) {
     console.error(`Error: The target directory '${targetDir}' does not exist`);
     process.exit(1);
   }
 
-  fs.readdir(sourceDir, (err, files) => {
-    if (err) throw err;
+  try {
+    const files = await fs.readdir(sourceDir);
 
-    files.forEach(file => {
+    await Promise.all(files.map(async (file) => {
       const sourcePath = path.join(sourceDir, file);
       const targetPath = path.join(targetDir, file);
 
-      fs.copyFile(sourcePath, targetPath, err => {
-        if (err) throw err;
-        console.log(`Copied ${file} to ${targetPath}`);
-      });
-    });
-  });
+      await fs.copyFile(sourcePath, targetPath);
+      console.log(`Copied ${file} to ${targetPath}`);
+    }));
+
+    console.log('All files copied successfully');
+  } catch (error) {
+    console.error('An error occurred:', error.message);
+    process.exit(1);
+  }
 }
 
 copyFiles(staticDir, distDir);
