@@ -1,7 +1,7 @@
 mixin link(title, icon, url)
   a.flex.items-center.text-2xl.font-medium.text-palette-5-light.group(
     href=url,
-    class="dark:text-palette-5-dark hover:text-palette-6-light dark:hover:text-palette-6-dark"
+    class="md:text-3xl dark:text-palette-5-dark hover:text-palette-6-light dark:hover:text-palette-6-dark"
   )
-    i(class=`icon-${icon} w-8 mr-2 flex-shrink-0`)
+    i(class=`icon-${icon} w-8 mr-2 md:mr-3 flex-shrink-0`)
     span(class="group-hover:underline")= title
