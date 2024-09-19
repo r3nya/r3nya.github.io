@@ -8,7 +8,8 @@
     "copy-static-files": "node ./copy-static-files.js",
     "dev": "parcel serve -p 3000 ./src/html/index.pug",
     "build": "NODE_ENV=production parcel build src/html/index.pug",
-    "format": "npx prettier --write \"**/*.pug\" --plugin=\"@prettier/plugin-pug\""
+    "format": "npx prettier --write \"**/*.pug\" --plugin=\"@prettier/plugin-pug\"",
+    "format:check": "npx prettier --check \"**/*.pug\" --plugin=\"@prettier/plugin-pug\""
   },
   "devDependencies": {
     "@parcel/optimizer-css": "^2.12.0",

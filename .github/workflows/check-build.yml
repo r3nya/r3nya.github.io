@@ -20,7 +20,7 @@ jobs:
         run: npm ci
 
       - name: Prettier check
-        run: npm run format -- -c
+        run: npm run format:check
 
       - name: Build 🔧
         run: npm run build
