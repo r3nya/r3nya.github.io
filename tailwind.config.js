@@ -31,7 +31,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        systemui: ['system-ui', 'sans-serif'],
+        monocode: ['ui-monospace', 'Cascadia Code', 'Source Code Pro', 'Menlo', 'Consolas', 'DejaVu Sans Mono', 'monospace'],
       },
     },
   },
