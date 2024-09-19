@@ -3,30 +3,6 @@
 @import 'tailwindcss/utilities';
 
 @font-face {
-  font-family: 'Karla';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 500;
-  src:
-    local('Karla Regular '),
-    local('Karla-Regular'),
-    url('../../node_modules/@fontsource/karla/files/karla-latin-500-normal.woff2') format('woff2'),
-    url('../../node_modules/@fontsource/karla/files/karla-latin-500-normal.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Karla';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 700;
-  src:
-    local('Karla Bold '),
-    local('Karla-Bold'),
-    url('../../node_modules/@fontsource/karla/files/karla-latin-700-normal.woff2') format('woff2'),
-    url('../../node_modules/@fontsource/karla/files/karla-latin-700-normal.woff') format('woff');
-}
-
-@font-face {
   font-family: 'fontello';
   src: url('../fonts/fontello.eot?51692027');
   src:

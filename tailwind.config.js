@@ -31,7 +31,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        karla: ["Karla", "sans-serif"],
+        systemui: ['system-ui', 'sans-serif'],
       },
     },
   },
