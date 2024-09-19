@@ -31,7 +31,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        karla: ["Karla", "sans-serif"],
+        monocode: ['ui-monospace', 'Cascadia Code', 'Source Code Pro', 'Menlo', 'Consolas', 'DejaVu Sans Mono', 'monospace'],
       },
     },
   },
