@@ -20,10 +20,9 @@ mixin icon(name, className)
       span(class=className) Unknown icon: #{name}
 
 mixin link(title, icon, url)
-  - const iconClass = 'w-8 h-8 mr-2 md:mr-3 flex-shrink-0'
   a.flex.items-center.text-2xl.font-medium.text-palette-5-light.group(
     href=url,
     class="md:text-3xl dark:text-palette-5-dark hover:text-palette-6-light dark:hover:text-palette-6-dark"
   )
-    +icon(icon, iconClass)
+    +icon(icon, 'w-8 h-8 mr-2 md:mr-3 flex-shrink-0')
     span(class="group-hover:underline")= title
