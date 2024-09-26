@@ -20,17 +20,19 @@ async function copyFiles(sourceDir, targetDir) {
 
     const files = await fs.readdir(sourceDir);
 
-    await Promise.all(files.map(async (file) => {
-      const sourcePath = path.join(sourceDir, file);
-      const targetPath = path.join(targetDir, file);
+    await Promise.all(
+      files.map(async (file) => {
+        const sourcePath = path.join(sourceDir, file);
+        const targetPath = path.join(targetDir, file);
 
-      await fs.copyFile(sourcePath, targetPath);
-      console.log(`Copied ${file} to ${targetPath}`);
-    }));
+        await fs.copyFile(sourcePath, targetPath);
+        console.info(`Copied ${file} to ${targetPath}`);
+      }),
+    );
 
-    console.log('All files copied successfully');
+    console.info("All files copied successfully");
   } catch (error) {
-    console.error('An error occurred:', error.message);
+    console.error("An error occurred:", error.message);
     process.exit(1);
   }
 }
