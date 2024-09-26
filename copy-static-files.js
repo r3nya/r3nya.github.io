@@ -4,15 +4,20 @@ const path = require('node:path');
 const staticDir = path.join(__dirname, 'static');
 const distDir = path.join(__dirname, 'dist');
 
+async function ensureDirectoryExists(directory) {
+  try {
+    await fs.access(directory);
+  } catch (error) {
+    console.info(`Directory '${directory}' does not exist, creating it...`);
+    await fs.mkdir(directory, { recursive: true });
+    console.info(`Directory '${directory}' created successfully.`);
+  }
+}
+
 async function copyFiles(sourceDir, targetDir) {
   try {
-    await fs.access(targetDir);
-  } catch (error) {
-    console.error(`Error: The target directory '${targetDir}' does not exist`);
-    process.exit(1);
-  }
+    await ensureDirectoryExists(targetDir);
 
-  try {
     const files = await fs.readdir(sourceDir);
 
     await Promise.all(files.map(async (file) => {
