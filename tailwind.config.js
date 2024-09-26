@@ -31,15 +31,17 @@ module.exports = {
         },
       },
       fontFamily: {
-        monocode: ['ui-monospace', 'Cascadia Code', 'Source Code Pro', 'Menlo', 'Consolas', 'DejaVu Sans Mono', 'monospace'],
+        monocode: [
+          "ui-monospace",
+          "Cascadia Code",
+          "Source Code Pro",
+          "Menlo",
+          "Consolas",
+          "DejaVu Sans Mono",
+          "monospace",
+        ],
       },
     },
   },
-  safelist: [
-    "icon-twitter",
-    "icon-github",
-    "icon-linkedin",
-    "icon-paper-plane",
-  ],
   plugins: [],
 };
