@@ -2,7 +2,7 @@ name: E2E Tests
 
 on:
   deployment_status:
-    branches: [main]
+    branches: [main, develop]
 
 jobs:
   e2e-tests:
