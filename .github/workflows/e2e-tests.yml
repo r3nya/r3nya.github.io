@@ -1,8 +1,9 @@
 name: E2E Tests
 
-on:
-  deployment_status:
-    branches: [main, develop]
+on: pull_request
+#on:
+#  deployment_status:
+#    branches: [main]
 
 jobs:
   e2e-tests:
