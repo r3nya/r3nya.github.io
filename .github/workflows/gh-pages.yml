@@ -41,5 +41,5 @@ jobs:
       - name: Run E2E tests
         if: env.DEPLOYMENT_STATUS == 'success'
         run: |
-          sleep 3
+          sleep 10
           npm test
