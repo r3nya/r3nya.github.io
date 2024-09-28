@@ -36,7 +36,7 @@ jobs:
       - run: |
           echo "deployment_status is"
           echo $deployment_status
-          echo ${env.deployment_status}
+          echo "${{env.DEPLOYMENT_STATUS}}"
 
       - name: Run E2E tests
         if: env.deployment_status == 'success'
