@@ -39,7 +39,7 @@ jobs:
           echo "${{env.DEPLOYMENT_STATUS}}"
 
       - name: Run E2E tests
-        if: env.deployment_status == 'success'
+        if: env.DEPLOYMENT_STATUS == 'success'
         run: |
           sleep 3
           npm test
