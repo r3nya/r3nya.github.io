@@ -33,9 +33,8 @@ jobs:
           FOLDER: dist
 #           CLEAN: true
 
-      - name: Wait for 3 seconds
-        if: github.event.deployment_status.state == 'success'
-        run: sleep 3
-
       - name: Run E2E tests
-        run: npm test
+        if: github.event.deployment_status.state == 'success'
+        run: |
+          sleep 3
+          npm test
