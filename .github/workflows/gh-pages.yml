@@ -33,8 +33,13 @@ jobs:
           FOLDER: dist
 #           CLEAN: true
 
+      - run: |
+          echo "deployment_status is"
+          echo $deployment_status
+          echo env.deployment_status
+
       - name: Run E2E tests
-        if: github.event.deployment_status.state == 'success'
+        if: env.deployment_status == 'success'
         run: |
           sleep 3
           npm test
