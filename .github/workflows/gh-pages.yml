@@ -44,6 +44,7 @@ jobs:
               break
             fi
 
+            echo "another try…"
             attempt=$((attempt+1))
             sleep 10
           done
