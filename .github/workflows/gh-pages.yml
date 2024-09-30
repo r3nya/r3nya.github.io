@@ -36,20 +36,5 @@ jobs:
       - name: Run E2E tests
         if: env.DEPLOYMENT_STATUS == 'success'
         run: |
-          max_attempts=30
-          attempt=0
-          while [ $attempt -lt $max_attempts ]; do
-            if npm test | grep -q "Expected Content"; then
-              echo "Tests passed"
-              break
-            fi
-
-            echo "another try…"
-            attempt=$((attempt+1))
-            sleep 10
-          done
-
-          if [ $attempt -eq $max_attempts ]; then
-            echo "Tests failed"
-            exit 1
-          fi
+          sleep 100
+          npm test
