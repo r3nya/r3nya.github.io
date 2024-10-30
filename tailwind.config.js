@@ -29,6 +29,18 @@ module.exports = {
           light: "#6f42c1", // Light purple
           dark: "#bc8cff", // Dark purple
         },
+        "gradient-from": {
+          light: "#FCB595",
+          dark: "#B58366",
+        },
+        "gradient-via": {
+          light: "#9477F1",
+          dark: "#6A55A8",
+        },
+        "gradient-to": {
+          light: "#5BAEEB",
+          dark: "#3A7AAE",
+        },
       },
       fontFamily: {
         monocode: [
