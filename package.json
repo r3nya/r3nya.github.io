@@ -10,7 +10,7 @@
     "build": "NODE_ENV=production parcel build src/html/index.pug",
     "format": "npx prettier --write \"**/*.pug\" --plugin=\"@prettier/plugin-pug\"",
     "format:check": "npx prettier --check \"**/*.pug\" --plugin=\"@prettier/plugin-pug\"",
-    "test": "node --test tests/"
+    "test": "node --test tests/*test.js"
   },
   "devDependencies": {
     "@parcel/optimizer-css": "^2.12.0",
