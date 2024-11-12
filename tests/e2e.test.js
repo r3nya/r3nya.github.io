@@ -24,8 +24,8 @@ test('Home page available', async t => {
     const expectedLinks = [
       { href: homePage.links.github, text: 'Github' },
       { href: homePage.links.linkedin, text: 'LinkedIn' },
-      { href: homePage.links.twitter, text: 'X/Twitter' },
       { href: homePage.links.telegram, text: 'Telegram' }
+      { href: homePage.links.twitter, text: 'X/Twitter' },
     ];
 
     for (const link of expectedLinks) {
