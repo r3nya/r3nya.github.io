@@ -20,7 +20,7 @@
     "autoprefixer": "10.4.20",
     "browserslist": "4.24.2",
     "parcel": "^2.13.0",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.1",
     "pug": "^3.0.3",
     "puppeteer": "^23.8.0",
     "rimraf": "^6.0.1",
