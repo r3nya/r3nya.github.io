@@ -19,7 +19,7 @@
     "@prettier/plugin-pug": "^3.2.0",
     "autoprefixer": "10.4.20",
     "browserslist": "4.24.2",
-    "parcel": "^2.13.0",
+    "parcel": "^2.13.2",
     "prettier": "^3.4.1",
     "pug": "^3.0.3",
     "puppeteer": "^23.9.0",
