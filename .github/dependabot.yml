@@ -16,5 +16,9 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "browserslist"
+        update-types:
+          - version-update:semver-patch
     assignees:
       - "r3nya"
