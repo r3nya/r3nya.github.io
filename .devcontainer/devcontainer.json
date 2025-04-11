@@ -2,5 +2,13 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
   "postCreateCommand": "npm install",
   "postStartCommand": "npm run dev",
-  "features": {}
+  "forwardPorts": [3000],
+  "features": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "EditorConfig.EditorConfig"
+      ]
+    }
+  }
 }
