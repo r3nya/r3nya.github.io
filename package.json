@@ -13,12 +13,12 @@
     "test": "node --test tests/*test.js"
   },
   "devDependencies": {
-    "@parcel/optimizer-css": "2.14.2",
-    "@parcel/transformer-pug": "2.14.2",
+    "@parcel/optimizer-css": "2.13.3",
+    "@parcel/transformer-pug": "2.13.3",
     "@prettier/plugin-pug": "^3.2.1",
     "autoprefixer": "10.4.21",
     "browserslist": "4.25.1",
-    "parcel": "2.14.2",
+    "parcel": "2.13.3",
     "prettier": "^3.6.2",
     "pug": "^3.0.3",
     "puppeteer": "^24.4.0",
