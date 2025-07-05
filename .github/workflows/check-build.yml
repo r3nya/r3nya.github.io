@@ -23,4 +23,4 @@ jobs:
         run: npm run format:check
 
       - name: Build 🔧
-        run: npm run build:prod
+        run: npm run build
