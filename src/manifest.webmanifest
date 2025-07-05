@@ -1,9 +1,0 @@
-{
-  "name": "Andrey Makarov's homepage",
-  "short_name": "r3nya.ru",
-  "theme_color": "#00796b",
-  "background_color": "#eceff1",
-  "display": "browser",
-  "scope": "/",
-  "start_url": "/"
-}
