@@ -11,9 +11,9 @@
     "build:css": "tailwindcss -i src/style/tailwind.css -o dist/style.css --minify",
     "build:dev": "npm run build:css && npm run build:html",
     "build": "npm run build:css && npm run build:html:prod",
-    "dev": "npm run build:dev && npx http-server dist -p 8000 -c-1",
+    "dev": "npm run build:dev && npx http-server dist -p 3000 -c-1",
     "watch": "concurrently \"tailwindcss -i src/style/tailwind.css -o dist/style.css --watch\" \"nodemon --watch src --ext njk,html --exec 'npm run build:html'\"",
-    "serve": "npx http-server dist -p 8000 -c-1",
+    "serve": "npx http-server dist -p 3000 -c-1",
     "format": "npx prettier --write \"src/**/*.njk\"",
     "format:check": "npx prettier --check \"src/**/*.njk\"",
     "test": "node --test tests/*test.js"

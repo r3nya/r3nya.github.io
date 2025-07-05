@@ -9,6 +9,6 @@
 | Script    | Description                                               |
 |-----------|-----------------------------------------------------------|
 | `clean`   | Removes the `./dist` directory                            |
-| `dev`     | Starts a development server on port 3000 using Parcel     |
-| `build`   | Builds the project for production using Parcel            |
-| `format`  | Formats all `.pug` files using Prettier                   |
+| `dev`     | Starts a development server on port 3000                  |
+| `build`   | Builds the project for production                         |
+| `format`  | Formats all `.njk` files using Prettier                   |
