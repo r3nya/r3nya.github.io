@@ -1,0 +1,17 @@
+{% macro gradientBar(className = "mb-4 h-1 rounded-full") %}
+  <div
+    class="{{ className }} bg-gradient-to-r from-gradient-from-light via-gradient-via-light to-gradient-to-light dark:from-gradient-from-dark dark:via-gradient-via-dark dark:to-gradient-to-dark"
+  ></div>
+{% endmacro %}
+
+{% macro section(className = "", gridCols = "col-span-1") %}
+  <section class="{{ gridCols }} {{ className }}">{{ caller() }}</section>
+{% endmacro %}
+
+{% macro heading1(text, className = "text-5xl font-bold mb-4 md:text-6xl") %}
+  <h1 class="{{ className }}">{{ text }}</h1>
+{% endmacro %}
+
+{% macro heading2(text, className = "text-2xl font-bold text-palette-3-light md:text-3xl xl:text-4xl dark:text-palette-3-dark") %}
+  <h2 class="{{ className }}">{{ text }}</h2>
+{% endmacro %}

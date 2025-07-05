@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-palette-1-light dark:bg-palette-1-dark">
+  <head>
+    {% include "head.njk" %}
+  </head>
+
+  <body
+    class="font-monocode text-base text-palette-2-light antialiased dark:text-palette-2-dark"
+  >
+    <div class="container mx-auto px-4 max-w-4xl py-8 sm:px-6 sm:mt-4 lg:px-8">
+      <main class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>
