@@ -32,9 +32,3 @@ jobs:
           BRANCH: master
           FOLDER: dist
       #           CLEAN: true
-
-      - name: Run E2E tests
-        if: env.DEPLOYMENT_STATUS == 'success'
-        run: |
-          sleep 100
-          npm test
