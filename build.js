@@ -4,6 +4,7 @@ const path = require('node:path');
 
 const env = nunjucks.configure('src', {
   autoescape: true,
+  trimBlocks: true,
   throwOnUndefined: false
 });
 
