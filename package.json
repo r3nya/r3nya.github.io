@@ -25,7 +25,7 @@
     "cross-env": "^7.0.3",
     "http-server": "^14.1.1",
     "nodemon": "^3.1.10",
-    "nunjucks-cli": "^1.0.0",
+    "nunjucks": "^3.2.4",
     "prettier": "^3.6.2",
     "prettier-plugin-jinja-template": "^2.1.0",
     "puppeteer": "^24.4.0",
