@@ -3,8 +3,8 @@ import type { Locale } from '../i18n/config';
 import { locales } from '../i18n/config';
 const { current }: { current: Locale } = Astro.props;
 ---
-<nav class="text-sm text-palette-3-light dark:text-palette-3-dark">
-  <ul class="flex gap-3">
+<nav class="fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50 text-sm text-palette-3-light dark:text-palette-3-dark bg-palette-4-light/70 dark:bg-palette-4-dark/70 backdrop-blur px-4 py-2 rounded-full shadow">
+  <ul class="flex gap-4">
     {locales.map((code) => (
       <li>
         {code === current ? (
