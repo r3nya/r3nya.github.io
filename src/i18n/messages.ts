@@ -2,6 +2,7 @@ import type { Locale } from './config';
 
 export type Messages = {
   title: string;
+  name: string;
   headline: string;
   links: { title: string; icon: 'github' | 'linkedin' | 'paper-plane' | 'twitter'; url: string }[];
 };
@@ -16,16 +17,19 @@ const commonLinks = {
 export const messages: Record<Locale, Messages> = {
   en: {
     title: 'Andrey Makarov aka r3nya',
+    name: 'Andrey Makarov',
     headline: 'Software Developer 👨‍💻',
     links: [commonLinks.github, commonLinks.linkedin, commonLinks.telegram, commonLinks.twitter],
   },
   ru: {
     title: 'Андрей Макаров aka r3nya',
+    name: 'Андрей Макаров',
     headline: 'Разработчик ПО 👨‍💻',
     links: [commonLinks.github, commonLinks.linkedin, commonLinks.telegram, commonLinks.twitter],
   },
   es: {
     title: 'Andrey Makarov aka r3nya',
+    name: 'Andrey Makarov',
     headline: 'Desarrollador de software 👨‍💻',
     links: [commonLinks.github, commonLinks.linkedin, commonLinks.telegram, commonLinks.twitter],
   },
