@@ -1,132 +1,65 @@
-# Cursor Rules for Nunjucks + Tailwind Static Site
+# Cursor Rules for Astro 5 + Tailwind v4 site
 
-You are an expert in Node.js, Nunjucks templating, Tailwind CSS, and static site generation.
+You are an expert in Astro, TypeScript, Tailwind CSS v4, accessibility, and static site deployment to GitHub Pages.
 
 ## Project Structure
 
-This is a static site generator project with the following structure:
-- `src/` - Source templates and styles
-- `dist/` - Built output directory
-- `static/` - Static assets copied to dist
-- Uses Nunjucks for templating
-- Uses Tailwind CSS for styling
-- Build system with Node.js scripts
+- `src/` - Astro components/pages/layouts and styles
+- `static/` - Public assets (served as-is)
+- `dist/` - Build output
+- Astro 5 with Tailwind v4 using `src/styles/global.css`
 
 ## Code Style and Structure
 
-### Nunjucks Templates
-- Use `.njk` extension for all Nunjucks templates
-- Follow consistent indentation (2 spaces)
-- Use semantic HTML5 elements
-- Organize templates with includes and extends pattern
-- Use macros for reusable components in `components.njk`
-- Store data variables in `data.njk` using Nunjucks `set` blocks
-- Use descriptive variable names and consistent naming conventions
-
-### CSS and Styling
-- Use Tailwind utility classes exclusively
-- Follow the existing dark mode pattern with `dark:` prefix
-- Use the custom color palette defined in tailwind.config.js:
-  - `palette-1` for backgrounds (light/dark)
-  - `palette-2` for primary text
-  - `palette-3` for secondary text
-  - `palette-4` for secondary backgrounds
-  - `palette-5` for blue accents
-  - `palette-6` for purple accents
-  - `gradient-*` colors for gradients
-- Use responsive design with mobile-first approach
-- Utilize the custom `font-monocode` font family
-
-### JavaScript/Node.js
-- Use modern Node.js features (ES2020+)
-- Use `node:` protocol for built-in modules
-- Handle errors gracefully with try-catch blocks
-- Use async/await for asynchronous operations
-- Follow the existing build script patterns
-
-## File Organization
-
-- Templates in `src/` directory
-- Components and macros in separate files
-- Data centralized in `data.njk`
-- Icons defined in `icons.njk` with SVG paths
-- Head section in separate `head.njk` include
-
-## Build System
-
-- `npm run build` for production builds
-- `npm run dev` for development with live server
-- `npm run watch` for file watching during development
-- Use cross-env for environment variables
-- Clean dist directory before builds
-
-## Best Practices
-
-### Templates
-- Use semantic HTML5 structure
-- Include proper accessibility attributes (aria-label, alt text)
-- Use Nunjucks macros for reusable components
-- Keep templates focused and modular
-- Use meaningful class names even with utility-first CSS
+### Astro Components/Pages
+- Use `.astro` files with top/frontmatter fences `---`
+- Keep logic minimal; prefer small, composable components
+- Use `props` with explicit TypeScript types
+- Localized content goes through `i18n/messages.ts`
 
 ### Styling
-- Mobile-first responsive design
-- Use Tailwind's built-in spacing scale
-- Leverage CSS Grid and Flexbox utilities
-- Maintain consistent spacing and typography scale
-- Use hover states and transitions for interactivity
+- Tailwind v4 via `@import "tailwindcss"` in `src/styles/global.css`
+- Theme tokens defined in `@theme` with CSS custom properties (see `global.css`)
+- No legacy Tailwind config or `@astrojs/tailwind` integration
+- Prefer utility classes; keep class lists readable
 
-### Performance
-- Minimize HTML output
-- Use Tailwind's purge functionality
-- Optimize images and assets
-- Use proper caching headers for static assets
+### Accessibility
+- Provide `aria-label`, `aria-current`, roles, and semantic landmarks
+- Maintain dark mode support via existing classes
 
-### SEO and Meta
-- Include proper meta tags
-- Use Open Graph tags for social sharing
-- Include structured data when appropriate
-- Use semantic HTML for better SEO
+## Build & CI
+- Build with `npm run build` (Astro static)
+- PRs: lint/format and build
+- Deploy: GitHub Pages using `actions/deploy-pages@v4`
 
-## Development Workflow
-
-1. Start development with `npm run watch`
-2. Make changes to templates in `src/`
-3. Use `npm run format` to format templates
-4. Test with `npm run dev` before building
-5. Build for production with `npm run build`
+## Best Practices
+- Keep frontmatter blocks valid; avoid stray `return` in markup
+- Centralize site meta in `src/site.ts` and apply in `src/layouts/BaseLayout.astro`
+- Reuse components to avoid duplication (e.g., `components/HomePage.astro`)
 
 ## Common Patterns
+### Localized Page
+```astro
+---
+import HomePage from '../../components/HomePage.astro';
+import type { Locale } from '../../i18n/config';
+import { locales, defaultLocale } from '../../i18n/config';
 
-### Creating Components
-```njk
-{% macro componentName(param1, param2 = "default") %}
-  <div class="tailwind classes">
-    {{ param1 }}
-  </div>
-{% endmacro %}
+export function getStaticPaths() {
+  return locales.map((code) => ({ params: { lang: code } }));
+}
+
+const { lang } = Astro.params;
+const locale = (locales as readonly string[]).includes(lang ?? '') ? (lang as Locale) : defaultLocale;
+---
+<HomePage locale={locale} />
 ```
 
-### Using Data
-```njk
-{% from "data.njk" import site, profile, socialLinks %}
+### Global Styles Import
+```astro
+---
+import '../styles/global.css';
+---
 ```
 
-### Responsive Design
-```html
-<div class="text-base md:text-lg lg:text-xl">
-```
-
-### Dark Mode
-```html
-<div class="bg-palette-1-light dark:bg-palette-1-dark">
-```
-
-## Error Handling
-
-- Always handle file system operations with try-catch
-- Provide meaningful error messages
-- Exit with appropriate status codes
-- Log progress and completion messages
-
-When making changes, ensure compatibility with the existing build system and maintain the established patterns for consistency.
+Keep consistency with these rules when updating the codebase.
