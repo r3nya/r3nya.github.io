@@ -8,6 +8,9 @@ export function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const locale = (locales as readonly string[]).includes(lang ?? '') ? (lang as Locale) : defaultLocale;
+const locale = (locales as readonly string[]).includes(lang ?? '')
+  ? (lang as Locale)
+  : defaultLocale;
 ---
+
 <HomePage locale={locale} />

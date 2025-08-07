@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* Colors */
@@ -20,17 +20,19 @@
   --color-palette-6-light: #6f42c1;
   --color-palette-6-dark: #bc8cff;
 
-  --color-gradient-from-light: #FCB595;
-  --color-gradient-from-dark: #B58366;
+  --color-gradient-from-light: #fcb595;
+  --color-gradient-from-dark: #b58366;
 
-  --color-gradient-via-light: #9477F1;
-  --color-gradient-via-dark: #6A55A8;
+  --color-gradient-via-light: #9477f1;
+  --color-gradient-via-dark: #6a55a8;
 
-  --color-gradient-to-light: #5BAEEB;
-  --color-gradient-to-dark: #3A7AAE;
+  --color-gradient-to-light: #5baeeb;
+  --color-gradient-to-dark: #3a7aae;
 
   /* Fonts */
-  --font-monocode: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  --font-monocode:
+    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
+    'DejaVu Sans Mono', monospace;
 }
 
 /* Utilities */
