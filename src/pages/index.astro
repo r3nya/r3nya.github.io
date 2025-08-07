@@ -10,7 +10,6 @@ const t = messages[locale];
 ---
 <BaseLayout title={t.title}>
   <header class="col-span-1 md:col-span-2">
-    <LangSwitcher current={locale} />
     <h1 class="text-5xl font-bold mb-4 md:text-6xl mt-2">{t.name}</h1>
     <div class="mb-4 h-1 rounded-full bg-gradient-to-r from-gradient-from-light via-gradient-via-light to-gradient-to-light dark:from-gradient-from-dark dark:via-gradient-via-dark dark:to-gradient-to-dark"></div>
     <h2 class="text-2xl font-bold text-palette-3-light md:text-3xl xl:text-4xl dark:text-palette-3-dark">{t.headline}</h2>
@@ -24,4 +23,7 @@ const t = messages[locale];
       </a>
     ))}
   </section>
+  <footer class="col-span-1 md:col-span-3 mt-8">
+    <LangSwitcher current={locale} />
+  </footer>
 </BaseLayout>
