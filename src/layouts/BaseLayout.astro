@@ -1,19 +1,43 @@
 ---
-// Props: { title?: string }
+// Props: { title?: string; lang?: string }
 import '../styles/tailwind.css';
-const { title = 'Andrey Makarov aka r3nya' } = Astro.props;
+import { siteMeta } from '../site';
+const { title = 'Andrey Makarov aka r3nya', lang = 'en' } = Astro.props as { title?: string; lang?: string };
 ---
 <!DOCTYPE html>
-<html lang="en" class="bg-palette-1-light dark:bg-palette-1-dark">
+<html lang={lang} data-lang={lang} class="bg-palette-1-light dark:bg-palette-1-dark">
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={siteMeta.description} />
+    <meta name="author" content={siteMeta.author} />
+    <meta name="theme-color" content={siteMeta.themeColor} />
+    <meta name="yandex-verification" content={siteMeta.yandexVerification} />
+
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={siteMeta.openGraphDescription} />
+    <meta property="og:image" content={siteMeta.profile.avatar} />
+    <meta property="og:type" content="profile" />
+    <meta property="profile:first_name" content={siteMeta.profile.firstName} />
+    <meta property="profile:last_name" content={siteMeta.profile.lastName} />
+    <meta property="profile:username" content={siteMeta.profile.username} />
+    <meta property="profile:gender" content={siteMeta.profile.gender} />
+
+    <!-- Icons and manifest -->
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color={siteMeta.safariPinnedTabColor} />
+
     <link href="/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body class="font-monocode text-base text-palette-2-light antialiased dark:text-palette-2-dark">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-palette-4-light dark:focus:bg-palette-4-dark focus:text-palette-2-light dark:focus:text-palette-2-dark focus:px-3 focus:py-2 focus:rounded">Skip to content</a>
     <div class="container mx-auto px-4 max-w-4xl py-8 sm:px-6 sm:mt-4 lg:px-8">
-      <main class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <main id="main-content" role="main" data-testid="main" class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <slot />
       </main>
     </div>
