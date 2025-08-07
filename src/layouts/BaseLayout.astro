@@ -1,6 +1,6 @@
 ---
 // Props: { title?: string; lang?: string }
-import '../styles/tailwind.css';
+import '../styles/global.css';
 import { siteMeta } from '../site';
 const { title = 'Andrey Makarov aka r3nya', lang = 'en' } = Astro.props as { title?: string; lang?: string };
 ---
@@ -32,7 +32,7 @@ const { title = 'Andrey Makarov aka r3nya', lang = 'en' } = Astro.props as { tit
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color={siteMeta.safariPinnedTabColor} />
 
-    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <!-- No external stylesheet link; Tailwind v4 is bundled via global.css -->
   </head>
   <body class="font-monocode text-base text-palette-2-light antialiased dark:text-palette-2-dark">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-palette-4-light dark:focus:bg-palette-4-dark focus:text-palette-2-light dark:focus:text-palette-2-dark focus:px-3 focus:py-2 focus:rounded">Skip to content</a>
