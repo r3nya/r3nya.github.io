@@ -30,7 +30,7 @@ export const messages: Record<Locale, Messages> = {
   es: {
     title: 'Andrey Makarov aka r3nya',
     name: 'Andrey Makarov',
-    headline: 'Desarrollador de software 👨‍💻',
+    headline: 'Desarrollador 👨‍💻',
     links: [commonLinks.github, commonLinks.linkedin, commonLinks.telegram, commonLinks.twitter],
   },
 };
