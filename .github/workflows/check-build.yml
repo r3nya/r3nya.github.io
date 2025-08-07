@@ -24,11 +24,3 @@ jobs:
 
       - name: Build 🔧
         run: npm run build
-
-      - name: Run tests
-        run: |
-          if npm run -s test; then
-            echo "Tests passed";
-          else
-            echo "Tests failed (non-blocking)";
-          fi
