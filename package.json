@@ -1,38 +1,28 @@
 {
   "name": "new_home_page",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "clean": "rimraf ./dist",
-    "prebuild": "npm run clean",
-    "postbuild": "npm run copy-static-files",
-    "copy-static-files": "node ./copy-static-files.js",
-    "build:html": "node build.js",
-    "build:html:prod": "cross-env NODE_ENV=production node build.js",
-    "build:css": "tailwindcss -i src/style/tailwind.css -o dist/style.css --minify",
-    "build:dev": "npm run build:css && npm run build:html",
-    "build": "npm run build:css && npm run build:html:prod",
-    "dev": "npm run build:dev && npx http-server dist -p 3000 -c-1",
-    "watch": "concurrently \"tailwindcss -i src/style/tailwind.css -o dist/style.css --watch\" \"nodemon --watch src --ext njk,html --exec 'npm run build:html'\"",
-    "serve": "npx http-server dist -p 3000 -c-1",
-    "format": "npx prettier --write \"src/**/*.njk\"",
-    "format:check": "npx prettier --check \"src/**/*.njk\"",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "format": "npx prettier --write \"src/**/*.{astro,ts,tsx,js,css}\"",
+    "format:check": "npx prettier --check \"src/**/*.{astro,ts,tsx,js,css}\"",
     "test": "node --test tests/*test.js"
   },
   "devDependencies": {
+    "astro": "^5.12.8",
     "autoprefixer": "10.4.21",
-    "browserslist": "4.25.1",
-    "concurrently": "^9.2.0",
-    "cross-env": "^7.0.3",
-    "http-server": "^14.1.1",
-    "nodemon": "^3.1.10",
-    "nunjucks": "^3.2.4",
     "prettier": "^3.6.2",
-    "prettier-plugin-jinja-template": "^2.1.0",
+    "prettier-plugin-astro": "^0.14.1",
     "puppeteer": "^24.4.0",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^4.1.11"
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11"
   }
 }

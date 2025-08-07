@@ -1,0 +1,40 @@
+---
+import type { Locale } from '../i18n/config';
+import { locales } from '../i18n/config';
+const { current }: { current: Locale } = Astro.props;
+---
+
+<nav
+  aria-label="Language switcher"
+  class="fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50 text-sm text-palette-3-light dark:text-palette-3-dark bg-palette-4-light/70 dark:bg-palette-4-dark/70 backdrop-blur px-4 py-2 rounded-full shadow"
+  data-testid="lang-switcher"
+>
+  <ul role="list" class="flex gap-4">
+    {
+      locales.map((code) => (
+        <li role="listitem">
+          {code === current ? (
+            <span
+              class="font-semibold uppercase"
+              aria-current="true"
+              data-lang={code}
+            >
+              {code}
+            </span>
+          ) : (
+            <a
+              class="uppercase hover:underline"
+              href={`/${code}/`}
+              lang={code}
+              hreflang={code}
+              data-lang={code}
+              aria-label={`Switch language to ${code.toUpperCase()}`}
+            >
+              {code}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
