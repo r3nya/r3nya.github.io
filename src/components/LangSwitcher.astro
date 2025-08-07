@@ -1,0 +1,18 @@
+---
+import type { Locale } from '../i18n/config';
+import { locales } from '../i18n/config';
+const { current }: { current: Locale } = Astro.props;
+---
+<nav class="text-sm text-palette-3-light dark:text-palette-3-dark">
+  <ul class="flex gap-3">
+    {locales.map((code) => (
+      <li>
+        {code === current ? (
+          <span class="font-semibold uppercase">{code}</span>
+        ) : (
+          <a class="uppercase hover:underline" href={`/${code}/`}>{code}</a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>
