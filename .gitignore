@@ -5,3 +5,21 @@ dist
 .DS_Store
 .cache
 /.idea
+/.vscode
+
+# Astro build/cache
+/.astro
+
+# Local env files
+.env
+.env.local
+.env.*.local
+.env.*
+
+# Hosting/platform dirs (ignore if present)
+/.vercel
+/.netlify
+
+# Test/coverage artifacts
+coverage/
+.nyc_output
