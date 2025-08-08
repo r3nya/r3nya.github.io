@@ -1,15 +1,36 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
-  "postCreateCommand": "npm install",
-  "postStartCommand": "npm run dev",
-  "forwardPorts": [3000],
-  "features": {},
+  "name": "Astro DevContainer",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
-        "EditorConfig.EditorConfig",
-        "eseom.nunjucks-template"
-      ]
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.associations": {
+          "*.astro": "astro"
+        },
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "tailwindCSS.includeLanguages": { "astro": "html" }
+      }
     }
-  }
+  },
+  "postCreateCommand": "npm ci",
+  "postStartCommand": "npm run dev -- --host",
+  "forwardPorts": [4321, 3000, 5173],
+  "portsAttributes": {
+    "4321": { "label": "Astro" },
+    "5173": { "label": "Vite" }
+  },
+  "remoteUser": "node",
+  "updateContentCommand": "npm install"
 }
