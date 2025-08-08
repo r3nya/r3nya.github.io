@@ -50,8 +50,8 @@ export const messages: Record<Locale, Messages> = {
     ],
   },
   es: {
-    title: 'Andrey Makarov aka r3nya',
-    name: 'Andrey Makarov',
+    title: 'Andrey Makárov aka r3nya',
+    name: 'Andrey Makárov',
     headline: 'Desarrollador 👨‍💻',
     links: [
       commonLinks.github,
