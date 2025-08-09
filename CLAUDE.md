@@ -62,3 +62,7 @@ NEVER proactively create documentation files (*.md) or README files. Only create
 - **Always provide explicit types** for function parameters and return values
 - **Create proper interfaces** for object types when possible
 - **Prefer type safety** over convenience
+
+## Code Formatting
+- **Always run `npm run format`** after completing any task that modifies code files
+- This ensures consistent code formatting with Prettier across the project
