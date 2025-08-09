@@ -56,3 +56,9 @@ ALWAYS prefer editing an existing file to creating a new one.
 NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
 
 **Exception**: CLAUDE.md files are explicitly encouraged and should be created/updated to provide development guidance.
+
+## TypeScript Guidelines
+- **Use `unknown` instead of `any`** when you can't find the correct type/interface
+- **Always provide explicit types** for function parameters and return values
+- **Create proper interfaces** for object types when possible
+- **Prefer type safety** over convenience
