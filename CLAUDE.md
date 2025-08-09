@@ -72,21 +72,72 @@ npm run clean        # Remove dist directory
 ### Component Development
 - Use `.astro` files with frontmatter fences (`---`)
 - Explicit TypeScript types for props
-- Minimal logic in components; prefer composition
+- Minimal logic in components; prefer small, composable components
 - Localized content via `i18n/messages.ts`
+- Keep frontmatter blocks valid; avoid stray `return` statements in markup
+- Reuse components to avoid duplication (e.g., `components/HomePage.astro`)
 
 ### Styling Conventions  
-- Use Tailwind utility classes
+- **Tailwind v4** via `@import "tailwindcss"` in `src/styles/global.css`
+- Theme tokens defined in `@theme` with CSS custom properties
+- No legacy Tailwind config or `@astrojs/tailwind` integration
+- Prefer utility classes; keep class lists readable
 - Custom theme tokens in `src/styles/global.css`
-- Maintain accessibility with proper ARIA labels and semantic HTML
-- Support both light and dark themes
+- Support both light and dark themes via existing classes
+
+### Accessibility Best Practices
+- Provide `aria-label`, `aria-current`, roles, and semantic landmarks
+- Maintain semantic HTML structure
+- Ensure proper contrast ratios for both light and dark themes
+- Test keyboard navigation
 
 ### Content Management
-- Site metadata in `src/site.ts`
+- Centralize site metadata in `src/site.ts` and apply in `src/layouts/BaseLayout.astro`
 - Localized strings in `src/i18n/messages.ts`
 - Profile information centrally managed with TypeScript types
 
 ### Build Process
-- Static site generation for GitHub Pages
-- Automatic formatting with Prettier
+- Build with `npm run build` (Astro static site generation)
+- PRs should include lint/format checks and successful builds
+- Deploy to GitHub Pages using `actions/deploy-pages@v4`
 - Custom directories: `static/` for public assets, `dist/` for output
+
+## Common Code Patterns
+
+### Localized Page Template
+```astro
+---
+import HomePage from '../../components/HomePage.astro';
+import type { Locale } from '../../i18n/config';
+import { locales, defaultLocale } from '../../i18n/config';
+
+export function getStaticPaths() {
+  return locales.map((code) => ({ params: { lang: code } }));
+}
+
+const { lang } = Astro.params;
+const locale = (locales as readonly string[]).includes(lang ?? '') 
+  ? (lang as Locale) 
+  : defaultLocale;
+---
+<HomePage locale={locale} />
+```
+
+### Global Styles Import
+```astro
+---
+import '../styles/global.css';
+---
+```
+
+### Component Props Interface
+```astro
+---
+export interface Props {
+  locale: Locale;
+  title?: string;
+}
+
+const { locale, title } = Astro.props;
+---
+```
