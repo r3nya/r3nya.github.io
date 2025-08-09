@@ -1,4 +1,7 @@
 name: Weekly E2E Tests
+permissions:
+  contents: read
+  actions: write
 
 on:
   schedule:
