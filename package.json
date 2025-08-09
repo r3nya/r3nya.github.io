@@ -8,16 +8,21 @@
     "preview": "astro preview",
     "format": "npx prettier --write \"src/**/*.{astro,ts,tsx,js,css}\"",
     "format:check": "npx prettier --check \"src/**/*.{astro,ts,tsx,js,css}\"",
-    "test": "node --test tests/*test.js"
+    "test:e2e": "node --test e2e-tests/*test.js",
+    "test:unit": "vitest"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.6.4",
     "astro": "^5.12.8",
     "autoprefixer": "10.4.21",
+    "happy-dom": "^18.0.1",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "puppeteer": "^24.4.0",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "vitest": "^3.2.4"
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
