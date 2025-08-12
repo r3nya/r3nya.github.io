@@ -6,8 +6,8 @@
     "build": "astro build",
     "dev": "astro dev",
     "preview": "astro preview",
-    "format": "npx prettier --write \"src/**/*.{astro,ts,tsx,js,css}\"",
-    "format:check": "npx prettier --check \"src/**/*.{astro,ts,tsx,js,css}\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test:e2e": "node --test e2e-tests/*test.js",
     "test:unit": "vitest"
   },
