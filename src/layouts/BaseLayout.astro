@@ -1,11 +1,14 @@
 ---
-// Props: { title?: string; lang?: string }
 import '../styles/global.css';
 import { siteMeta } from '../site';
-const { title = 'Andrey Makarov aka r3nya', lang = 'en' } = Astro.props as {
+import type { Locale } from '../i18n/config';
+
+interface Props {
   title?: string;
-  lang?: string;
-};
+  lang?: Locale;
+}
+
+const { title = 'Andrey Makarov aka r3nya', lang = 'en' }: Props = Astro.props;
 ---
 
 <!doctype html>
@@ -18,6 +21,7 @@ const { title = 'Andrey Makarov aka r3nya', lang = 'en' } = Astro.props as {
     <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="description" content={siteMeta.description} />
     <meta name="author" content={siteMeta.author} />
     <meta name="theme-color" content={siteMeta.themeColor} />
