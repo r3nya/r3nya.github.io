@@ -2,6 +2,8 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import compress from 'astro-compress';
+
 export default defineConfig({
   site: 'https://r3nya.ru',
   srcDir: 'src',
@@ -11,4 +13,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
+  integrations: [compress()],
 });
