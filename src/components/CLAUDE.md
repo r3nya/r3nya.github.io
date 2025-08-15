@@ -9,16 +9,19 @@ This directory contains reusable Astro components that follow consistent pattern
 ## Component Guidelines
 
 ### File Structure
+
 - Use `.astro` files with frontmatter fences (`---`)
 - Explicit TypeScript interfaces for props
 - Minimal logic in components; prefer small, composable components
 
 ### Naming Conventions
+
 - PascalCase for component names (e.g., `ProfileHeader.astro`)
 - Descriptive names that indicate component purpose
 - Avoid generic names like `Container.astro` or `Wrapper.astro`
 
 ### Props and Interfaces
+
 ```astro
 ---
 interface Props {
@@ -32,17 +35,20 @@ const { locale, title, className = 'default-class' } = Astro.props;
 ```
 
 ### Localization
+
 - Always use localized content via `i18n/messages.ts`
 - Pass `locale` prop to components that need translations
 - Access translations with `const t = messages[locale];`
 
 ### Styling
+
 - Use Tailwind utility classes
 - Support both light and dark themes via `dark:` classes
 - Keep class lists readable with proper spacing
 - Use semantic CSS classes when needed
 
 ### Accessibility
+
 - Include proper ARIA attributes (`aria-label`, `aria-current`, etc.)
 - Use semantic HTML elements (`header`, `nav`, `section`, etc.)
 - Ensure keyboard navigation support
@@ -59,6 +65,7 @@ const { locale, title, className = 'default-class' } = Astro.props;
 ## Component Testing
 
 Components in this directory are tested using:
+
 - **Unit tests** with Vitest and Astro Container API
 - **Snapshot testing** for render diff validation
 - **Clean snapshots** without development-specific attributes

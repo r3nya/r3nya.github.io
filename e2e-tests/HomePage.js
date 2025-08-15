@@ -17,14 +17,14 @@ class HomePage {
   }
 
   async getLinkText(element) {
-    return await this.page.evaluate(el => el.textContent, element);
+    return await this.page.evaluate((el) => el.textContent, element);
   }
 
   links = {
     github: 'https://github.com/r3nya',
     linkedin: 'https://www.linkedin.com/in/r3nya',
     twitter: 'https://x.com/r3nya',
-    telegram: 'https://t.me/r3nya'
+    telegram: 'https://t.me/r3nya',
   };
 }
 

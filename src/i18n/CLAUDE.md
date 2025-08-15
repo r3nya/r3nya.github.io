@@ -20,6 +20,7 @@ This directory contains the complete internationalization system supporting Engl
 ## Adding New Content
 
 ### 1. Update Types
+
 First, add new keys to the `Messages` type in `messages.ts`:
 
 ```typescript
@@ -38,6 +39,7 @@ export type Messages = {
 ```
 
 ### 2. Add Translations
+
 Add translations for all supported locales:
 
 ```typescript
@@ -51,7 +53,7 @@ export const messages: Record<Locale, Messages> = {
   },
   ru: {
     title: 'Андрей Макаров aka r3nya',
-    name: 'Андрей Макаров', 
+    name: 'Андрей Макаров',
     headline: 'Разработчик ПО 👨‍💻',
     newContent: 'Ваш русский контент здесь',
     // ... other content
@@ -88,6 +90,7 @@ const t = messages[locale];
 ## Routing System
 
 The i18n system works with Astro's dynamic routing:
+
 - Default route: `/` (English)
 - Localized routes: `/ru/`, `/es/`
 - Invalid locale codes fallback to English
@@ -95,7 +98,7 @@ The i18n system works with Astro's dynamic routing:
 ## Best Practices
 
 - **Always provide translations** for all supported locales
-- **Use descriptive keys** that indicate content purpose  
+- **Use descriptive keys** that indicate content purpose
 - **Keep translations consistent** across locales
 - **Test with all locales** to ensure proper rendering
 - **Maintain TypeScript types** for compile-time validation

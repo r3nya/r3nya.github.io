@@ -30,6 +30,7 @@ npx vitest -u
 ## Test Structure
 
 ### Test Files
+
 - `ProfileHeader.test.ts` - Tests profile header component rendering
 - `SocialLinks.test.ts` - Tests social media links across all locales
 - `LangSwitcher.test.ts` - Tests language switcher for each locale
@@ -37,6 +38,7 @@ npx vitest -u
 - `HomePage.test.ts` - Tests complete homepage for all locales
 
 ### Shared Utilities
+
 - `helpers.ts` - Test utilities and component rendering helper
 - `setup.ts` - Global test setup and configuration
 
@@ -55,6 +57,7 @@ it('renders with English locale', async () => {
 ```
 
 ### Benefits
+
 - **Comprehensive coverage** - Captures complete rendered HTML
 - **Regression detection** - Any changes to output are caught
 - **Maintainable** - No need to check individual fields manually
@@ -68,13 +71,15 @@ The test helper automatically removes Astro development attributes that contain 
 - `data-astro-source-loc` - Removed to prevent path-based failures
 
 This ensures snapshots work consistently across:
+
 - Local development machines
-- CI/CD environments  
+- CI/CD environments
 - Cloud testing platforms
 
 ## Writing Tests
 
 ### Basic Component Test
+
 ```typescript
 // @vitest-environment happy-dom
 import { describe, it, expect } from 'vitest';
@@ -95,6 +100,7 @@ describe('YourComponent', () => {
 ```
 
 ### Multi-Locale Testing
+
 ```typescript
 it('renders with Russian locale', async () => {
   const result = await renderAstroComponent(Component, {

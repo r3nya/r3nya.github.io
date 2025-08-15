@@ -15,8 +15,8 @@ test('Home page available', async (t) => {
       '--no-first-run',
       '--no-zygote',
       '--single-process', // <- this one doesn't work in Windows
-      '--disable-gpu'
-    ]
+      '--disable-gpu',
+    ],
   });
   const page = await browser.newPage();
   const homePage = new HomePageObject(page);

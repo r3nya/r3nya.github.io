@@ -5,20 +5,20 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     assignees:
-      - "r3nya"
+      - 'r3nya'
 
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
     ignore:
-      - dependency-name: "browserslist"
+      - dependency-name: 'browserslist'
         update-types:
           - version-update:semver-patch
     assignees:
-      - "r3nya"
+      - 'r3nya'

@@ -21,11 +21,13 @@ npm run test:e2e     # Run E2E tests on production site
 This project uses distributed CLAUDE.md files for focused documentation:
 
 ### 📚 Core Documentation
+
 - **[docs/architecture.md](docs/architecture.md)** - Technical architecture and system overview
 - **[docs/development-guide.md](docs/development-guide.md)** - Development workflows and best practices
 - **[docs/code-patterns.md](docs/code-patterns.md)** - Common code patterns and examples
 
 ### 🎯 Directory-Specific Guides
+
 - **[src/components/CLAUDE.md](src/components/CLAUDE.md)** - Component development guidelines
 - **[src/i18n/CLAUDE.md](src/i18n/CLAUDE.md)** - Internationalization system
 - **[src/test/CLAUDE.md](src/test/CLAUDE.md)** - Unit testing with snapshots
@@ -50,19 +52,22 @@ This project uses distributed CLAUDE.md files for focused documentation:
 Refer to the specific CLAUDE.md files above for detailed guidance on each area of the project.
 
 # important-instruction-reminders
+
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
 ALWAYS prefer editing an existing file to creating a new one.
-NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+NEVER proactively create documentation files (\*.md) or README files. Only create documentation files if explicitly requested by the User.
 
 **Exception**: CLAUDE.md files are explicitly encouraged and should be created/updated to provide development guidance.
 
 ## TypeScript Guidelines
+
 - **Use `unknown` instead of `any`** when you can't find the correct type/interface
 - **Always provide explicit types** for function parameters and return values
 - **Create proper interfaces** for object types when possible
 - **Prefer type safety** over convenience
 
 ## Code Formatting
+
 - **Always run `npm run format`** after completing any task that modifies code files
 - This ensures consistent code formatting with Prettier across the project
