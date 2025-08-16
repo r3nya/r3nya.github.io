@@ -22,7 +22,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "puppeteer": "^24.4.0",
     "rimraf": "^6.0.1",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^4.1.12",
     "vitest": "^3.2.4"
   },
   "engines": {
