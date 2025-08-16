@@ -29,6 +29,6 @@
     "yarn": "YARN NO LONGER USED - use npm instead."
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.11"
+    "@tailwindcss/vite": "^4.1.12"
   }
 }
