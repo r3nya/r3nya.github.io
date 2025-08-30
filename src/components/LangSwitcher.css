@@ -1,0 +1,17 @@
+@import '../styles/global.css' reference;
+
+.lang-switcher {
+  @apply fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50 text-sm text-palette-3-light dark:text-palette-3-dark bg-palette-4-light/70 dark:bg-palette-4-dark/70 backdrop-blur px-4 py-2 rounded-full shadow;
+}
+
+.lang-switcher__list {
+  @apply flex gap-4;
+}
+
+.lang-switcher__current {
+  @apply font-semibold uppercase;
+}
+
+.lang-switcher__link {
+  @apply uppercase hover:underline;
+}

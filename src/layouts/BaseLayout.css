@@ -1,0 +1,21 @@
+@import '../styles/global.css' reference;
+
+.base-layout {
+  @apply bg-palette-1-light dark:bg-palette-1-dark;
+}
+
+.base-layout__body {
+  @apply font-monocode text-base text-palette-2-light antialiased dark:text-palette-2-dark;
+}
+
+.base-layout__skip-link {
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-palette-4-light dark:focus:bg-palette-4-dark focus:text-palette-2-light dark:focus:text-palette-2-dark focus:px-3 focus:py-2 focus:rounded;
+}
+
+.base-layout__container {
+  @apply container mx-auto px-4 max-w-4xl py-8 sm:px-6 sm:mt-4 lg:px-8;
+}
+
+.base-layout__main {
+  @apply grid grid-cols-1 gap-8 md:grid-cols-3;
+}
