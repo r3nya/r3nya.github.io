@@ -1,0 +1,13 @@
+@import '../styles/global.css' reference;
+
+.social-links {
+  @apply col-span-1 grid gap-2;
+}
+
+.social-links__link {
+  @apply flex items-center text-2xl font-medium text-palette-5-light md:text-3xl dark:text-palette-5-dark hover:text-palette-6-light dark:hover:text-palette-6-dark;
+}
+
+.social-links__title {
+  @apply group-hover:underline;
+}

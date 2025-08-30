@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import './BaseLayout.css';
 import { siteMeta } from '../site';
 import type { Locale } from '../i18n/config';
 
@@ -12,11 +13,7 @@ const { title = 'Andrey Makarov aka r3nya', lang = 'en' }: Props = Astro.props;
 ---
 
 <!doctype html>
-<html
-  lang={lang}
-  data-lang={lang}
-  class="bg-palette-1-light dark:bg-palette-1-dark"
->
+<html lang={lang} data-lang={lang} class="base-layout">
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
@@ -50,20 +47,14 @@ const { title = 'Andrey Makarov aka r3nya', lang = 'en' }: Props = Astro.props;
 
     <!-- No external stylesheet link; Tailwind v4 is bundled via global.css -->
   </head>
-  <body
-    class="font-monocode text-base text-palette-2-light antialiased dark:text-palette-2-dark"
-  >
-    <a
-      href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-palette-4-light dark:focus:bg-palette-4-dark focus:text-palette-2-light dark:focus:text-palette-2-dark focus:px-3 focus:py-2 focus:rounded"
-      >Skip to content</a
-    >
-    <div class="container mx-auto px-4 max-w-4xl py-8 sm:px-6 sm:mt-4 lg:px-8">
+  <body class="base-layout__body">
+    <a href="#main-content" class="base-layout__skip-link">Skip to content</a>
+    <div class="base-layout__container">
       <main
         id="main-content"
         role="main"
         data-testid="main"
-        class="grid grid-cols-1 gap-8 md:grid-cols-3"
+        class="base-layout__main"
       >
         <slot />
       </main>
