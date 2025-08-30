@@ -34,6 +34,13 @@ const { locale, title, className = 'default-class' } = Astro.props;
 ---
 ```
 
+### TypeScript Guidelines
+
+- **Use `unknown` instead of `any`** when you can't find the correct type/interface
+- **Always provide explicit types** for function parameters and return values
+- **Create proper interfaces** for object types when possible
+- **Prefer type safety** over convenience
+
 ### Localization
 
 - Always use localized content via `i18n/messages.ts`
@@ -42,10 +49,13 @@ const { locale, title, className = 'default-class' } = Astro.props;
 
 ### Styling
 
+- **Component-based CSS** - Each component has its own `.css` file imported directly
+- **BEM methodology** - Block Element Modifier naming convention for classes
+- **Tailwind @apply** - Use `@apply` directive to apply Tailwind utilities in CSS files
+- **Reference imports** - Use `@import '../styles/global.css' reference;` to access theme tokens
 - Use Tailwind utility classes
 - Support both light and dark themes via `dark:` classes
 - Keep class lists readable with proper spacing
-- Use semantic CSS classes when needed
 
 ### Accessibility
 
