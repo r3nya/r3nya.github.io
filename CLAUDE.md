@@ -36,7 +36,7 @@ This project uses distributed CLAUDE.md files for focused documentation:
 ## Key Technologies
 
 - **Astro 5** - Static site generator with TypeScript
-- **Tailwind CSS v4** - Utility-first CSS framework
+- **Tailwind CSS v4** - Utility-first CSS framework with BEM methodology
 - **Vitest** - Unit testing with snapshot support
 - **Puppeteer** - E2E testing for production validation
 - **GitHub Pages** - Deployment with custom domain (r3nya.ru)
@@ -66,6 +66,14 @@ NEVER proactively create documentation files (\*.md) or README files. Only creat
 - **Always provide explicit types** for function parameters and return values
 - **Create proper interfaces** for object types when possible
 - **Prefer type safety** over convenience
+
+## CSS Architecture
+
+- **Component-based CSS** - Each component has its own `.css` file imported directly
+- **BEM methodology** - Block Element Modifier naming convention for classes
+- **Tailwind @apply** - Use `@apply` directive to apply Tailwind utilities in CSS files
+- **Reference imports** - Use `@import '../styles/global.css' reference;` to access theme tokens
+- **Keep it simple** - Avoid over-engineering; only add complexity when needed
 
 ## Code Formatting
 

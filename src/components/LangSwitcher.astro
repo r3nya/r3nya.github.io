@@ -1,4 +1,5 @@
 ---
+import './LangSwitcher.css';
 import type { Locale } from '../i18n/config';
 import { locales } from '../i18n/config';
 
@@ -11,16 +12,16 @@ const { current }: Props = Astro.props;
 
 <nav
   aria-label="Language switcher"
-  class="fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50 text-sm text-palette-3-light dark:text-palette-3-dark bg-palette-4-light/70 dark:bg-palette-4-dark/70 backdrop-blur px-4 py-2 rounded-full shadow"
+  class="lang-switcher"
   data-testid="lang-switcher"
 >
-  <ul role="list" class="flex gap-4">
+  <ul role="list" class="lang-switcher__list">
     {
       locales.map((code) => (
         <li role="listitem">
           {code === current ? (
             <span
-              class="font-semibold uppercase"
+              class="lang-switcher__current"
               aria-current="true"
               data-lang={code}
             >
@@ -28,7 +29,7 @@ const { current }: Props = Astro.props;
             </span>
           ) : (
             <a
-              class="uppercase hover:underline"
+              class="lang-switcher__link"
               href={`/${code}/`}
               lang={code}
               hreflang={code}
