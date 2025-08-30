@@ -1,8 +1,7 @@
-const { test } = require('node:test');
-const assert = require('node:assert');
-const puppeteer = require('puppeteer');
-
-const HomePageObject = require('./HomePage');
+import { test } from 'node:test';
+import assert from 'node:assert';
+import puppeteer from 'puppeteer';
+import HomePageObject from './HomePage.js';
 
 test('Home page available', async (t) => {
   const browser = await puppeteer.launch({

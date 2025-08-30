@@ -1,4 +1,4 @@
-class HomePage {
+export default class HomePage {
   constructor(page) {
     this.page = page;
     this.url = 'https://r3nya.ru';
@@ -27,5 +27,3 @@ class HomePage {
     telegram: 'https://t.me/r3nya',
   };
 }
-
-module.exports = HomePage;
