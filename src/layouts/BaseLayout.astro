@@ -6,6 +6,7 @@ import type { Locale } from '@/i18n/config';
 import OpenGraph from '@/components/OpenGraph.astro';
 import TwitterCard from '@/components/TwitterCard.astro';
 import JsonLD from '@/components/JsonLD.astro';
+import HreflangLinks from '@/components/HreflangLinks.astro';
 
 interface Props {
   title?: string;
@@ -31,6 +32,8 @@ const { title = siteMeta.title, lang = 'en' }: Props = Astro.props;
     <OpenGraph {title} />
     <TwitterCard {title} />
     <JsonLD />
+    <link rel="canonical" href={Astro.url.href} />
+    <HreflangLinks lang={lang} />
 
     <!-- Icons and manifest -->
     <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />

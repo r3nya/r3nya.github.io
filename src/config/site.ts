@@ -8,7 +8,8 @@ export const siteMeta: SiteMeta = {
   openGraphDescription: "Yeah! It's my homepage…",
   safariPinnedTabColor: '#5bbad5',
   title: 'Andrey Makarov aka r3nya',
-  keywords: 'Andrey Makarov, r3nya, homepage, personal website, software developer',
+  keywords:
+    'Andrey Makarov, r3nya, homepage, personal website, software developer',
   profile: {
     name: 'Andrey Makarov',
     title: 'Software Developer 👨‍💻',

@@ -1,0 +1,27 @@
+---
+import { locales, defaultLocale } from '@/i18n/config';
+import type { Locale } from '@/i18n/config';
+
+interface Props {
+  lang: Locale;
+}
+const { lang: currentLang } = Astro.props;
+const { origin, pathname } = Astro.url;
+
+let basePath = pathname;
+if (currentLang !== defaultLocale) {
+  basePath = pathname.replace(new RegExp(`^/${currentLang}`), '');
+}
+if (basePath === '') {
+  basePath = '/';
+}
+---
+
+{
+  locales.map((lang) => {
+    const langPath = lang === defaultLocale ? '' : `/${lang}`;
+    const finalPath = basePath === '/' ? '' : basePath;
+    const href = `${origin}${langPath}${finalPath}`;
+    return <link rel="alternate" hreflang={lang} href={href} />;
+  })
+}
