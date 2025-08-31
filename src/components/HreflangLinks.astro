@@ -19,9 +19,12 @@ if (basePath === '') {
 const finalBasePath = basePath === '/' ? '' : basePath;
 const defaultHref = `${origin}${finalBasePath}`;
 ---
-{locales.map(lang => {
-  const langPath = lang === defaultLocale ? '' : `/${lang}`;
-  const href = `${origin}${langPath}${finalBasePath}`;
-  return <link rel="alternate" hreflang={lang} href={href} />;
-})}
+
+{
+  locales.map((lang) => {
+    const langPath = lang === defaultLocale ? '' : `/${lang}`;
+    const href = `${origin}${langPath}${finalBasePath}`;
+    return <link rel="alternate" hreflang={lang} href={href} />;
+  })
+}
 <link rel="alternate" hreflang="x-default" href={defaultHref} />

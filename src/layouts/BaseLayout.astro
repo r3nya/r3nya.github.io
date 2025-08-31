@@ -52,7 +52,9 @@ const t = messages[lang] ?? messages[defaultLocale];
     <!-- No external stylesheet link; Tailwind v4 is bundled via global.css -->
   </head>
   <body class="base-layout__body">
-    <a href="#main-content" class="base-layout__skip-link">{t.skip_to_content}</a>
+    <a href="#main-content" class="base-layout__skip-link"
+      >{t.skip_to_content}</a
+    >
     <div class="base-layout__container">
       <main
         id="main-content"
