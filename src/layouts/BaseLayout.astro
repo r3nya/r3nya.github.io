@@ -1,15 +1,22 @@
 ---
 import '@/styles/global.css';
 import './BaseLayout.css';
-import { siteMeta } from '../site';
-import type { Locale } from '../i18n/config';
+import { siteMeta } from '@/config/site';
+import type { Locale } from '@/i18n/config';
+import { defaultLocale } from '@/i18n/config';
+import { messages } from '@/i18n/messages';
+import OpenGraph from '@/components/OpenGraph.astro';
+import TwitterCard from '@/components/TwitterCard.astro';
+import JsonLD from '@/components/JsonLD.astro';
+import HreflangLinks from '@/components/HreflangLinks.astro';
 
 interface Props {
   title?: string;
   lang?: Locale;
 }
 
-const { title = 'Andrey Makarov aka r3nya', lang = 'en' }: Props = Astro.props;
+const { title = siteMeta.title, lang = 'en' }: Props = Astro.props;
+const t = messages[lang] ?? messages[defaultLocale];
 ---
 
 <!doctype html>
@@ -24,15 +31,12 @@ const { title = 'Andrey Makarov aka r3nya', lang = 'en' }: Props = Astro.props;
     <meta name="theme-color" content={siteMeta.themeColor} />
     <meta name="yandex-verification" content={siteMeta.yandexVerification} />
 
-    <!-- Open Graph meta tags -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={siteMeta.openGraphDescription} />
-    <meta property="og:image" content={siteMeta.profile.avatar} />
-    <meta property="og:type" content="profile" />
-    <meta property="profile:first_name" content={siteMeta.profile.firstName} />
-    <meta property="profile:last_name" content={siteMeta.profile.lastName} />
-    <meta property="profile:username" content={siteMeta.profile.username} />
-    <meta property="profile:gender" content={siteMeta.profile.gender} />
+    <!-- SEO components -->
+    <OpenGraph {title} />
+    <TwitterCard {title} />
+    <JsonLD />
+    <link rel="canonical" href={Astro.url.href} />
+    <HreflangLinks lang={lang} />
 
     <!-- Icons and manifest -->
     <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />
@@ -48,7 +52,9 @@ const { title = 'Andrey Makarov aka r3nya', lang = 'en' }: Props = Astro.props;
     <!-- No external stylesheet link; Tailwind v4 is bundled via global.css -->
   </head>
   <body class="base-layout__body">
-    <a href="#main-content" class="base-layout__skip-link">Skip to content</a>
+    <a href="#main-content" class="base-layout__skip-link"
+      >{t.skip_to_content}</a
+    >
     <div class="base-layout__container">
       <main
         id="main-content"

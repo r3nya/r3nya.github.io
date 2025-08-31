@@ -4,6 +4,7 @@ export type Messages = {
   title: string;
   name: string;
   headline: string;
+  skip_to_content: string;
   links: {
     title: string;
     icon: 'github' | 'linkedin' | 'paper-plane' | 'twitter';
@@ -31,6 +32,7 @@ export const messages: Record<Locale, Messages> = {
     title: 'Andrey Makarov aka r3nya',
     name: 'Andrey Makarov',
     headline: 'Software Developer 👨‍💻',
+    skip_to_content: 'Skip to content',
     links: [
       commonLinks.github,
       commonLinks.linkedin,
@@ -42,6 +44,7 @@ export const messages: Record<Locale, Messages> = {
     title: 'Андрей Макаров aka r3nya',
     name: 'Андрей Макаров',
     headline: 'Разработчик ПО 👨‍💻',
+    skip_to_content: 'Перейти к содержанию',
     links: [
       commonLinks.github,
       commonLinks.linkedin,
@@ -53,6 +56,7 @@ export const messages: Record<Locale, Messages> = {
     title: 'Andrey Makárov aka r3nya',
     name: 'Andrey Makárov',
     headline: 'Desarrollador 👨‍💻',
+    skip_to_content: 'Saltar al contenido',
     links: [
       commonLinks.github,
       commonLinks.linkedin,

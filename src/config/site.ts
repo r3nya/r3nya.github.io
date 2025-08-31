@@ -1,22 +1,4 @@
-export type ProfileMeta = {
-  name: string;
-  title: string;
-  firstName: string;
-  lastName: string;
-  username: string;
-  gender: 'male' | 'female' | 'other';
-  avatar: string;
-};
-
-export type SiteMeta = {
-  author: string;
-  description: string;
-  themeColor: string;
-  yandexVerification: string;
-  openGraphDescription: string;
-  safariPinnedTabColor: string;
-  profile: ProfileMeta;
-};
+import type { SiteMeta } from '@/typings.d';
 
 export const siteMeta: SiteMeta = {
   author: 'Andrew M.',
@@ -25,6 +7,9 @@ export const siteMeta: SiteMeta = {
   yandexVerification: '1ff13f78c7797ab6',
   openGraphDescription: "Yeah! It's my homepage…",
   safariPinnedTabColor: '#5bbad5',
+  title: 'Andrey Makarov aka r3nya',
+  keywords:
+    'Andrey Makarov, r3nya, homepage, personal website, software developer',
   profile: {
     name: 'Andrey Makarov',
     title: 'Software Developer 👨‍💻',
