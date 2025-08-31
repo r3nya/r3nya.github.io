@@ -1,0 +1,19 @@
+---
+import { siteMeta } from '@/config/site';
+
+interface Props {
+  title?: string;
+}
+
+const { title = siteMeta.title }: Props = Astro.props;
+---
+
+<!-- Open Graph meta tags -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={siteMeta.openGraphDescription} />
+<meta property="og:image" content={siteMeta.profile.avatar} />
+<meta property="og:type" content="profile" />
+<meta property="profile:first_name" content={siteMeta.profile.firstName} />
+<meta property="profile:last_name" content={siteMeta.profile.lastName} />
+<meta property="profile:username" content={siteMeta.profile.username} />
+<meta property="profile:gender" content={siteMeta.profile.gender} />

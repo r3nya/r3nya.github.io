@@ -1,0 +1,26 @@
+---
+import { siteMeta } from '@/config/site';
+
+const personSchema = {
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": siteMeta.profile.name,
+  "url": "https://r3nya.com",
+  "sameAs": [
+    "https://github.com/r3nya"
+  ],
+  "image": siteMeta.profile.avatar,
+  "jobTitle": "Software Developer",
+  "gender": siteMeta.profile.gender,
+  "knowsAbout": [
+    "TypeScript",
+    "React",
+    "React-Native",
+    "Web Development",
+    "Software Development",
+    "Node.js"
+  ]
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />

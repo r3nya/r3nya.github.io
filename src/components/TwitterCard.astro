@@ -1,0 +1,17 @@
+---
+import { siteMeta } from '@/config/site';
+
+interface Props {
+  title?: string;
+}
+
+const { title = siteMeta.title }: Props = Astro.props;
+---
+
+<!-- Twitter Card meta tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@r3nya" />
+<meta name="twitter:creator" content="@r3nya" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={siteMeta.openGraphDescription} />
+<meta name="twitter:image" content={siteMeta.profile.avatar} />
