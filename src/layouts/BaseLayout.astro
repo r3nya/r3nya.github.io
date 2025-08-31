@@ -3,6 +3,8 @@ import '@/styles/global.css';
 import './BaseLayout.css';
 import { siteMeta } from '@/config/site';
 import type { Locale } from '@/i18n/config';
+import { defaultLocale } from '@/i18n/config';
+import { messages } from '@/i18n/messages';
 import OpenGraph from '@/components/OpenGraph.astro';
 import TwitterCard from '@/components/TwitterCard.astro';
 import JsonLD from '@/components/JsonLD.astro';
@@ -14,6 +16,7 @@ interface Props {
 }
 
 const { title = siteMeta.title, lang = 'en' }: Props = Astro.props;
+const t = messages[lang] ?? messages[defaultLocale];
 ---
 
 <!doctype html>
@@ -49,7 +52,7 @@ const { title = siteMeta.title, lang = 'en' }: Props = Astro.props;
     <!-- No external stylesheet link; Tailwind v4 is bundled via global.css -->
   </head>
   <body class="base-layout__body">
-    <a href="#main-content" class="base-layout__skip-link">Skip to content</a>
+    <a href="#main-content" class="base-layout__skip-link">{t.skip_to_content}</a>
     <div class="base-layout__container">
       <main
         id="main-content"
