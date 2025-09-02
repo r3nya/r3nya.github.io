@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import compress from 'astro-compress';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://r3nya.ru',
@@ -12,7 +13,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [compress()],
+  integrations: [compress(), sitemap()],
 
   prefetch: {
     prefetchAll: false,
