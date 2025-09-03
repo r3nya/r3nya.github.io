@@ -5,7 +5,7 @@ const personSchema = {
   '@context': 'http://schema.org',
   '@type': 'Person',
   name: siteMeta.profile.name,
-  url: 'https://r3nya.com',
+  url: Astro.site?.toString(),
   sameAs: ['https://github.com/r3nya'],
   image: siteMeta.profile.avatar,
   jobTitle: 'Software Developer',
