@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "bash": {
+      "npm run build": "allow",
+      "npm run format": "allow",
+      "npm run test:unit*": "allow",
+      "npm run type-check": "allow",
+      "pwd": "allow"
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    }
+  },
+  "instructions": [
+    "AGENTS.md",
+    "docs/*.md",
+    "src/components/AGENTS.md",
+    "src/i18n/AGENTS.md",
+    "src/test/AGENTS.md",
+    "e2e-tests/AGENTS.md"
+  ]
+}
