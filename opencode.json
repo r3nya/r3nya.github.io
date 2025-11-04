@@ -16,12 +16,5 @@
       "enabled": true
     }
   },
-  "instructions": [
-    "AGENTS.md",
-    "docs/*.md",
-    "src/components/AGENTS.md",
-    "src/i18n/AGENTS.md",
-    "src/test/AGENTS.md",
-    "e2e-tests/AGENTS.md"
-  ]
+  "instructions": ["AGENTS.md", "docs/*.md"]
 }
