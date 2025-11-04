@@ -23,7 +23,7 @@
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "puppeteer": "^24.28.0",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "tailwindcss": "^4.1.16",
     "vitest": "^4.0.6"
   },
