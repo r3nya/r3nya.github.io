@@ -16,6 +16,15 @@ updates:
     directory: '/'
     schedule:
       interval: 'monthly'
+    groups:
+      tailwindcss-group:
+        patterns:
+          - 'tailwindcss'
+          - '@tailwindcss/vite'
+        update-types:
+          - 'minor'
+          - 'patch'
+        applies-to: 'version-updates'
     ignore:
       - dependency-name: 'browserslist'
         update-types:
