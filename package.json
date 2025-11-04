@@ -32,6 +32,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
-    "@tailwindcss/vite": "^4.1.13"
+    "@tailwindcss/vite": "^4.1.16"
   }
 }
