@@ -43,7 +43,7 @@ Supports three locales with automatic routing:
 
 ## 📖 Documentation
 
-See [CLAUDE.md](CLAUDE.md) for comprehensive development guidance and architecture details.
+See [AGENTS.md](AGENTS.md) for comprehensive development guidance and architecture details.
 
 ## 🔧 Development
 
