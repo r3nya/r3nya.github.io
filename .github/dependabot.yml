@@ -16,6 +16,12 @@ updates:
     directory: '/'
     schedule:
       interval: 'monthly'
+    groups:
+      vitest-group:
+        patterns:
+          - 'vitest'
+          - '@vitest/ui'
+        applies-to: 'version-updates'
     ignore:
       - dependency-name: 'browserslist'
         update-types:
