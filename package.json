@@ -18,8 +18,6 @@
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
-    "@vitest/browser": "^4.0.7",
-    "@vitest/browser-playwright": "^4.0.7",
     "astro": "^5.15.3",
     "astro-compress": "^2.3.8",
     "autoprefixer": "10.4.21",

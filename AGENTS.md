@@ -522,9 +522,9 @@ Visual regression tests capture screenshots of rendered pages and compare them a
 
 ### Technology Stack
 
-- **Vitest 4 Browser Mode** - Native browser testing with built-in screenshot comparison
-- **@vitest/browser-playwright** - Playwright provider for browser automation
-- **Playwright** - Headless Chromium for screenshot capture
+- **Vitest 4** - Test runner with snapshot assertions
+- **Playwright** - Headless Chromium for screenshot capture and HTML rendering
+- **toMatchFileSnapshot** - Vitest's file snapshot matcher for image comparison
 
 ### Running Tests
 
@@ -539,38 +539,48 @@ npm run test:visual
 npm run test:visual:update
 ```
 
-### Vitest 4 Browser Mode Features
-
-- **Built-in Screenshot Comparison**: Native `toMatchScreenshot` assertion without external libraries
-- **Playwright Traces**: Enable with `trace: 'on-first-retry'` for debugging failed tests
-- **Page Context**: Direct access to browser page via `import { page } from 'vitest/browser'`
-
 ### Test Structure
 
 Visual regression tests are located in `src/test/` with the naming pattern `*.visual.test.ts`.
 
-Example test:
+Example test structure:
 
 ```typescript
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { chromium, type Browser, type Page } from 'playwright';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { page } from 'vitest/browser';
 
 describe('Component Visual Regression', () => {
+  let browser: Browser;
+  let page: Page;
+
+  beforeAll(async () => {
+    browser = await chromium.launch({ headless: true });
+    page = await browser.newPage({
+      viewport: { width: 1280, height: 720 },
+    });
+  });
+
+  afterAll(async () => {
+    await page.close();
+    await browser.close();
+  });
+
   it('matches snapshot', async () => {
     const htmlPath = join(process.cwd(), 'dist', 'component.html');
     const html = readFileSync(htmlPath, 'utf-8');
-
     await page.setContent(html, { waitUntil: 'load' });
-    await expect(page).toMatchScreenshot('component-snapshot.png');
+    await expect(await page.screenshot({ fullPage: true })).toMatchFileSnapshot(
+      '__screenshots__/component.png',
+    );
   });
 });
 ```
 
 Current test files:
 
-- `HomePage.visual.test.ts` - Homepage visual tests for all locales
+- `HomePage.visual.test.ts` - Homepage visual tests for all locales (en, ru, es, default)
 
 ### Directory Structure
 
@@ -585,19 +595,26 @@ src/test/
 Configuration is in `vitest.visual.config.ts`:
 
 ```typescript
-browser: {
-  enabled: true,
-  provider: 'playwright',
-  name: 'chromium',
-  headless: true,
-  viewport: {
-    width: 1280,
-    height: 720,
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    environment: 'node',
+    include: ['src/test/**/*.visual.test.ts'],
+    exclude: ['**/node_modules/**', '**/dist/**'],
   },
-  screenshotOptions: {
-    fullPage: true,
-  },
-}
+});
+```
+
+Viewport and screenshot options are configured directly in tests via Playwright's API:
+
+```typescript
+browser = await chromium.launch({ headless: true });
+page = await browser.newPage({
+  viewport: { width: 1280, height: 720 },
+});
+// ...
+await page.screenshot({ fullPage: true });
 ```
 
 ### Best Practices
@@ -642,12 +659,48 @@ browser: {
 ### Adding New Visual Tests
 
 1. Create `ComponentName.visual.test.ts` in `src/test/`
-2. Import from `vitest` and `vitest/browser`
-3. Read built HTML from `dist/` directory
-4. Use `page.setContent()` to load HTML
-5. Use `toMatchScreenshot()` to capture and compare
-6. Run `npm run build && npm run test:visual:update` to create baseline
-7. Commit baseline snapshot to git
+2. Import Vitest helpers and Playwright
+3. Set up browser and page in `beforeAll`
+4. Read built HTML from `dist/` directory
+5. Use `page.setContent()` to load HTML
+6. Use `toMatchFileSnapshot()` with screenshot buffer
+7. Run `npm run build && npm run test:visual:update` to create baseline
+8. Commit baseline snapshot to git
+
+Example:
+
+```typescript
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { chromium, type Browser, type Page } from 'playwright';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+describe('NewComponent Visual', () => {
+  let browser: Browser;
+  let page: Page;
+
+  beforeAll(async () => {
+    browser = await chromium.launch({ headless: true });
+    page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+  });
+
+  afterAll(async () => {
+    await page.close();
+    await browser.close();
+  });
+
+  it('matches snapshot', async () => {
+    const html = readFileSync(
+      join(process.cwd(), 'dist', 'component.html'),
+      'utf-8',
+    );
+    await page.setContent(html, { waitUntil: 'load' });
+    await expect(await page.screenshot({ fullPage: true })).toMatchFileSnapshot(
+      '__screenshots__/component.png',
+    );
+  });
+});
+```
 
 ---
 
