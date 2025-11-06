@@ -11,7 +11,9 @@
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
     "test:e2e": "node --test e2e-tests/*.js",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "test:visual": "vitest run --config vitest.visual.config.ts",
+    "test:visual:update": "vitest run --config vitest.visual.config.ts -u"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
@@ -20,9 +22,9 @@
     "astro-compress": "^2.3.8",
     "autoprefixer": "10.4.21",
     "happy-dom": "^20.0.10",
+    "playwright": "^1.56.1",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
-    "puppeteer": "^24.29.0",
     "rimraf": "^6.1.0",
     "tailwindcss": "^4.1.16",
     "vitest": "^4.0.7"

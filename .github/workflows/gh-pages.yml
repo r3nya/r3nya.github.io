@@ -19,10 +19,28 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
-      - name: Install, build, and upload your site
-        uses: withastro/action@v5
+
+      - uses: actions/setup-node@v6
         with:
-          node-version: 22 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
+          node-version-file: '.tool-versions'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run visual tests 📸
+        run: npm run test:visual
+
+      - name: Upload build artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     needs: build

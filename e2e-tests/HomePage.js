@@ -5,7 +5,8 @@ export default class HomePage {
   }
 
   async navigate() {
-    return await this.page.goto(this.url);
+    const response = await this.page.goto(this.url);
+    return response;
   }
 
   async getTitle() {
@@ -13,11 +14,11 @@ export default class HomePage {
   }
 
   async getLinkElement(href) {
-    return await this.page.$(`a[href="${href}"]`);
+    return await this.page.locator(`a[href="${href}"]`);
   }
 
   async getLinkText(element) {
-    return await this.page.evaluate((el) => el.textContent, element);
+    return await element.textContent();
   }
 
   links = {

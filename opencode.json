@@ -16,5 +16,5 @@
       "enabled": true
     }
   },
-  "instructions": ["AGENTS.md", "docs/*.md"]
+  "instructions": ["AGENTS.md"]
 }
