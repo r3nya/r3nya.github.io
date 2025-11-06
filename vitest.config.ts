@@ -19,4 +19,4 @@ export default getViteConfig({
       '@': new URL('./src', import.meta.url).pathname,
     },
   },
-} as any);
+});
