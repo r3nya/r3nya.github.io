@@ -448,7 +448,7 @@ it('renders with Russian locale', async () => {
 
 - **Test all locale variations** for i18n components
 - **Use descriptive test names** that indicate what's being tested
-- **Use `it('matches...')` form** instead of `it('should match...')` for consistency
+- **Use present tense verbs in it() descriptions without "should" for consistency**, e.g., it('renders…') instead of it('should render…').
 - **Keep tests focused** - one concept per test
 - **Update snapshots carefully** - review changes before committing
 - **Test edge cases** - empty props, invalid data, etc.
