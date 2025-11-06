@@ -10,27 +10,29 @@ This is a personal homepage built with Astro 5 and Tailwind CSS v4, deployed to 
 
 ```bash
 # Development
-npm run dev          # Start development server on port 4321
-npm run build        # Build for production
-npm run test:unit    # Run unit tests with snapshots
-npm run test:e2e     # Run E2E tests on production site
+npm run dev            # Start development server on port 4321
+npm run build          # Build for production
+npm run preview        # Preview production build locally
+npm run clean          # Remove dist directory
+
+# Code Quality
+npm run format         # Format code with Prettier
+npm run format:check   # Check formatting without making changes
+
+# Testing
+npm run test:unit      # Run unit tests with snapshots
+npm run test:visual    # Run visual regression tests (requires build)
+npm run test:e2e       # Run E2E tests on production site
 ```
 
 ## Key Technologies
 
-- **Astro 5** - Static site generator with TypeScript
-- **Tailwind CSS v4** - Utility-first CSS framework with BEM methodology
+- **Astro 5** - Static site generator with TypeScript support
+- **Tailwind CSS v4** - Utility-first CSS framework with BEM methodology (via Vite plugin, no legacy config file)
 - **Vitest** - Unit testing with snapshot support
-- **Puppeteer** - E2E testing for production validation
+- **Playwright** - E2E and visual regression testing
+- **Puppeteer** - Production site validation
 - **GitHub Pages** - Deployment with custom domain (r3nya.ru)
-
-## Documentation Structure
-
-### 📚 Core Documentation
-
-- **[docs/architecture.md](docs/architecture.md)** - Technical architecture and system overview
-- **[docs/development-guide.md](docs/development-guide.md)** - Development workflows and best practices
-- **[docs/code-patterns.md](docs/code-patterns.md)** - Common code patterns and examples
 
 ## Important Instructions
 
@@ -52,14 +54,106 @@ NEVER proactively create documentation files (\*.md) or README files. Only creat
 
 - **Component-based CSS** - Each component has its own `.css` file imported directly
 - **BEM methodology** - Block Element Modifier naming convention for classes
+- **Tailwind v4** via `@import "tailwindcss"` in `src/styles/global.css`
 - **Tailwind @apply** - Use `@apply` directive to apply Tailwind utilities in CSS files
 - **Reference imports** - Use `@import '../styles/global.css' reference;` to access theme tokens
+- **Theme tokens** - Defined in `@theme` directive with CSS custom properties
+- **No legacy config** - No Tailwind config file or `@astrojs/tailwind` integration
 - **Keep it simple** - Avoid over-engineering; only add complexity when needed
 
 ## Code Formatting
 
 - **Always run `npm run format`** after completing any task that modifies code files
 - This ensures consistent code formatting with Prettier across the project
+
+---
+
+## Architecture
+
+### Core Structure
+
+- **Astro 5** static site generator with TypeScript support
+- **Tailwind CSS v4** via Vite plugin (no legacy config file)
+- **i18n system** with locale-specific routing (`/[lang]/`)
+- **GitHub Pages** deployment with custom domain (r3nya.ru)
+
+### Directory Structure
+
+- `src/` - Source code
+  - `components/` - Reusable Astro components
+  - `layouts/BaseLayout.astro` - Main page layout with meta tags
+  - `pages/` - Route definitions with i18n support
+  - `i18n/` - Internationalization configuration and messages
+  - `styles/global.css` - Tailwind imports and custom theme tokens
+  - `config/site.ts` - Site metadata and profile configuration
+  - `test/` - Unit tests for component testing
+- `static/` - Static assets (replaces default `public/`)
+- `dist/` - Build output directory
+- `e2e-tests/` - End-to-end tests for production validation
+
+### Key Files
+
+- `astro.config.mjs` - Astro configuration with custom directories
+- `src/config/site.ts` - Centralized site metadata and profile information
+- `src/i18n/config.ts` - Supported locales and default locale
+- `src/i18n/messages.ts` - Localized content for all supported languages
+- `src/styles/global.css` - Tailwind v4 theme tokens and custom CSS
+
+### Styling System
+
+- **Tailwind v4** with custom theme tokens defined in `@theme` directive
+- **Color palette** with light/dark variants (palette-1 through palette-6)
+- **Custom font** using monospace stack (`font-monocode`)
+- **Dark mode** support via `dark:` classes and CSS custom properties
+
+### Internationalization
+
+- **Locales**: English (default), Russian, Spanish
+- **Routing**: `/[lang]/` dynamic routes for localized pages
+- **Content**: Centralized in `src/i18n/messages.ts` with typed messages
+- **Fallback**: Default locale (English) for invalid language codes
+
+### Build Process
+
+- Build with `npm run build` (Astro static site generation)
+- PRs should include lint/format checks and successful builds
+- Deploy to GitHub Pages using `actions/deploy-pages@v4`
+- Custom directories: `static/` for public assets, `dist/` for output
+
+---
+
+## Development Best Practices
+
+### Component Development Best Practices
+
+- Use `.astro` files with frontmatter fences (`---`)
+- Explicit TypeScript types for props
+- Minimal logic in components; prefer small, composable components
+- Localized content via `i18n/messages.ts`
+- Keep frontmatter blocks valid; avoid stray `return` statements in markup
+- Reuse components to avoid duplication (e.g., `components/HomePage.astro`)
+
+### Styling Conventions
+
+- **Tailwind v4** via `@import "tailwindcss"` in `src/styles/global.css`
+- Theme tokens defined in `@theme` with CSS custom properties
+- No legacy Tailwind config or `@astrojs/tailwind` integration
+- Prefer utility classes; keep class lists readable
+- Custom theme tokens in `src/styles/global.css`
+- Support both light and dark themes via existing classes
+
+### Accessibility Best Practices
+
+- Provide `aria-label`, `aria-current`, roles, and semantic landmarks
+- Maintain semantic HTML structure
+- Ensure proper contrast ratios for both light and dark themes
+- Test keyboard navigation
+
+### Content Management
+
+- Centralize site metadata in `src/config/site.ts` and apply in `src/layouts/BaseLayout.astro`
+- Localized strings in `src/i18n/messages.ts`
+- Profile information centrally managed with TypeScript types
 
 ---
 
@@ -354,6 +448,7 @@ it('renders with Russian locale', async () => {
 
 - **Test all locale variations** for i18n components
 - **Use descriptive test names** that indicate what's being tested
+- **Use `it('matches...')` form** instead of `it('should match...')` for consistency
 - **Keep tests focused** - one concept per test
 - **Update snapshots carefully** - review changes before committing
 - **Test edge cases** - empty props, invalid data, etc.
@@ -374,7 +469,7 @@ These E2E tests are designed to run against the **live production site** at `htt
 
 #### Files
 
-- `e2e.test.js` - Main E2E test suite using Node.js test runner and Puppeteer
+- `e2e.test.js` - Main E2E test suite using Node.js test runner and Playwright
 - `HomePage.js` - Page object model for the homepage with reusable methods and selectors
 
 ### Test Coverage
@@ -382,7 +477,7 @@ These E2E tests are designed to run against the **live production site** at `htt
 - **Homepage availability** - Verifies the site loads with HTTP 200 status
 - **Page title validation** - Ensures correct title rendering
 - **Social media links** - Validates all social links are present and functional
-- **Cross-browser compatibility** - Tests with headless Chromium via Puppeteer
+- **Cross-browser compatibility** - Tests with headless Chromium via Playwright
 
 ### Running Tests
 
@@ -419,8 +514,182 @@ These E2E tests serve as a **production health monitor** rather than development
 
 ---
 
+## Visual Regression Testing
+
+### Overview
+
+Visual regression tests capture screenshots of rendered pages and compare them against baseline snapshots to catch unintended visual changes.
+
+### Technology Stack
+
+- **Playwright** - Headless Chromium for screenshot capture
+- **pixelmatch** - Pixel-level image comparison
+- **pngjs** - PNG image processing
+- **Vitest** - Test runner and assertions
+
+### Running Tests
+
+```bash
+# Run visual regression tests
+npm run test:visual
+
+# Update baseline snapshots (when UI changes are intentional)
+npm run test:visual:update
+```
+
+### Test Structure
+
+Visual regression tests are located in `src/test/` with the naming pattern `*.visual.test.ts`.
+
+- `HomePage.visual.test.ts` - Homepage visual tests for all locales
+
+### Directory Structure
+
+```
+src/test/
+├── __visual_snapshots__/     # Baseline screenshots (committed to git)
+├── __visual_diffs__/          # Diff images (ignored by git)
+├── visual-helpers.ts          # Visual regression utilities
+└── *.visual.test.ts           # Visual regression test files
+```
+
+### Configuration
+
+- **Viewport**: 1280x720 (configurable in `visual-helpers.ts`)
+- **Threshold**: 0.1 (10% pixel difference tolerance)
+- **Browser**: Headless Chromium via Playwright
+- **JavaScript**: Disabled for faster rendering
+
+### Best Practices
+
+- **Use `it('matches...')` form** for test names (not `it('should match...')`)
+- **Commit baseline snapshots** to git
+- **Review diffs carefully** when tests fail (check `__visual_diffs__/`)
+- **Test multiple states** - Different locales, themes, responsive breakpoints
+- **Update intentionally** - Only run `test:visual:update` after reviewing changes
+- **Build first** - Visual tests require `npm run build` to generate HTML files
+
+### Workflow
+
+1. Make UI changes
+2. Run `npm run build` to generate updated HTML
+3. Run `npm run test:visual` to check for regressions
+4. If changes are intentional, run `npm run test:visual:update`
+5. Review and commit new baseline snapshots
+
+---
+
 ## Testing Strategy
 
 - **Unit Tests**: Component testing with clean snapshots (no absolute paths)
+- **Visual Regression Tests**: Pixel-level screenshot comparison (requires build)
 - **E2E Tests**: Production site validation (runs weekly via GitHub Actions)
 - **Snapshot Testing**: Render diff validation across all locales
+
+---
+
+## Code Patterns
+
+### Localized Page Template
+
+```astro
+---
+import HomePage from '../../components/HomePage.astro';
+import type { Locale } from '../../i18n/config';
+import { locales, defaultLocale } from '../../i18n/config';
+
+export function getStaticPaths() {
+  return locales.map((code) => ({ params: { lang: code } }));
+}
+
+const { lang } = Astro.params;
+const locale = (locales as readonly string[]).includes(lang ?? '')
+  ? (lang as Locale)
+  : defaultLocale;
+---
+
+<HomePage locale={locale} />
+```
+
+### Global Styles Import
+
+```astro
+---
+import '../styles/global.css';
+---
+```
+
+### Component Props Interface
+
+```astro
+---
+export interface Props {
+  locale: Locale;
+  title?: string;
+}
+
+const { locale, title } = Astro.props;
+---
+```
+
+### i18n Message Usage
+
+```astro
+---
+import { messages } from '../i18n/messages';
+import type { Locale } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = messages[locale];
+---
+
+<h1>{t.title}</h1>
+<p>{t.description}</p>
+```
+
+### Theme Token Usage in CSS
+
+```css
+@theme {
+  --color-palette-1-light: #f8fafc;
+  --color-palette-1-dark: #0f172a;
+}
+```
+
+### Responsive Component Pattern
+
+```astro
+---
+interface Props {
+  variant?: 'mobile' | 'desktop';
+}
+
+const { variant = 'desktop' } = Astro.props;
+---
+
+<div
+  class={`
+  grid gap-4
+  ${variant === 'mobile' ? 'grid-cols-1' : 'md:grid-cols-2'}
+`}
+>
+  <!-- Component content -->
+</div>
+```
+
+### Icon Component Usage
+
+```astro
+---
+import Icon from './Icon.astro';
+---
+
+<a href={link.url}>
+  <Icon name={link.icon} />
+  <span>{link.title}</span>
+</a>
+```

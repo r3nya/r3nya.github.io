@@ -1,21 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import puppeteer from 'puppeteer';
+import { chromium } from 'playwright';
 import HomePageObject from './HomePage.js';
 
 test('Home page available', async (t) => {
-  const browser = await puppeteer.launch({
+  const browser = await chromium.launch({
     headless: true,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--single-process', // <- this one doesn't work in Windows
-      '--disable-gpu',
-    ],
   });
   const page = await browser.newPage();
   const homePage = new HomePageObject(page);
@@ -45,7 +35,8 @@ test('Home page available', async (t) => {
 
     for (const link of expectedLinks) {
       const element = await homePage.getLinkElement(link.href);
-      assert(element, `${link.text} link should be present`);
+      const count = await element.count();
+      assert(count > 0, `${link.text} link should be present`);
 
       const text = await homePage.getLinkText(element);
       assert(
