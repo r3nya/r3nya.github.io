@@ -43,7 +43,12 @@ Supports three locales with automatic routing:
 
 ## 📖 Documentation
 
-See [AGENTS.md](AGENTS.md) for comprehensive development guidance and architecture details.
+See [AGENTS.md](AGENTS.md) for comprehensive development guidance, including:
+- Architecture overview and technical details
+- Component development patterns and best practices
+- Internationalization (i18n) system
+- Testing strategies (unit, visual, E2E)
+- Common code patterns and examples
 
 ## 🔧 Development
 
