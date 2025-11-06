@@ -7,9 +7,21 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   test: {
-    environment: 'node',
     include: ['src/test/**/*.visual.test.ts'],
     exclude: ['**/node_modules/**', '**/dist/**'],
+    browser: {
+      enabled: true,
+      provider: 'playwright',
+      name: 'chromium',
+      headless: true,
+      viewport: {
+        width: 1280,
+        height: 720,
+      },
+      screenshotOptions: {
+        fullPage: true,
+      },
+    },
   },
   resolve: {
     alias: {

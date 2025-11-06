@@ -522,24 +522,53 @@ Visual regression tests capture screenshots of rendered pages and compare them a
 
 ### Technology Stack
 
+- **Vitest 4 Browser Mode** - Native browser testing with built-in screenshot comparison
+- **@vitest/browser-playwright** - Playwright provider for browser automation
 - **Playwright** - Headless Chromium for screenshot capture
-- **pixelmatch** - Pixel-level image comparison
-- **pngjs** - PNG image processing
-- **Vitest** - Test runner and assertions
 
 ### Running Tests
 
+**Prerequisites**: Visual tests require a production build first.
+
 ```bash
-# Run visual regression tests
+# Build and run visual tests
+npm run build
 npm run test:visual
 
 # Update baseline snapshots (when UI changes are intentional)
 npm run test:visual:update
 ```
 
+### Vitest 4 Browser Mode Features
+
+- **Built-in Screenshot Comparison**: Native `toMatchScreenshot` assertion without external libraries
+- **Playwright Traces**: Enable with `trace: 'on-first-retry'` for debugging failed tests
+- **Page Context**: Direct access to browser page via `import { page } from 'vitest/browser'`
+
 ### Test Structure
 
 Visual regression tests are located in `src/test/` with the naming pattern `*.visual.test.ts`.
+
+Example test:
+
+```typescript
+import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { page } from 'vitest/browser';
+
+describe('Component Visual Regression', () => {
+  it('matches snapshot', async () => {
+    const htmlPath = join(process.cwd(), 'dist', 'component.html');
+    const html = readFileSync(htmlPath, 'utf-8');
+
+    await page.setContent(html, { waitUntil: 'load' });
+    await expect(page).toMatchScreenshot('component-snapshot.png');
+  });
+});
+```
+
+Current test files:
 
 - `HomePage.visual.test.ts` - Homepage visual tests for all locales
 
@@ -547,24 +576,35 @@ Visual regression tests are located in `src/test/` with the naming pattern `*.vi
 
 ```
 src/test/
-├── __visual_snapshots__/     # Baseline screenshots (committed to git)
-├── __visual_diffs__/          # Diff images (ignored by git)
-├── visual-helpers.ts          # Visual regression utilities
-└── *.visual.test.ts           # Visual regression test files
+├── __screenshots__/          # Baseline screenshots (committed to git)
+└── *.visual.test.ts          # Visual regression test files
 ```
 
 ### Configuration
 
-- **Viewport**: 1280x720 (configurable in `visual-helpers.ts`)
-- **Threshold**: 0.1 (10% pixel difference tolerance)
-- **Browser**: Headless Chromium via Playwright
-- **JavaScript**: Disabled for faster rendering
+Configuration is in `vitest.visual.config.ts`:
+
+```typescript
+browser: {
+  enabled: true,
+  provider: 'playwright',
+  name: 'chromium',
+  headless: true,
+  viewport: {
+    width: 1280,
+    height: 720,
+  },
+  screenshotOptions: {
+    fullPage: true,
+  },
+}
+```
 
 ### Best Practices
 
 - **Use `it('matches...')` form** for test names (not `it('should match...')`)
-- **Commit baseline snapshots** to git
-- **Review diffs carefully** when tests fail (check `__visual_diffs__/`)
+- **Commit baseline snapshots** to git (stored in `__screenshots__/`)
+- **Review diffs carefully** when tests fail (Vitest shows visual diffs)
 - **Test multiple states** - Different locales, themes, responsive breakpoints
 - **Update intentionally** - Only run `test:visual:update` after reviewing changes
 - **Build first** - Visual tests require `npm run build` to generate HTML files
@@ -576,6 +616,38 @@ src/test/
 3. Run `npm run test:visual` to check for regressions
 4. If changes are intentional, run `npm run test:visual:update`
 5. Review and commit new baseline snapshots
+
+### Troubleshooting
+
+**Visual differences**: Review diff images in test output, update snapshots if intentional
+
+**Font rendering differences**: Update snapshots on primary development machine when fonts/browser version change
+
+**Missing dist directory**: Always run `npm run build` before visual tests
+
+### CI/CD Integration
+
+```yaml
+# GitHub Actions example
+- name: Build site
+  run: npm run build
+
+- name: Install Playwright browsers
+  run: npx playwright install --with-deps chromium
+
+- name: Run visual tests
+  run: npm run test:visual
+```
+
+### Adding New Visual Tests
+
+1. Create `ComponentName.visual.test.ts` in `src/test/`
+2. Import from `vitest` and `vitest/browser`
+3. Read built HTML from `dist/` directory
+4. Use `page.setContent()` to load HTML
+5. Use `toMatchScreenshot()` to capture and compare
+6. Run `npm run build && npm run test:visual:update` to create baseline
+7. Commit baseline snapshot to git
 
 ---
 

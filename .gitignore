@@ -23,6 +23,3 @@ dist
 # Test/coverage artifacts
 coverage/
 .nyc_output
-
-# Visual regression test artifacts
-src/test/__visual_diffs__/

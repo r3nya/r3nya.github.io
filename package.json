@@ -13,21 +13,18 @@
     "test:e2e": "node --test e2e-tests/*.js",
     "test:unit": "vitest",
     "test:visual": "vitest run --config vitest.visual.config.ts",
-    "test:visual:update": "UPDATE_SNAPSHOTS=true vitest run --config vitest.visual.config.ts"
+    "test:visual:update": "vitest run --config vitest.visual.config.ts -u"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
-    "@types/pixelmatch": "^5.2.6",
-    "@types/pngjs": "^6.0.5",
     "@vitest/browser": "^4.0.7",
+    "@vitest/browser-playwright": "^4.0.7",
     "astro": "^5.15.3",
     "astro-compress": "^2.3.8",
     "autoprefixer": "10.4.21",
     "happy-dom": "^20.0.10",
-    "pixelmatch": "^7.1.0",
     "playwright": "^1.56.1",
-    "pngjs": "^7.0.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.1.0",
