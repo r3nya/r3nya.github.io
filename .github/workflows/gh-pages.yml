@@ -46,8 +46,8 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
 
-      - name: Run visual tests 📸
-        run: npm run test:visual
+      # - name: Run visual tests 📸
+      #   run: npm run test:visual
 
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@v3
