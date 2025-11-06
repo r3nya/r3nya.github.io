@@ -25,7 +25,7 @@
     "puppeteer": "^24.29.0",
     "rimraf": "^6.1.0",
     "tailwindcss": "^4.1.16",
-    "vitest": "^4.0.6"
+    "vitest": "^4.0.7"
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."
