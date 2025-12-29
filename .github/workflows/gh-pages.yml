@@ -28,8 +28,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Calculate snow fall enabled (Dec 15 - Jan 15)
+        id: snow-fall
+        run: |
+          MONTH=$(date -u +%m)
+          DAY=$(date -u +%d)
+          # Enable snow fall between Dec 15 and Jan 15 (inclusive)
+          if [[ "$MONTH" == "12" && "$DAY" -ge 15 ]] || [[ "$MONTH" == "01" && "$DAY" -le 15 ]]; then
+            echo "enabled=true" >> $GITHUB_OUTPUT
+          else
+            echo "enabled=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Build site
         run: npm run build
+        env:
+          PUBLIC_SNOW_FALL_ENABLED: ${{ steps.snow-fall.outputs.enabled }}
 
       - name: Get Playwright version
         id: playwright-version

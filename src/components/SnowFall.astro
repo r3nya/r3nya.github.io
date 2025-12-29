@@ -1,0 +1,29 @@
+---
+/**
+ * SnowFall component - adds a snow effect to the page
+ *
+ * Uses @zachleat/snow-fall web component
+ * Enabled via PUBLIC_SNOW_FALL_ENABLED environment variable
+ */
+
+const enableSnowFall =
+  (import.meta.env.PUBLIC_SNOW_FALL_ENABLED ?? 'false') === 'true';
+---
+
+{
+  enableSnowFall && (
+    <>
+      <snow-fall class="snow-fall" count="100" />
+      <script>import '@zachleat/snow-fall';</script>
+    </>
+  )
+}
+
+<style>
+  .snow-fall {
+    --snow-fall-color: light-dark(
+      rgba(135, 206, 235, 0.9),
+      rgba(255, 255, 255, 0.9)
+    );
+  }
+</style>
