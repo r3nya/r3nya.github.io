@@ -39,6 +39,10 @@ jobs:
           else
             echo "enabled=false" >> $GITHUB_OUTPUT
           fi
+          echo "### Snow Fall Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Date (UTC):** $(date -u +%Y-%m-%d)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Snow Fall Enabled:** \`$(cat $GITHUB_OUTPUT | grep enabled | cut -d= -f2)\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Build site
         run: npm run build
