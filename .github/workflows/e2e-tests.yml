@@ -12,6 +12,9 @@ on:
 jobs:
   e2e-tests:
     runs-on: ubuntu-latest
+    env:
+      # Suppress punycode deprecation warning from dependencies (Node.js 21+)
+      NODE_OPTIONS: --disable-warning=DEP0040
 
     steps:
       - name: Checkout code

@@ -16,6 +16,9 @@ permissions:
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      # Suppress punycode deprecation warning from dependencies (Node.js 21+)
+      NODE_OPTIONS: --disable-warning=DEP0040
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
