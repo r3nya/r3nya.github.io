@@ -19,7 +19,7 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "astro": "^5.16.6",
-    "astro-compress": "^2.3.8",
+    "astro-compress": "^2.3.9",
     "autoprefixer": "10.4.23",
     "happy-dom": "^20.0.11",
     "playwright": "^1.57.0",
