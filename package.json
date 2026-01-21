@@ -23,7 +23,7 @@
     "autoprefixer": "10.4.23",
     "happy-dom": "^20.0.11",
     "playwright": "^1.57.0",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.1.2",
     "tailwindcss": "^4.1.16",
