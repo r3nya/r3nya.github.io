@@ -1,18 +1,38 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "weekly"
-    ignore:
-      - dependency_name: "*"
+      interval: 'weekly'
+    assignees:
+      - 'r3nya'
+
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
     groups:
+      tailwindcss-group:
+        patterns:
+          - 'tailwindcss'
+          - '@tailwindcss/vite'
+        update-types:
+          - 'minor'
+          - 'patch'
+        applies-to: 'version-updates'
       all-dev-dependencies:
-        patterns:
-          - "*"
+        dependency-type: 'development'
       major-updates:
-        patterns:
-          - "*"
+        update-types:
+          - 'major'
       testing-tools:
         patterns:
-          - "*"
+          - 'vitest'
+          - '@testing-library/*'
+          - 'jest'
+    ignore:
+      - dependency-name: 'browserslist'
+        update-types:
+          - version-update:semver-patch
+    assignees:
+      - 'r3nya'
