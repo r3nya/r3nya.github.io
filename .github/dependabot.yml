@@ -12,27 +12,35 @@ updates:
     schedule:
       interval: 'monthly'
     groups:
-      tailwindcss-group:
+      production:
+        dependency-type: 'production'
+      dev-tools:
+        patterns:
+          - 'typescript'
+          - 'prettier'
+          - 'astro'
+          - 'vite'
+          - '@astrojs/*'
+        update-types:
+          - 'minor'
+          - 'patch'
+      testing:
+        patterns:
+          - 'vitest'
+          - '@testing-library/*'
+          - 'playwright'
+        update-types:
+          - 'minor'
+          - 'patch'
+      tailwindcss:
         patterns:
           - 'tailwindcss'
           - '@tailwindcss/vite'
         update-types:
           - 'minor'
           - 'patch'
-        applies-to: 'version-updates'
-      all-dev-dependencies:
-        dependency-type: 'development'
       major-updates:
         update-types:
           - 'major'
-      testing-tools:
-        patterns:
-          - 'vitest'
-          - '@testing-library/*'
-          - 'jest'
-    ignore:
-      - dependency-name: 'browserslist'
-        update-types:
-          - version-update:semver-patch
     assignees:
       - 'r3nya'
