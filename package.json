@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.2.1",
     "@zachleat/snow-fall": "^1.0.3"
   }
 }
