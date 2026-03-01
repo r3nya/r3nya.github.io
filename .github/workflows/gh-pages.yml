@@ -26,10 +26,14 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.tool-versions'
-          cache: npm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.30.3
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Calculate snow fall enabled (Dec 15 - Jan 15)
         id: snow-fall
@@ -48,11 +52,11 @@ jobs:
           echo "- **Snow Fall Enabled:** \`$(cat $GITHUB_OUTPUT | grep enabled | cut -d= -f2)\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Build site for visual tests (without snow)
-        run: npm run build
+        run: pnpm run build
 
       - name: Get Playwright version
         id: playwright-version
-        run: echo "version=$(npm list playwright --depth=0 --json | jq -r '.dependencies["playwright"].version')" >> $GITHUB_OUTPUT
+        run: echo "version=$(pnpm list playwright --depth=0 --json | jq -r '.[0].devDependencies.playwright.version')" >> $GITHUB_OUTPUT
 
       - name: Cache Playwright browsers
         uses: actions/cache@v5
@@ -63,14 +67,14 @@ jobs:
 
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Run visual tests 📸
-        run: npm run test:visual
+        run: pnpm run test:visual
 
       - name: Rebuild site with snow fall if enabled
         if: steps.snow-fall.outputs.enabled == 'true'
-        run: npm run build
+        run: pnpm run build
         env:
           PUBLIC_SNOW_FALL_ENABLED: 'true'
 

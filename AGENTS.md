@@ -6,23 +6,28 @@ This file provides comprehensive guidance to AI agents when working with code in
 
 This is a personal homepage built with Astro 5 and Tailwind CSS v4, deployed to GitHub Pages. The site supports internationalization (i18n) with English, Russian, and Spanish locales and features a dark/light theme system.
 
+## Prerequisites
+
+- **Node.js 22** (use [asdf](https://asdf-vm.com/) with `.tool-versions`)
+- **pnpm 10+** (use [asdf](https://asdf-vm.com/) with `.tool-versions`)
+
 ## Quick Start
 
 ```bash
 # Development
-npm run dev            # Start development server on port 4321
-npm run build          # Build for production
-npm run preview        # Preview production build locally
-npm run clean          # Remove dist directory
+pnpm run dev            # Start development server on port 4321
+pnpm run build          # Build for production
+pnpm run preview        # Preview production build locally
+pnpm run clean          # Remove dist directory
 
 # Code Quality
-npm run format         # Format code with Prettier
-npm run format:check   # Check formatting without making changes
+pnpm run format         # Format code with Prettier
+pnpm run format:check   # Check formatting without making changes
 
 # Testing
-npm run test:unit      # Run unit tests with snapshots
-npm run test:visual    # Run visual regression tests (requires build)
-npm run test:e2e       # Run E2E tests on production site
+pnpm run test:unit      # Run unit tests with snapshots
+pnpm run test:visual    # Run visual regression tests (requires build)
+pnpm run test:e2e       # Run E2E tests on production site
 ```
 
 ## Key Technologies
@@ -63,7 +68,7 @@ NEVER proactively create documentation files (\*.md) or README files. Only creat
 
 ## Code Formatting
 
-- **Always run `npm run format`** after completing any task that modifies code files
+- **Always run `pnpm run format`** after completing any task that modifies code files
 - This ensures consistent code formatting with Prettier across the project
 
 ---
@@ -115,7 +120,7 @@ NEVER proactively create documentation files (\*.md) or README files. Only creat
 
 ### Build Process
 
-- Build with `npm run build` (Astro static site generation)
+- Build with `pnpm run build` (Astro static site generation)
 - PRs should include lint/format checks and successful builds
 - Deploy to GitHub Pages using `actions/deploy-pages@v4`
 - Custom directories: `static/` for public assets, `dist/` for output
@@ -349,13 +354,13 @@ Unit tests are located in `src/test/` and use Vitest with the experimental Astro
 
 ```bash
 # Run unit tests
-npm run test:unit
+pnpm run test:unit
 
 # Run tests in watch mode (for development)
-npx vitest
+pnpm test
 
 # Generate/update snapshots
-npx vitest -u
+pnpm test -u
 ```
 
 ### Test Structure
@@ -483,7 +488,7 @@ These E2E tests are designed to run against the **live production site** at `htt
 
 ```bash
 # Run E2E tests locally (tests production site)
-npm run test:e2e
+pnpm run test:e2e
 
 # Manual execution
 node --test e2e-tests/*test.js
@@ -500,7 +505,7 @@ E2E tests run automatically via GitHub Actions:
 ### Important Notes
 
 ⚠️ **Production Testing**: These tests interact with the live website at https://r3nya.ru
-⚠️ **No Local Server**: Do not start `npm run dev` or `npm run preview` for these tests
+⚠️ **No Local Server**: Do not start `pnpm run dev` or `pnpm run preview` for these tests
 ⚠️ **Network Dependency**: Tests require internet connectivity to reach the production site
 
 ### Test Philosophy
@@ -532,11 +537,11 @@ Visual regression tests capture screenshots of rendered pages and compare them a
 
 ```bash
 # Build and run visual tests
-npm run build
-npm run test:visual
+pnpm run build
+pnpm run test:visual
 
 # Update baseline snapshots (when UI changes are intentional)
-npm run test:visual:update
+pnpm run test:visual:update
 ```
 
 ### Test Structure
@@ -624,14 +629,14 @@ await page.screenshot({ fullPage: true });
 - **Review diffs carefully** when tests fail (Vitest shows visual diffs)
 - **Test multiple states** - Different locales, themes, responsive breakpoints
 - **Update intentionally** - Only run `test:visual:update` after reviewing changes
-- **Build first** - Visual tests require `npm run build` to generate HTML files
+- **Build first** - Visual tests require `pnpm run build` to generate HTML files
 
 ### Workflow
 
 1. Make UI changes
-2. Run `npm run build` to generate updated HTML
-3. Run `npm run test:visual` to check for regressions
-4. If changes are intentional, run `npm run test:visual:update`
+2. Run `pnpm run build` to generate updated HTML
+3. Run `pnpm run test:visual` to check for regressions
+4. If changes are intentional, run `pnpm run test:visual:update`
 5. Review and commit new baseline snapshots
 
 ### Troubleshooting
@@ -640,20 +645,20 @@ await page.screenshot({ fullPage: true });
 
 **Font rendering differences**: Update snapshots on primary development machine when fonts/browser version change
 
-**Missing dist directory**: Always run `npm run build` before visual tests
+**Missing dist directory**: Always run `pnpm run build` before visual tests
 
 ### CI/CD Integration
 
 ```yaml
 # GitHub Actions example
 - name: Build site
-  run: npm run build
+  run: pnpm run build
 
 - name: Install Playwright browsers
-  run: npx playwright install --with-deps chromium
+  run: pnpm exec playwright install --with-deps chromium
 
 - name: Run visual tests
-  run: npm run test:visual
+  run: pnpm run test:visual
 ```
 
 ### Adding New Visual Tests
@@ -664,7 +669,7 @@ await page.screenshot({ fullPage: true });
 4. Read built HTML from `dist/` directory
 5. Use `page.setContent()` to load HTML
 6. Use `toMatchFileSnapshot()` with screenshot buffer
-7. Run `npm run build && npm run test:visual:update` to create baseline
+7. Run `pnpm run build && pnpm run test:visual:update` to create baseline
 8. Commit baseline snapshot to git
 
 Example:
