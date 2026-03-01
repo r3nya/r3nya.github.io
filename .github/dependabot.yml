@@ -7,7 +7,7 @@ updates:
     assignees:
       - 'r3nya'
 
-  - package-ecosystem: 'npm'
+  - package-ecosystem: 'pnpm'
     directory: '/'
     schedule:
       interval: 'monthly'
