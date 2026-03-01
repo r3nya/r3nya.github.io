@@ -55,15 +55,15 @@ See [AGENTS.md](AGENTS.md) for comprehensive development guidance, including:
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm run dev
 
 # Run tests
-npm run test:unit
-npm run test:e2e
+pnpm run test:unit
+pnpm run test:e2e
 
 # Build for production
-npm run build
+pnpm run build
 ```

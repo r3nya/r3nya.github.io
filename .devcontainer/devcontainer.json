@@ -24,13 +24,13 @@
       }
     }
   },
-  "postCreateCommand": "npm ci",
-  "postStartCommand": "npm run dev -- --host",
+  "postCreateCommand": "pnpm install",
+  "postStartCommand": "pnpm run dev -- --host",
   "forwardPorts": [4321, 3000, 5173],
   "portsAttributes": {
     "4321": { "label": "Astro" },
     "5173": { "label": "Vite" }
   },
   "remoteUser": "node",
-  "updateContentCommand": "npm install"
+  "updateContentCommand": "pnpm install"
 }
