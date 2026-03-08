@@ -1,0 +1,18 @@
+# Lock files (should NEVER be formatted)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Build output
+dist/
+
+# Dependencies
+node_modules/
+
+# Cache directories
+.astro/
+.cache/
+
+# Logs
+*.log
+*.log.*
