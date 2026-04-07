@@ -4,43 +4,32 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Europe/Madrid'
+    open-pull-requests-limit: 3
     assignees:
       - 'r3nya'
 
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'monthly'
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'Europe/Madrid'
+    open-pull-requests-limit: 3
+    insecure-external-code-execution: false
     groups:
       production:
         dependency-type: 'production'
-      dev-tools:
-        patterns:
-          - 'typescript'
-          - 'prettier'
-          - 'astro'
-          - 'vite'
-          - '@astrojs/*'
         update-types:
           - 'minor'
           - 'patch'
-      testing:
-        patterns:
-          - 'vitest'
-          - '@testing-library/*'
-          - 'playwright'
+      development:
+        dependency-type: 'development'
         update-types:
           - 'minor'
           - 'patch'
-      tailwindcss:
-        patterns:
-          - 'tailwindcss'
-          - '@tailwindcss/vite'
-        update-types:
-          - 'minor'
-          - 'patch'
-      major-updates:
-        update-types:
-          - 'major'
     assignees:
       - 'r3nya'
