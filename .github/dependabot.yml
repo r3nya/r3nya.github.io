@@ -19,7 +19,6 @@ updates:
       time: '09:00'
       timezone: 'Europe/Madrid'
     open-pull-requests-limit: 3
-    insecure-external-code-execution: false
     groups:
       production:
         dependency-type: 'production'
