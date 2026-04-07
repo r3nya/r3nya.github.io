@@ -34,8 +34,8 @@
     "pnpm": ">=9.0.0"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.0",
-    "@tailwindcss/vite": "^4.2.1",
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "^4.2.2",
     "@zachleat/snow-fall": "^1.0.3"
   }
 }
