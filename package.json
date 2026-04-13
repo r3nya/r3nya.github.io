@@ -20,15 +20,15 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "astro": "^5.18.1",
-    "astro-compress": "^2.3.9",
-    "autoprefixer": "10.4.24",
-    "happy-dom": "^20.5.0",
-    "playwright": "^1.58.1",
-    "prettier": "^3.8.1",
+    "astro-compress": "^2.4.1",
+    "autoprefixer": "10.4.27",
+    "happy-dom": "^20.8.9",
+    "playwright": "^1.59.1",
+    "prettier": "^3.8.2",
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.1.2",
-    "tailwindcss": "^4.1.16",
-    "vitest": "^4.0.18"
+    "tailwindcss": "^4.2.2",
+    "vitest": "^4.1.4"
   },
   "engines": {
     "pnpm": ">=9.0.0"
