@@ -15,10 +15,9 @@ jobs:
           fetch-depth: 1
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v5
         with:
           version: 10.30.3
-          standalone: true
 
       - uses: actions/setup-node@v6
         with:
