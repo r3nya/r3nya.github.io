@@ -19,7 +19,7 @@
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
-    "astro": "^5.18.1",
+    "astro": "^6.1.7",
     "astro-compress": "^2.4.1",
     "autoprefixer": "10.4.27",
     "happy-dom": "^20.8.9",
