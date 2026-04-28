@@ -8,10 +8,13 @@
   @apply text-5xl font-bold mb-4 md:text-6xl mt-2;
 }
 
-.profile-header__divider {
-  @apply mb-4 h-1 rounded-full bg-gradient-to-r from-gradient-from-light via-gradient-via-light to-gradient-to-light dark:from-gradient-from-dark dark:via-gradient-via-dark dark:to-gradient-to-dark;
+.profile-header__headline {
+  @apply text-2xl font-bold md:text-3xl xl:text-4xl;
+  color: var(--color-soft-light);
 }
 
-.profile-header__headline {
-  @apply text-2xl font-bold text-palette-3-light md:text-3xl xl:text-4xl dark:text-palette-3-dark;
+@media (prefers-color-scheme: dark) {
+  .profile-header__headline {
+    color: var(--color-soft-dark);
+  }
 }

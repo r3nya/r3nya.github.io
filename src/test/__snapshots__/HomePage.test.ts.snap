@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`HomePage > English locale > renders profile header section snapshot 1`] = `"<header class="profile-header"> <h1 class="profile-header__title">Andrey Makarov</h1> <div class="profile-header__divider"></div> <h2 class="profile-header__headline">Software Developer 👨‍💻</h2> </header>"`;
+exports[`HomePage > English locale > renders portfolio hero section snapshot 1`] = `"<header class="portfolio-hero"> <h1 class="portfolio-hero__name"> Andrei <br> Makarov </h1> <p class="portfolio-hero__role">Software developer</p> </header>"`;
 
-exports[`HomePage > Russian locale > renders profile header section snapshot 1`] = `"<header class="profile-header"> <h1 class="profile-header__title">Андрей Макаров</h1> <div class="profile-header__divider"></div> <h2 class="profile-header__headline">Разработчик ПО 👨‍💻</h2> </header>"`;
+exports[`HomePage > Russian locale > renders portfolio hero section snapshot 1`] = `"<header class="portfolio-hero"> <h1 class="portfolio-hero__name"> Андрей <br> Макаров </h1> <p class="portfolio-hero__role">Разработчик ПО</p> </header>"`;
 
-exports[`HomePage > Spanish locale > renders profile header section snapshot 1`] = `"<header class="profile-header"> <h1 class="profile-header__title">Andrey Makárov</h1> <div class="profile-header__divider"></div> <h2 class="profile-header__headline">Desarrollador 👨‍💻</h2> </header>"`;
+exports[`HomePage > Spanish locale > renders portfolio hero section snapshot 1`] = `"<header class="portfolio-hero"> <h1 class="portfolio-hero__name"> Andrei <br> Makárov </h1> <p class="portfolio-hero__role">Desarrollador de software</p> </header>"`;

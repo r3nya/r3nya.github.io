@@ -1,0 +1,52 @@
+@import '../styles/global.css' reference;
+
+.portfolio-links {
+  @apply m-0 list-none p-0;
+}
+
+.portfolio-links__item + .portfolio-links__item {
+  border-top: 1px solid var(--home-line);
+}
+
+.portfolio-links__link {
+  @apply relative flex items-center justify-between transition-all duration-200;
+  padding: clamp(10px, 1.2vw, 14px) 0;
+}
+
+.portfolio-links__link:hover {
+  padding-left: 6px;
+}
+
+.portfolio-links__mark {
+  @apply inline-block transition-transform duration-200;
+  font-size: 0.95em;
+  letter-spacing: -0.05em;
+  color: var(--home-accent);
+}
+
+.portfolio-links__link:hover .portfolio-links__mark {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 520px) {
+  .portfolio-links__item:first-child .portfolio-links__link {
+    border-top: 1px solid var(--home-line);
+  }
+
+  .portfolio-links__item .portfolio-links__link {
+    border-bottom: 1px solid var(--home-line);
+    padding: 16px 0;
+    font-size: 15px;
+  }
+
+  .portfolio-links__link:hover {
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 1800px) {
+  .portfolio-links__link {
+    padding: 18px 0;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,36 @@
+---
+import './ContactSection.css';
+import SectionLabel from './SectionLabel.astro';
+import type { Messages } from '@/i18n/messages';
+
+interface Props {
+  contact: Messages['contact'];
+  showCv: boolean;
+}
+
+const { contact, showCv }: Props = Astro.props;
+---
+
+<section aria-labelledby="contact-title">
+  <SectionLabel text={contact.title} />
+  <h2 id="contact-title" class="sr-only">{contact.title}</h2>
+  <div class="contact-list">
+    <a class="contact-list__link" href={`mailto:${contact.email}`}>
+      <span>{contact.email}</span>
+      <span class="contact-list__mark" aria-hidden="true">[↗]</span>
+    </a>
+    {
+      showCv && (
+        <a
+          class="contact-list__link contact-list__link--muted"
+          href={contact.cvUrl}
+        >
+          <span>{contact.cvLabel}</span>
+          <span class="contact-list__mark" aria-hidden="true">
+            [↓]
+          </span>
+        </a>
+      )
+    }
+  </div>
+</section>

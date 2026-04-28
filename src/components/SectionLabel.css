@@ -1,0 +1,15 @@
+@import '../styles/global.css' reference;
+
+.home-page__section-label {
+  margin-bottom: 12px;
+  color: var(--home-soft);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1800px) {
+  .home-page__section-label {
+    font-size: 13px;
+  }
+}

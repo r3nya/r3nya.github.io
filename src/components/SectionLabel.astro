@@ -1,0 +1,11 @@
+---
+import './SectionLabel.css';
+
+interface Props {
+  text: string;
+}
+
+const { text }: Props = Astro.props;
+---
+
+<div class="home-page__section-label">{text}</div>

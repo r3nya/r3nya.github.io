@@ -31,13 +31,14 @@ describe('HomePage', () => {
         },
       });
 
-      const header = result.querySelector('.profile-header');
+      const header = result.querySelector('.portfolio-hero');
       expect(header).toBeTruthy();
 
-      const title = header?.querySelector('.profile-header__title');
-      expect(title?.textContent?.trim()).toBe(messages.en.name);
+      const title = header?.querySelector('.portfolio-hero__name');
+      expect(title?.textContent).toContain('Andrei');
+      expect(title?.textContent).toContain('Makarov');
 
-      const headline = header?.querySelector('.profile-header__headline');
+      const headline = header?.querySelector('.portfolio-hero__role');
       expect(headline?.textContent?.trim()).toBe(messages.en.headline);
     });
 
@@ -74,29 +75,27 @@ describe('HomePage', () => {
         },
       });
 
-      const socialLinks = result.querySelectorAll('.social-links__link');
+      const socialLinks = result.querySelectorAll('.portfolio-links__link');
       expect(socialLinks).toHaveLength(4);
 
       messages.en.links.forEach((link, index) => {
         const linkElement = socialLinks[index];
         expect(linkElement?.getAttribute('href')).toBe(link.url);
         expect(linkElement?.getAttribute('aria-label')).toBe(link.title);
-        expect(
-          linkElement
-            ?.querySelector('.social-links__title')
-            ?.textContent?.trim(),
-        ).toBe(link.title);
+        expect(linkElement?.querySelector('span')?.textContent?.trim()).toBe(
+          link.title,
+        );
       });
     });
 
-    it('renders profile header section snapshot', async () => {
+    it('renders portfolio hero section snapshot', async () => {
       const result = await renderAstroComponent(HomePage, {
         props: {
           locale: 'en',
         },
       });
 
-      const header = result.querySelector('.profile-header');
+      const header = result.querySelector('.portfolio-hero');
       expect(header?.outerHTML).toMatchSnapshot();
     });
   });
@@ -127,13 +126,14 @@ describe('HomePage', () => {
         },
       });
 
-      const header = result.querySelector('.profile-header');
+      const header = result.querySelector('.portfolio-hero');
       expect(header).toBeTruthy();
 
-      const title = header?.querySelector('.profile-header__title');
-      expect(title?.textContent?.trim()).toBe(messages.ru.name);
+      const title = header?.querySelector('.portfolio-hero__name');
+      expect(title?.textContent).toContain('Андрей');
+      expect(title?.textContent).toContain('Макаров');
 
-      const headline = header?.querySelector('.profile-header__headline');
+      const headline = header?.querySelector('.portfolio-hero__role');
       expect(headline?.textContent?.trim()).toBe(messages.ru.headline);
     });
 
@@ -163,14 +163,14 @@ describe('HomePage', () => {
       expect(currentLang?.textContent?.trim()).toBe('ru');
     });
 
-    it('renders profile header section snapshot', async () => {
+    it('renders portfolio hero section snapshot', async () => {
       const result = await renderAstroComponent(HomePage, {
         props: {
           locale: 'ru',
         },
       });
 
-      const header = result.querySelector('.profile-header');
+      const header = result.querySelector('.portfolio-hero');
       expect(header?.outerHTML).toMatchSnapshot();
     });
   });
@@ -201,13 +201,14 @@ describe('HomePage', () => {
         },
       });
 
-      const header = result.querySelector('.profile-header');
+      const header = result.querySelector('.portfolio-hero');
       expect(header).toBeTruthy();
 
-      const title = header?.querySelector('.profile-header__title');
-      expect(title?.textContent?.trim()).toBe(messages.es.name);
+      const title = header?.querySelector('.portfolio-hero__name');
+      expect(title?.textContent).toContain('Andrei');
+      expect(title?.textContent).toContain('Makárov');
 
-      const headline = header?.querySelector('.profile-header__headline');
+      const headline = header?.querySelector('.portfolio-hero__role');
       expect(headline?.textContent?.trim()).toBe(messages.es.headline);
     });
 
@@ -237,14 +238,34 @@ describe('HomePage', () => {
       expect(currentLang?.textContent?.trim()).toBe('es');
     });
 
-    it('renders profile header section snapshot', async () => {
+    it('renders social links correctly', async () => {
       const result = await renderAstroComponent(HomePage, {
         props: {
           locale: 'es',
         },
       });
 
-      const header = result.querySelector('.profile-header');
+      const socialLinks = result.querySelectorAll('.portfolio-links__link');
+      expect(socialLinks).toHaveLength(4);
+
+      messages.es.links.forEach((link, index) => {
+        const linkElement = socialLinks[index];
+        expect(linkElement?.getAttribute('href')).toBe(link.url);
+        expect(linkElement?.getAttribute('aria-label')).toBe(link.title);
+        expect(linkElement?.querySelector('span')?.textContent?.trim()).toBe(
+          link.title,
+        );
+      });
+    });
+
+    it('renders portfolio hero section snapshot', async () => {
+      const result = await renderAstroComponent(HomePage, {
+        props: {
+          locale: 'es',
+        },
+      });
+
+      const header = result.querySelector('.portfolio-hero');
       expect(header?.outerHTML).toMatchSnapshot();
     });
   });

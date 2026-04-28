@@ -1,0 +1,37 @@
+---
+import './PortfolioLinks.css';
+import SectionLabel from './SectionLabel.astro';
+import type { Messages } from '@/i18n/messages';
+
+interface Props {
+  title: string;
+  links: Messages['links'];
+}
+
+const { title, links }: Props = Astro.props;
+---
+
+<section aria-labelledby="portfolio-links-title">
+  <SectionLabel text={title} />
+  <h2 id="portfolio-links-title" class="sr-only">{title}</h2>
+  <ul class="portfolio-links" role="list">
+    {
+      links.map((link) => (
+        <li class="portfolio-links__item">
+          <a
+            href={link.url}
+            class="portfolio-links__link"
+            aria-label={link.title}
+            rel="me noopener noreferrer"
+            target="_blank"
+          >
+            <span>{link.title}</span>
+            <span class="portfolio-links__mark" aria-hidden="true">
+              [↗]
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

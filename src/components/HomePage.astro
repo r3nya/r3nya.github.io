@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import ProfileHeader from './ProfileHeader.astro';
-import SocialLinks from './SocialLinks.astro';
-import LangSwitcher from './LangSwitcher.astro';
-import SnowFall from './SnowFall.astro';
+import './HomePage.css';
+import PortfolioTopBar from './PortfolioTopBar.astro';
+import PortfolioHero from './PortfolioHero.astro';
+import PortfolioLinks from './PortfolioLinks.astro';
+import ContactSection from './ContactSection.astro';
 import type { Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
+import { homePageFeatures } from '@/config/features';
 
 interface Props {
   locale: Locale;
@@ -13,12 +15,81 @@ interface Props {
 
 const { locale }: Props = Astro.props;
 const t = messages[locale];
+const features = homePageFeatures;
 ---
 
 <BaseLayout title={t.title} lang={locale}>
-  <SnowFall />
-  <ProfileHeader name={t.name} headline={t.headline} />
-  <SocialLinks links={t.links} />
+  <div class="home-page">
+    <PortfolioTopBar
+      current={locale}
+      themeLabel={t.theme}
+      showThemeToggle={features.themeToggle}
+    />
 
-  <LangSwitcher current={locale} />
+    <section class="home-page__hero" aria-label={t.name}>
+      <PortfolioHero
+        name={t.name}
+        headline={t.headline}
+        bio={features.bio ? t.bio : undefined}
+      />
+
+      <aside class="home-page__right">
+        {
+          features.links && (
+            <PortfolioLinks title={t.sections.links} links={t.links} />
+          )
+        }
+        {
+          features.contact && (
+            <ContactSection contact={t.contact} showCv={features.cv} />
+          )
+        }
+      </aside>
+    </section>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const root = document.documentElement;
+      const button = document.getElementById('theme-toggle');
+      const label = document.getElementById('theme-label');
+
+      if (!(button instanceof HTMLButtonElement) || !label) {
+        return;
+      }
+
+      const labels = {
+        auto: button.dataset.labelAuto ?? 'auto',
+        light: button.dataset.labelLight ?? 'light',
+        dark: button.dataset.labelDark ?? 'dark',
+      };
+
+      let currentTheme = null;
+
+      const setTheme = () => {
+        if (currentTheme === 'light' || currentTheme === 'dark') {
+          root.dataset.theme = currentTheme;
+          label.textContent = labels[currentTheme];
+          return;
+        }
+
+        delete root.dataset.theme;
+        label.textContent = labels.auto;
+      };
+
+      setTheme();
+
+      button.addEventListener('click', () => {
+        const next =
+          currentTheme === null
+            ? 'light'
+            : currentTheme === 'light'
+              ? 'dark'
+              : null;
+
+        currentTheme = next;
+        setTheme();
+      });
+    })();
+  </script>
 </BaseLayout>

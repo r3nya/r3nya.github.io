@@ -1,0 +1,51 @@
+@import '../styles/global.css' reference;
+
+.contact-list {
+  @apply flex flex-col;
+  gap: clamp(6px, 0.6vw, 10px);
+}
+
+.contact-list__link {
+  @apply inline-flex items-center justify-between;
+  padding: clamp(4px, 0.5vw, 8px) 0;
+}
+
+.contact-list__link--muted {
+  color: var(--home-soft);
+}
+
+.contact-list__mark {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  color: var(--home-accent);
+}
+
+.contact-list__link:hover {
+  color: var(--home-ink);
+}
+
+.contact-list__link:hover .contact-list__mark {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 520px) {
+  .contact-list {
+    gap: 4px;
+  }
+
+  .contact-list__link {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .contact-list__link {
+    padding: clamp(6px, 0.6vw, 10px) 0;
+    font-size: 16px;
+  }
+}

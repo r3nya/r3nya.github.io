@@ -18,6 +18,7 @@ interface Props {
 
 const { title = siteMeta.title, lang = 'en' }: Props = Astro.props;
 const t = messages[lang] ?? messages[defaultLocale];
+const shouldLoadExternalFonts = import.meta.env.MODE !== 'test';
 ---
 
 <!doctype html>
@@ -31,6 +32,18 @@ const t = messages[lang] ?? messages[defaultLocale];
     <meta name="author" content={siteMeta.author} />
     <meta name="theme-color" content={siteMeta.themeColor} />
     <meta name="yandex-verification" content={siteMeta.yandexVerification} />
+    {
+      shouldLoadExternalFonts && (
+        <>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+          />
+        </>
+      )
+    }
 
     <!-- SEO components -->
     <OpenGraph {title} />

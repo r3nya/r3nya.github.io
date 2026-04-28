@@ -1,0 +1,26 @@
+---
+import './PortfolioHero.css';
+
+interface Props {
+  name: string;
+  headline: string;
+  bio?: string;
+}
+
+const { name, headline, bio }: Props = Astro.props;
+const [firstName, ...restName] = name.split(' ');
+const lastName = restName.join(' ');
+---
+
+<div class="home-page__left">
+  <header class="portfolio-hero">
+    <h1 class="portfolio-hero__name">
+      {firstName}
+      {lastName && <br />}
+      {lastName}
+    </h1>
+    <p class="portfolio-hero__role">{headline}</p>
+  </header>
+
+  {bio && <p class="portfolio-hero__bio">{bio}</p>}
+</div>

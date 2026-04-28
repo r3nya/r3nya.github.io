@@ -1,17 +1,24 @@
 @import '../styles/global.css' reference;
 
 .lang-switcher {
-  @apply fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50 text-base text-palette-3-light dark:text-palette-3-dark bg-palette-4-light/70 dark:bg-palette-4-dark/70 backdrop-blur px-6 py-3 rounded-full shadow transition-all duration-200;
+  @apply static transform-none text-inherit;
 }
 
 .lang-switcher__list {
-  @apply flex gap-6;
+  @apply flex gap-3.5;
 }
 
 .lang-switcher__current {
-  @apply font-semibold uppercase;
+  @apply border-b;
+  color: var(--home-ink);
+  border-color: var(--home-ink);
 }
 
 .lang-switcher__link {
-  @apply uppercase hover:underline hover:bg-palette-3-light/10 dark:hover:bg-white/15 transition-all duration-200;
+  @apply transition-colors duration-150;
+  color: var(--home-soft);
+}
+
+.lang-switcher__link:hover {
+  color: var(--home-ink);
 }

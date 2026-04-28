@@ -1,0 +1,34 @@
+---
+import './PortfolioTopBar.css';
+import LangSwitcher from './LangSwitcher.astro';
+import type { Locale } from '@/i18n/config';
+import type { Messages } from '@/i18n/messages';
+
+interface Props {
+  current: Locale;
+  themeLabel: Messages['theme'];
+  showThemeToggle: boolean;
+}
+
+const { current, themeLabel, showThemeToggle }: Props = Astro.props;
+---
+
+<header class="home-page__bar">
+  <LangSwitcher current={current} />
+  {
+    showThemeToggle && (
+      <button
+        class="home-page__theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label={themeLabel.toggle}
+        data-label-auto={themeLabel.auto}
+        data-label-light={themeLabel.light}
+        data-label-dark={themeLabel.dark}
+      >
+        <span class="home-page__theme-dot" aria-hidden="true" />
+        <span id="theme-label">{themeLabel.auto}</span>
+      </button>
+    )
+  }
+</header>

@@ -1,0 +1,109 @@
+@import '../styles/global.css' reference;
+
+:root {
+  --home-bg: #fafaf7;
+  --home-ink: #111111;
+  --home-soft: #6b6b6b;
+  --home-line: #e1e1dd;
+  --home-accent: oklch(62% 0.18 250);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --home-bg: #0f0f10;
+    --home-ink: #f2f2ef;
+    --home-soft: #7c7c7c;
+    --home-line: #242427;
+  }
+}
+
+:root[data-theme='dark'] {
+  --home-bg: #0f0f10;
+  --home-ink: #f2f2ef;
+  --home-soft: #7c7c7c;
+  --home-line: #242427;
+}
+
+.home-page {
+  @apply mx-auto flex min-h-dvh max-w-7xl flex-col;
+  gap: clamp(40px, 6vw, 72px);
+  padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 56px);
+  color: var(--home-ink);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.home-page__hero {
+  @apply grid flex-1 items-stretch;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.home-page__left {
+  @apply flex min-w-0 flex-col justify-between;
+  gap: 48px;
+}
+
+.home-page__right {
+  @apply flex min-w-0 flex-col;
+  border-left: 1px solid var(--home-line);
+  gap: clamp(24px, 3vw, 44px);
+  padding-left: clamp(20px, 2.5vw, 36px);
+  font-size: clamp(13px, 1vw, 16px);
+}
+
+@media (max-width: 900px) {
+  .home-page__hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .home-page__left {
+    gap: 40px;
+  }
+
+  .home-page__right {
+    border-top: 1px solid var(--home-line);
+    border-left: 0;
+    padding-top: 32px;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-page {
+    gap: 44px;
+    padding: 22px 22px calc(28px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .home-page__left {
+    gap: 44px;
+  }
+
+  .home-page__right {
+    gap: 36px;
+    border-top: 0;
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 1800px) {
+  .home-page {
+    max-width: 1600px;
+    padding: 64px 80px;
+  }
+
+  .home-page__right {
+    font-size: clamp(14px, 1.1vw, 18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page *,
+  .home-page *::before,
+  .home-page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

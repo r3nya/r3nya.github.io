@@ -1,0 +1,36 @@
+@import '../styles/global.css' reference;
+
+.home-page__bar {
+  @apply flex items-center justify-between;
+  color: var(--home-soft);
+  font-size: 13px;
+}
+
+.home-page__theme-toggle {
+  @apply inline-flex items-center gap-2 rounded px-2 py-1 transition-colors duration-150;
+  color: var(--home-soft);
+}
+
+.home-page__theme-toggle:hover {
+  color: var(--home-ink);
+}
+
+.home-page__theme-dot {
+  @apply inline-block rounded-full;
+  width: 9px;
+  height: 9px;
+  background: var(--home-ink);
+  transition: background 0.25s ease;
+}
+
+@media (max-width: 520px) {
+  .home-page__bar {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .home-page__bar {
+    font-size: 14px;
+  }
+}

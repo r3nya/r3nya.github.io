@@ -1,0 +1,62 @@
+@import '../styles/global.css' reference;
+
+.portfolio-hero__name {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(52px, 8.5vw, 136px);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.portfolio-hero__role {
+  margin-top: clamp(16px, 2vw, 24px);
+  color: var(--home-soft);
+  font-size: clamp(14px, 1.1vw, 18px);
+  letter-spacing: 0.3px;
+}
+
+.portfolio-hero__bio {
+  max-width: 44ch;
+  color: var(--home-soft);
+  font-size: clamp(14px, 1vw, 17px);
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .portfolio-hero__name {
+    font-size: clamp(56px, 14vw, 96px);
+  }
+}
+
+@media (max-width: 520px) {
+  .portfolio-hero__name {
+    font-size: 68px;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+  }
+
+  .portfolio-hero__role {
+    margin-top: 16px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+
+  .portfolio-hero__bio {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+}
+
+@media (min-width: 1800px) {
+  .portfolio-hero__name {
+    font-size: clamp(120px, 9vw, 180px);
+  }
+
+  .portfolio-hero__role {
+    font-size: clamp(16px, 1.2vw, 20px);
+  }
+
+  .portfolio-hero__bio {
+    font-size: 20px;
+  }
+}
