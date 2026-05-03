@@ -5,7 +5,7 @@ import { siteMeta } from '@/config/site';
 import type { Locale } from '@/i18n/config';
 import { defaultLocale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import OpenGraph from '@/components/OpenGraph.astro';
 import TwitterCard from '@/components/TwitterCard.astro';
 import JsonLD from '@/components/JsonLD.astro';
@@ -52,7 +52,7 @@ const t = messages[lang] ?? messages[defaultLocale];
     />
 
     <!-- No external stylesheet link; Tailwind v4 is bundled via global.css -->
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body class="base-layout__body">
     <a href="#main-content" class="base-layout__skip-link"
