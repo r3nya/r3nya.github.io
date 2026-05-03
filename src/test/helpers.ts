@@ -1,4 +1,5 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
+import { Window } from 'happy-dom';
 
 interface RenderOptions {
   props?: Record<string, unknown>;
@@ -14,6 +15,9 @@ function cleanAstroAttributes(html: string): string {
     .replace(/\s*data-astro-source-loc="[^"]*"/g, '');
 }
 
+// Shared happy-dom window for DOM queries (avoids creating a new window per test)
+const happyWindow = new Window();
+
 export async function renderAstroComponent(
   Component: unknown,
   options: RenderOptions = {},
@@ -21,9 +25,7 @@ export async function renderAstroComponent(
   const container = await AstroContainer.create();
   const result = await container.renderToString(Component, options);
 
-  const div = document.createElement('div');
+  const div = happyWindow.document.createElement('div');
   div.innerHTML = cleanAstroAttributes(result);
-  document.body.appendChild(div);
-
   return div;
 }

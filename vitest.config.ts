@@ -3,7 +3,7 @@ import { getViteConfig } from 'astro/config';
 
 export default getViteConfig({
   test: {
-    environment: 'happy-dom',
+    environment: 'node',
     setupFiles: ['./src/test/setup.ts'],
     exclude: [
       '**/node_modules/**',

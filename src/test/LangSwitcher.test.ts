@@ -1,4 +1,4 @@
-// @vitest-environment happy-dom
+// @vitest-environment node
 import { describe, it, expect } from 'vitest';
 import LangSwitcher from '../components/LangSwitcher.astro';
 import { renderAstroComponent } from './helpers';
