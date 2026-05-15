@@ -8,6 +8,10 @@ updates:
       time: '09:00'
       timezone: 'Europe/Madrid'
     open-pull-requests-limit: 3
+    cooldown:
+      default-days: 14
+      include:
+        - "*" 
     assignees:
       - 'r3nya'
 
@@ -19,6 +23,13 @@ updates:
       time: '09:00'
       timezone: 'Europe/Madrid'
     open-pull-requests-limit: 3
+    cooldown:
+      default-days: 14
+      semver-major-days: 30
+      semver-minor-days: 14
+      semver-patch-days: 7
+      include:
+        - "*" 
     groups:
       production:
         dependency-type: 'production'
