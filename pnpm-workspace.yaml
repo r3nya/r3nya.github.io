@@ -1,1 +1,7 @@
 minimumReleaseAge: 2880
+minimumReleaseAgeExclude:
+  - devalue
+
+overrides:
+  brace-expansion@>=4.0.0 <5.0.5: '>=5.0.5'
+  devalue@>=5.6.3 <=5.8.0: '>=5.8.1'
