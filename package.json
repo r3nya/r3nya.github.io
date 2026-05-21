@@ -19,7 +19,7 @@
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
-    "astro": "^6.2.1",
+    "astro": "^6.3.0",
     "astro-compress": "^2.4.1",
     "autoprefixer": "10.5.0",
     "happy-dom": "^20.9.0",
@@ -28,7 +28,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.1.2",
     "tailwindcss": "^4.2.4",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.6"
   },
   "engines": {
     "pnpm": ">=9.0.0"
