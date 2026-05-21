@@ -9,7 +9,7 @@ updates:
       timezone: 'Europe/Madrid'
     open-pull-requests-limit: 3
     commit-message:
-      prefix: "chore(ci)"
+      prefix: 'chore(ci)'
     cooldown:
       default-days: 14
       include:
@@ -26,8 +26,8 @@ updates:
       timezone: 'Europe/Madrid'
     open-pull-requests-limit: 3
     commit-message:
-      prefix: "chore(deps)"
-      prefix-development: "chore(deps-dev)"
+      prefix: 'chore(deps)'
+      prefix-development: 'chore(deps-dev)'
     cooldown:
       default-days: 14
       semver-major-days: 30
