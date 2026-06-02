@@ -28,6 +28,8 @@ jobs:
           node-version-file: '.tool-versions'
       - name: Enable Corepack
         run: corepack enable
+      - name: Activate pnpm
+        run: corepack prepare "$(node -p "require('./package.json').packageManager")" --activate
       - name: Verify pnpm version
         run: pnpm --version
 
