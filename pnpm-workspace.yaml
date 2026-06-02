@@ -1,1 +1,8 @@
 minimumReleaseAge: 2880
+
+dedupePeerDependents: true
+dedupePeers: true
+
+allowBuilds:
+  esbuild: true
+  sharp: true
