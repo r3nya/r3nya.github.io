@@ -14,15 +14,14 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@739bfe42ca9233c5e6aca07c1a25a9d34aca49b0
+      - uses: actions/setup-node@v6.4.0
         with:
-          version: 10.30.3
+          node-version-file: .nvmrc
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: '.tool-versions'
-
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Verify pnpm version
+        run: pnpm --version
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

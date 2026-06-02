@@ -8,8 +8,8 @@ This is a personal homepage built with Astro 5 and Tailwind CSS v4, deployed to 
 
 ## Prerequisites
 
-- **Node.js 22** (use [asdf](https://asdf-vm.com/) with `.tool-versions`)
-- **pnpm 10+** (use [asdf](https://asdf-vm.com/) with `.tool-versions`)
+- **Node.js 24** (pinned in `.nvmrc`)
+- **pnpm 11+** (resolved by Corepack from `package.json#packageManager`)
 
 ## Quick Start
 
