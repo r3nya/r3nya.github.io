@@ -20,16 +20,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@8912a9102ac27614460f54aedde9e1e7f9aec20d # v6
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version-file: '.tool-versions'
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Activate pnpm
-        run: corepack prepare "$(node -p "require('./package.json').packageManager")" --activate
-      - name: Verify pnpm version
-        run: pnpm --version
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
