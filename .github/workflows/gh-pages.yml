@@ -23,17 +23,12 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v6.4.0
         with:
-          node-version-file: '.tool-versions'
+          node-version-file: .nvmrc
 
       - name: Enable Corepack
-        run: |
-          npm install -g corepack@latest
-          corepack enable
-          PNPM_VERSION="$(node -p "require('./package.json').packageManager")"
-          corepack prepare "$PNPM_VERSION" --activate
-
+        run: corepack enable
       - name: Verify pnpm version
         run: pnpm --version
       - name: Install dependencies
