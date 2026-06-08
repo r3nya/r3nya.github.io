@@ -10,7 +10,7 @@ jobs:
       NODE_OPTIONS: --disable-warning=DEP0040
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 1
 
