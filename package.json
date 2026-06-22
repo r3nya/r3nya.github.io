@@ -17,6 +17,7 @@
     "test:visual:update": "vitest run --config vitest.visual.config.ts -u"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "astro": "^6.4.6",
@@ -35,7 +36,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "@tailwindcss/vite": "^4.3.0",
     "@zachleat/snow-fall": "^1.0.3"
   }
 }
