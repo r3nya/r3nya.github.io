@@ -21,7 +21,7 @@ jobs:
       NODE_OPTIONS: --disable-warning=DEP0040
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
 
       - uses: actions/setup-node@v6.4.0
         with:
