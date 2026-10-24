@@ -16,6 +16,7 @@ Personal homepage built with **Astro 7**, **Tailwind CSS v4**, and TypeScript, d
 
 - Use the Node version in `.nvmrc` (Node 24).
 - Use Corepack and the pnpm version pinned in `package.json#packageManager` (pnpm 11).
+- The devcontainer stays on Node 22. Its Node feature installs that same pnpm with npm (`pnpmVersion`) and installs Yarn with apt (`installYarnUsingApt`) so the container build does not run `corepack enable`.
 - Install dependencies with `pnpm install --frozen-lockfile`.
 - Treat `package.json`, `pnpm-lock.yaml`, and `.nvmrc` as the version sources of truth.
 

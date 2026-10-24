@@ -2,8 +2,10 @@
   "name": "Astro DevContainer",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "22"
+    "ghcr.io/devcontainers/features/node:2": {
+      "version": "22",
+      "pnpmVersion": "11.5.1",
+      "installYarnUsingApt": true
     }
   },
   "customizations": {
@@ -24,7 +26,7 @@
       }
     }
   },
-  "postCreateCommand": "pnpm install",
+  "postCreateCommand": "pnpm install --frozen-lockfile",
   "postStartCommand": "pnpm run dev -- --host",
   "forwardPorts": [4321, 3000, 5173],
   "portsAttributes": {
@@ -32,5 +34,5 @@
     "5173": { "label": "Vite" }
   },
   "remoteUser": "node",
-  "updateContentCommand": "pnpm install"
+  "updateContentCommand": "pnpm install --frozen-lockfile"
 }
