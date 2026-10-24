@@ -9,17 +9,11 @@ interface Props {
 const { links }: Props = Astro.props;
 ---
 
-<section
-  class="social-links"
-  role="navigation"
-  aria-label="Social links"
-  data-section="links"
->
+<nav class="social-links" aria-label="Social links" data-section="links">
   {links.map((link) => (
     <a
       href={link.url}
       class="social-links__link group"
-      aria-label={link.title}
       rel="me noopener noreferrer"
       target="_blank"
     >
@@ -29,4 +23,4 @@ const { links }: Props = Astro.props;
       </span>
     </a>
   ))}
-</section>
+</nav>

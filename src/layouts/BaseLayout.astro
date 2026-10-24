@@ -28,7 +28,16 @@ const t = messages[lang] ?? messages[defaultLocale];
     <meta name="color-scheme" content="light dark" />
     <meta name="description" content={t.description} />
     <meta name="author" content={siteMeta.author} />
-    <meta name="theme-color" content={siteMeta.themeColor} />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content={siteMeta.themeColor.light}
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content={siteMeta.themeColor.dark}
+    />
     <meta name="yandex-verification" content={siteMeta.yandexVerification} />
 
     <!-- SEO components -->

@@ -9,7 +9,7 @@ export type ProfileMeta = {
 
 export type SiteMeta = {
   author: string;
-  themeColor: string;
+  themeColor: { light: string; dark: string };
   yandexVerification: string;
   openGraphDescription: string;
   safariPinnedTabColor: string;

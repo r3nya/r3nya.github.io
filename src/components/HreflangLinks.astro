@@ -8,21 +8,17 @@ interface Props {
 const { lang: currentLang } = Astro.props;
 const { origin, pathname } = Astro.url;
 
-let basePath = pathname;
-if (currentLang !== defaultLocale) {
-  basePath = pathname.replace(new RegExp(`^/${currentLang}`), '');
-}
+let basePath = pathname.replace(new RegExp(`^/${currentLang}(?=/|$)`), '');
 if (basePath === '') {
   basePath = '/';
 }
 
-const finalBasePath = basePath === '/' ? '' : basePath;
-const defaultHref = `${origin}${finalBasePath}`;
+const defaultHref = `${origin}${basePath}`;
 ---
 
 {locales.map((lang) => {
   const langPath = lang === defaultLocale ? '' : `/${lang}`;
-  const href = `${origin}${langPath}${finalBasePath}`;
+  const href = `${origin}${langPath}${basePath}`;
   return <link rel="alternate" hreflang={lang} href={href} />;
 })}
 <link rel="alternate" hreflang="x-default" href={defaultHref} />

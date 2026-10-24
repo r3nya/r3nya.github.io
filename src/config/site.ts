@@ -2,7 +2,7 @@ import type { SiteMeta } from '@/typings.d';
 
 export const siteMeta: SiteMeta = {
   author: 'Andrew M.',
-  themeColor: '#f4f1e8',
+  themeColor: { light: '#f4f1e8', dark: '#242424' },
   yandexVerification: '1ff13f78c7797ab6',
   openGraphDescription: "Yeah! It's my homepage…",
   safariPinnedTabColor: '#242424',

@@ -8,8 +8,8 @@
 
 .profile-header__title {
   @apply font-bold;
-  font-size: 38px;
-  letter-spacing: -1.4px;
+  font-size: 2.375rem;
+  letter-spacing: -0.0875rem;
   line-height: 1.12;
 }
 
@@ -25,7 +25,7 @@
 .profile-header__nickname {
   @apply block border-2 border-outline bg-pink px-3 py-1 text-lg text-card-ink font-bold;
   line-height: normal;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.0125rem;
   box-shadow: 2px 2px 0.5px var(--color-shadow);
   cursor: help;
 }
@@ -53,7 +53,7 @@
   }
 
   .profile-header__title {
-    font-size: 30px;
-    letter-spacing: -1px;
+    font-size: 1.875rem;
+    letter-spacing: -0.0625rem;
   }
 }
