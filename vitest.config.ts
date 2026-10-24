@@ -11,6 +11,7 @@ export default getViteConfig({
       '**/e2e-tests/**',
       // Exclude visual tests - they have their own test script
       '**/*.visual.test.ts',
+      '**/*.behavior.test.ts',
     ],
     include: ['src/test/**/*.test.ts'],
   },

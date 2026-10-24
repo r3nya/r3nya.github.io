@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-26
     env:
       # Suppress punycode deprecation warning from dependencies (Node.js 21+)
       NODE_OPTIONS: --disable-warning=DEP0040
@@ -61,7 +61,7 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         id: playwright-cache
         with:
-          path: ~/.cache/ms-playwright
+          path: ~/Library/Caches/ms-playwright
           key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
 
       - name: Install Playwright browsers
@@ -70,6 +70,17 @@ jobs:
 
       - name: Run visual tests 📸
         run: pnpm run test:visual
+
+      - name: Upload visual test failures
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: visual-test-results
+          path: |
+            .vitest-attachments/
+            src/test/__screenshots__/
+          include-hidden-files: true
+          retention-days: 7
 
       - name: Rebuild site with snow fall if enabled
         if: steps.snow-fall.outputs.enabled == 'true'

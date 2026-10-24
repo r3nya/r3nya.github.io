@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^6.9.1",
+    "@vitest/browser-playwright": "4.1.9",
     "astro": "^6.4.8",
     "astro-compress": "^2.4.3",
     "autoprefixer": "10.6.1",
