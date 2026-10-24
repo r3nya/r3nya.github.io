@@ -6,23 +6,46 @@
 }
 
 .lang-switcher__list {
-  @apply flex items-center;
-  gap: 9px;
+  @apply flex items-center gap-3;
 }
 
 .lang-switcher__current,
 .lang-switcher__link {
-  @apply inline-flex items-center justify-center uppercase;
+  @apply inline-flex items-center justify-center uppercase px-1.75 py-1.25;
   min-height: 32px;
   min-width: 27px;
-  padding: 4px;
 }
 
 .lang-switcher__current {
-  @apply bg-ink text-surface;
+  @apply text-card-ink font-bold;
+  background-image: linear-gradient(
+    transparent 25%,
+    var(--color-pink) 25%,
+    var(--color-pink) 75%,
+    transparent 75%
+  );
 }
 
-.lang-switcher__link:hover {
-  @apply underline;
-  text-underline-offset: 4px;
+.lang-switcher__link {
+  @apply relative isolate transition-colors duration-150;
+}
+
+.lang-switcher__link::before {
+  content: '';
+  @apply absolute inset-x-0 top-1/4 bottom-1/4 -z-10 origin-bottom scale-y-0 bg-lavender transition-transform duration-200 ease-out;
+}
+
+.lang-switcher__link:is(:hover, :focus-visible) {
+  @apply text-card-ink;
+}
+
+.lang-switcher__link:is(:hover, :focus-visible)::before {
+  @apply scale-y-100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-switcher__link,
+  .lang-switcher__link::before {
+    @apply transition-none;
+  }
 }
