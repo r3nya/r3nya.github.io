@@ -38,6 +38,7 @@
 @media (max-width: 600px) {
   .base-layout__container {
     @apply p-5;
+    container-type: inline-size;
   }
 
   .base-layout__controls {
@@ -45,6 +46,12 @@
   }
 
   .base-layout__main {
-    @apply flex-none justify-start pt-4 pb-0;
+    @apply flex-none justify-start pt-12 pb-0;
+  }
+
+  @container (max-width: 17rem) {
+    .base-layout__main {
+      @apply pt-18;
+    }
   }
 }

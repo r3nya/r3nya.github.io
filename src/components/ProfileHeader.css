@@ -48,6 +48,10 @@
 }
 
 @media (max-width: 600px) {
+  .profile-header__tooltip {
+    max-width: min(16rem, calc(100vw - 3rem));
+  }
+
   .profile-header {
     @apply px-5 py-6;
   }

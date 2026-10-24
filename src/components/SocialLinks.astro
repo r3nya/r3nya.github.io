@@ -4,12 +4,13 @@ import type { Messages } from '@/i18n/messages';
 
 interface Props {
   links: Messages['links'];
+  label: string;
 }
 
-const { links }: Props = Astro.props;
+const { links, label }: Props = Astro.props;
 ---
 
-<nav class="social-links" aria-label="Social links" data-section="links">
+<nav class="social-links" aria-label={label} data-section="links">
   {links.map((link) => (
     <a
       href={link.url}

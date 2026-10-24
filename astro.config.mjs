@@ -13,7 +13,10 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [compress(), sitemap()],
+  integrations: [
+    compress(),
+    sitemap({ filter: (page) => new URL(page).pathname !== '/en/' }),
+  ],
 
   prefetch: {
     prefetchAll: false,

@@ -68,6 +68,7 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 
 - Supported locales: `en`, `ru`, `es`; default: English.
 - Generated routes: `/`, `/en/`, `/ru/`, `/es/`. The component-level locale fallback does not generate routes for arbitrary language codes.
+- English navigation and hreflang use `/`. The `/en/` alias has canonical `/` and is excluded from the sitemap.
 - Use typed messages and provide all three translations when adding content.
 - Language links perform ordinary full-page navigation. There is no Astro `ClientRouter`.
 - Preserve actual link URLs, `hreflang`, and the current-language indication.
@@ -84,7 +85,7 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 - Keep the approved tilted profile card, pink nickname badge, pastel contact cards, and hard offset shadows.
 - Theme tokens separate text (`ink`), outlines (`outline`), shadows (`shadow`), and the background grid (`grid`). Do not reuse text color for every border and shadow.
 - In dark mode, the grid and outlines are subdued, but warm gray shadows remain visible enough to preserve the raised-card effect.
-- Current layout: languages left, theme right; desktop content has `20svh` top padding, mobile content has `pt-4`. The mobile layout breakpoint is 600px; contacts stack into one column at widths up to `22.5rem`.
+- Current layout: languages left, theme right; desktop content has `20svh` top padding, mobile content has `pt-12`. Mobile nickname tooltips can grow to `16rem`, capped by the viewport width. The mobile layout breakpoint is 600px; contacts stack into one column at widths up to `22.5rem`.
 - The active language has a pink marker; links get a lavender bottom-up fill on hover and keyboard focus.
 
 ## Theme and accessibility
@@ -92,6 +93,7 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 - Default colors follow the system through `color-scheme: light dark` and CSS `light-dark()` tokens.
 - `src/scripts/theme-toggle.ts` applies a temporary `data-theme` override and updates `aria-pressed`. It does not read or write localStorage.
 - Reloading or following a language link resets manual theme selection to the system default.
+- Browser theme-color metadata follows the system by default and the selected theme during a manual override.
 - Without JavaScript, system theming still works and the inactive theme button remains hidden.
 - Tooltip appearance uses hover/focus CSS; `nickname-tooltip.ts` supports Escape dismissal and restoration on re-entry/refocus.
 - Preserve semantic landmarks, skip navigation, visible keyboard focus, descriptive labels, and current/pressed state attributes.

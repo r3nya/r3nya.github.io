@@ -1,3 +1,5 @@
+import { themeColors } from '@/config/site';
+
 type Theme = 'light' | 'dark';
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 let preference: Theme | null = null;
@@ -11,6 +13,12 @@ function applyTheme(): void {
     delete document.documentElement.dataset.theme;
   } else {
     document.documentElement.dataset.theme = preference;
+    const color = themeColors[preference];
+    for (const meta of document.querySelectorAll<HTMLMetaElement>(
+      'meta[name="theme-color"]',
+    )) {
+      meta.content = color;
+    }
   }
   const button = document.querySelector<HTMLButtonElement>(
     '[data-theme-toggle]',
