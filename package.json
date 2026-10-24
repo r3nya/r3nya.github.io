@@ -4,7 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@11.5.1",
   "scripts": {
-    "clean": "rimraf ./dist",
+    "clean": "node -e \"fs.rmSync('dist',{recursive:true,force:true})\"",
     "build": "astro build",
     "dev": "astro dev",
     "preview": "astro preview",
@@ -25,7 +25,6 @@
     "playwright": "^1.63.0",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",
-    "rimraf": "^6.1.2",
     "tailwindcss": "^4.3.3",
     "vitest": "^4.1.9"
   },
