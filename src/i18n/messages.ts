@@ -10,24 +10,21 @@ export type Messages = {
   alias_label: string;
   links: {
     title: string;
-    icon: 'github' | 'linkedin' | 'paper-plane' | 'twitter';
     url: string;
   }[];
 };
 
 const commonLinks = {
-  github: { title: 'Github', icon: 'github', url: 'https://github.com/r3nya' },
+  github: { title: 'Github', url: 'https://github.com/r3nya' },
   linkedin: {
     title: 'LinkedIn',
-    icon: 'linkedin',
     url: 'https://www.linkedin.com/in/r3nya',
   },
   telegram: {
     title: 'Telegram',
-    icon: 'paper-plane',
     url: 'https://t.me/r3nya',
   },
-  twitter: { title: 'X/Twitter', icon: 'twitter', url: 'https://x.com/r3nya' },
+  twitter: { title: 'X/Twitter', url: 'https://x.com/r3nya' },
 } as const;
 
 export const messages: Record<Locale, Messages> = {

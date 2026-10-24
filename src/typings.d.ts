@@ -1,6 +1,5 @@
 export type ProfileMeta = {
   name: string;
-  title: string;
   firstName: string;
   lastName: string;
   username: string;
@@ -10,12 +9,10 @@ export type ProfileMeta = {
 
 export type SiteMeta = {
   author: string;
-  description: string;
   themeColor: string;
   yandexVerification: string;
   openGraphDescription: string;
   safariPinnedTabColor: string;
   title: string;
-  keywords: string;
   profile: ProfileMeta;
 };

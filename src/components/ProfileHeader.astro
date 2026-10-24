@@ -16,13 +16,17 @@ const { name, headline, aliasLabel = 'Also known as' }: Props = Astro.props;
     <span
       class="profile-header__nickname"
       tabindex="0"
-      aria-describedby="profile-alias-tooltip">{siteMeta.profile.username}</span
+      aria-describedby="profile-alias-tooltip"
     >
+      {siteMeta.profile.username}
+    </span>
     <span
       id="profile-alias-tooltip"
       class="profile-header__tooltip"
-      role="tooltip">{aliasLabel}</span
+      role="tooltip"
     >
+      {aliasLabel}
+    </span>
   </span>
   <h1 class="profile-header__title">{name}</h1>
   <h2 class="profile-header__headline">{headline}</h2>
