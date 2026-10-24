@@ -1,41 +1,34 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Colors */
-  --color-palette-1-light: #ffffff;
-  --color-palette-1-dark: #0d1117;
-
-  --color-palette-2-light: #24292e;
-  --color-palette-2-dark: #c9d1d9;
-
-  --color-palette-3-light: #586069;
-  --color-palette-3-dark: #8b949e;
-
-  --color-palette-4-light: #f6f8fa;
-  --color-palette-4-dark: #161b22;
-
-  --color-palette-5-light: #0366d6;
-  --color-palette-5-dark: #58a6ff;
-
-  --color-palette-6-light: #6f42c1;
-  --color-palette-6-dark: #bc8cff;
-
-  --color-gradient-from-light: #fcb595;
-  --color-gradient-from-dark: #b58366;
-
-  --color-gradient-via-light: #9477f1;
-  --color-gradient-via-dark: #6a55a8;
-
-  --color-gradient-to-light: #5baeeb;
-  --color-gradient-to-dark: #3a7aae;
-
-  /* Fonts */
+  --color-paper: light-dark(#f4f1e8, #242424);
+  --color-surface: light-dark(#fffef8, #33332d);
+  --color-ink: light-dark(#242424, #f6f0df);
+  --color-grid: light-dark(#24242409, #f6f0df18);
+  --color-card-ink: #242424;
+  --color-sage: #d6e4cb;
+  --color-lavender: #d5dcf4;
+  --color-peach: #ffdbac;
+  --color-pink: #eccfe1;
+  --color-label: #c0d3ac;
   --font-monocode:
-    ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas,
-    'DejaVu Sans Mono', monospace;
+    ui-monospace, 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono',
+    monospace;
 }
 
-/* Utilities */
-a:hover svg {
-  @apply no-underline;
+:root {
+  color-scheme: light dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
 }

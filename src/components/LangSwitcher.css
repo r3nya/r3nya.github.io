@@ -1,17 +1,29 @@
 @import '../styles/global.css' reference;
 
 .lang-switcher {
-  @apply fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50 text-base text-palette-3-light dark:text-palette-3-dark bg-palette-4-light/70 dark:bg-palette-4-dark/70 backdrop-blur px-6 py-3 rounded-full shadow transition-all duration-200;
+  @apply text-ink;
+  font-size: 11px;
+  line-height: normal;
 }
 
 .lang-switcher__list {
-  @apply flex gap-6;
+  @apply flex items-center;
+  gap: 9px;
+}
+
+.lang-switcher__current,
+.lang-switcher__link {
+  @apply inline-flex items-center justify-center uppercase;
+  min-height: 32px;
+  min-width: 27px;
+  padding: 4px;
 }
 
 .lang-switcher__current {
-  @apply font-semibold uppercase;
+  @apply bg-ink text-surface;
 }
 
-.lang-switcher__link {
-  @apply uppercase hover:underline hover:bg-palette-3-light/10 dark:hover:bg-white/15 transition-all duration-200;
+.lang-switcher__link:hover {
+  @apply underline;
+  text-underline-offset: 4px;
 }

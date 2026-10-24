@@ -27,6 +27,17 @@ const t = messages[lang] ?? messages[defaultLocale];
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      // Apply the saved preference before paint; CSS follows the system otherwise.
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.dataset.theme = theme;
+        }
+      } catch {
+        // Storage may be unavailable; the system theme still works.
+      }
+    </script>
     <meta name="description" content={t.description} />
     <meta name="author" content={siteMeta.author} />
     <meta name="theme-color" content={siteMeta.themeColor} />
@@ -59,6 +70,7 @@ const t = messages[lang] ?? messages[defaultLocale];
       >{t.skip_to_content}</a
     >
     <div class="base-layout__container">
+      <slot name="controls" />
       <main
         id="main-content"
         role="main"

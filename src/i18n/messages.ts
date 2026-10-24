@@ -6,6 +6,8 @@ export type Messages = {
   headline: string;
   description: string;
   skip_to_content: string;
+  dark_theme: string;
+  alias_label: string;
   links: {
     title: string;
     icon: 'github' | 'linkedin' | 'paper-plane' | 'twitter';
@@ -35,6 +37,8 @@ export const messages: Record<Locale, Messages> = {
     headline: 'Software Developer 👨‍💻',
     description: "Andrey Makarov's homepage",
     skip_to_content: 'Skip to content',
+    dark_theme: 'Dark theme',
+    alias_label: 'Also known as',
     links: [
       commonLinks.github,
       commonLinks.linkedin,
@@ -48,6 +52,8 @@ export const messages: Record<Locale, Messages> = {
     headline: 'Разработчик ПО 👨‍💻',
     description: 'Домашняя страница Андрея Макарова',
     skip_to_content: 'Перейти к содержанию',
+    dark_theme: 'Тёмная тема',
+    alias_label: 'Также известен как',
     links: [
       commonLinks.github,
       commonLinks.linkedin,
@@ -61,6 +67,8 @@ export const messages: Record<Locale, Messages> = {
     headline: 'Desarrollador 👨‍💻',
     description: 'Página web de Andrey Makárov',
     skip_to_content: 'Saltar al contenido',
+    dark_theme: 'Tema oscuro',
+    alias_label: 'También conocido como',
     links: [
       commonLinks.github,
       commonLinks.linkedin,

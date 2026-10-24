@@ -1,0 +1,12 @@
+@import '../styles/global.css' reference;
+
+.theme-toggle {
+  @apply cursor-pointer border-0 bg-transparent text-ink;
+  min-width: 36px;
+  min-height: 36px;
+  font-size: 20px;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
