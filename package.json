@@ -21,13 +21,13 @@
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@vitest/browser-playwright": "4.1.9",
-    "astro": "^6.4.8",
+    "astro": "^7.4.2",
     "astro-compress": "^2.4.3",
     "autoprefixer": "10.6.1",
     "happy-dom": "^20.14.5",
     "playwright": "^1.63.0",
-    "prettier": "^3.9.8",
-    "prettier-plugin-astro": "^0.14.1",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
     "rimraf": "^6.1.2",
     "tailwindcss": "^4.3.3",
     "vitest": "^4.1.9"
@@ -36,7 +36,7 @@
     "pnpm": ">=11.0.0"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/sitemap": "^3.7.4",
     "@zachleat/snow-fall": "^1.0.3"
   }
 }

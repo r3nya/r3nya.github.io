@@ -16,32 +16,30 @@ const { current }: Props = Astro.props;
   data-testid="lang-switcher"
 >
   <ul role="list" class="lang-switcher__list">
-    {
-      locales.map((code) => (
-        <li role="listitem">
-          {code === current ? (
-            <span
-              class="lang-switcher__current"
-              aria-current="true"
-              data-lang={code}
-            >
-              {code}
-            </span>
-          ) : (
-            <a
-              class="lang-switcher__link"
-              href={`/${code}/`}
-              lang={code}
-              hreflang={code}
-              data-lang={code}
-              aria-label={`Switch language to ${code.toUpperCase()}`}
-              data-astro-prefetch="hover"
-            >
-              {code}
-            </a>
-          )}
-        </li>
-      ))
-    }
+    {locales.map((code) => (
+      <li role="listitem">
+        {code === current ? (
+          <span
+            class="lang-switcher__current"
+            aria-current="true"
+            data-lang={code}
+          >
+            {code}
+          </span>
+        ) : (
+          <a
+            class="lang-switcher__link"
+            href={`/${code}/`}
+            lang={code}
+            hreflang={code}
+            data-lang={code}
+            aria-label={`Switch language to ${code.toUpperCase()}`}
+            data-astro-prefetch="hover"
+          >
+            {code}
+          </a>
+        )}
+      </li>
+    ))}
   </ul>
 </nav>

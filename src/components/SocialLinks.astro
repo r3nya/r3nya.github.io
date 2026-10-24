@@ -15,21 +15,19 @@ const { links }: Props = Astro.props;
   aria-label="Social links"
   data-section="links"
 >
-  {
-    links.map((link) => (
-      <a
-        href={link.url}
-        class="social-links__link group"
-        aria-label={link.title}
-        data-link={link.icon}
-        rel="me noopener noreferrer"
-        target="_blank"
-      >
-        <span class="social-links__title">{link.title}</span>
-        <span class="social-links__arrow" aria-hidden="true">
-          ↗
-        </span>
-      </a>
-    ))
-  }
+  {links.map((link) => (
+    <a
+      href={link.url}
+      class="social-links__link group"
+      aria-label={link.title}
+      data-link={link.icon}
+      rel="me noopener noreferrer"
+      target="_blank"
+    >
+      <span class="social-links__title">{link.title}</span>
+      <span class="social-links__arrow" aria-hidden="true">
+        ↗
+      </span>
+    </a>
+  ))}
 </section>

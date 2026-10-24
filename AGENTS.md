@@ -12,7 +12,7 @@
 
 ## Project and tools
 
-Personal homepage built with **Astro 6**, **Tailwind CSS v4**, and TypeScript, deployed as a static site to GitHub Pages at `https://r3nya.ru`.
+Personal homepage built with **Astro 7**, **Tailwind CSS v4**, and TypeScript, deployed as a static site to GitHub Pages at `https://r3nya.ru`.
 
 - Use the Node version in `.nvmrc` (Node 24).
 - Use Corepack and the pnpm version pinned in `package.json#packageManager` (pnpm 11).

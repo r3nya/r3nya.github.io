@@ -1,37 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SocialLinks > renders with English links 1`] = `
-"<section class="social-links" role="navigation" aria-label="Social links" data-section="links"> <a href="https://github.com/r3nya" class="social-links__link group" aria-label="Github" data-link="github" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">Github</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://www.linkedin.com/in/r3nya" class="social-links__link group" aria-label="LinkedIn" data-link="linkedin" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">LinkedIn</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://t.me/r3nya" class="social-links__link group" aria-label="Telegram" data-link="paper-plane" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">Telegram</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://x.com/r3nya" class="social-links__link group" aria-label="X/Twitter" data-link="twitter" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">X/Twitter</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a> </section>"
-`;
+exports[`SocialLinks > renders with English links 1`] = `"<section class="social-links" role="navigation" aria-label="Social links" data-section="links"><a href="https://github.com/r3nya" class="social-links__link group" aria-label="Github" data-link="github" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">Github</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/r3nya" class="social-links__link group" aria-label="LinkedIn" data-link="linkedin" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">LinkedIn</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://t.me/r3nya" class="social-links__link group" aria-label="Telegram" data-link="paper-plane" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">Telegram</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://x.com/r3nya" class="social-links__link group" aria-label="X/Twitter" data-link="twitter" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">X/Twitter</span><span class="social-links__arrow" aria-hidden="true">↗</span></a></section>"`;
 
-exports[`SocialLinks > renders with Russian links 1`] = `
-"<section class="social-links" role="navigation" aria-label="Social links" data-section="links"> <a href="https://github.com/r3nya" class="social-links__link group" aria-label="Github" data-link="github" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">Github</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://www.linkedin.com/in/r3nya" class="social-links__link group" aria-label="LinkedIn" data-link="linkedin" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">LinkedIn</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://t.me/r3nya" class="social-links__link group" aria-label="Telegram" data-link="paper-plane" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">Telegram</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://x.com/r3nya" class="social-links__link group" aria-label="X/Twitter" data-link="twitter" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">X/Twitter</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a> </section>"
-`;
+exports[`SocialLinks > renders with Russian links 1`] = `"<section class="social-links" role="navigation" aria-label="Social links" data-section="links"><a href="https://github.com/r3nya" class="social-links__link group" aria-label="Github" data-link="github" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">Github</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/r3nya" class="social-links__link group" aria-label="LinkedIn" data-link="linkedin" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">LinkedIn</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://t.me/r3nya" class="social-links__link group" aria-label="Telegram" data-link="paper-plane" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">Telegram</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://x.com/r3nya" class="social-links__link group" aria-label="X/Twitter" data-link="twitter" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">X/Twitter</span><span class="social-links__arrow" aria-hidden="true">↗</span></a></section>"`;
 
-exports[`SocialLinks > renders with Spanish links 1`] = `
-"<section class="social-links" role="navigation" aria-label="Social links" data-section="links"> <a href="https://github.com/r3nya" class="social-links__link group" aria-label="Github" data-link="github" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">Github</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://www.linkedin.com/in/r3nya" class="social-links__link group" aria-label="LinkedIn" data-link="linkedin" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">LinkedIn</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://t.me/r3nya" class="social-links__link group" aria-label="Telegram" data-link="paper-plane" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">Telegram</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a><a href="https://x.com/r3nya" class="social-links__link group" aria-label="X/Twitter" data-link="twitter" rel="me noopener noreferrer" target="_blank"> <span class="social-links__title">X/Twitter</span> <span class="social-links__arrow" aria-hidden="true">
-↗
-</span> </a> </section>"
-`;
+exports[`SocialLinks > renders with Spanish links 1`] = `"<section class="social-links" role="navigation" aria-label="Social links" data-section="links"><a href="https://github.com/r3nya" class="social-links__link group" aria-label="Github" data-link="github" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">Github</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/r3nya" class="social-links__link group" aria-label="LinkedIn" data-link="linkedin" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">LinkedIn</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://t.me/r3nya" class="social-links__link group" aria-label="Telegram" data-link="paper-plane" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">Telegram</span><span class="social-links__arrow" aria-hidden="true">↗</span></a><a href="https://x.com/r3nya" class="social-links__link group" aria-label="X/Twitter" data-link="twitter" rel="me noopener noreferrer" target="_blank"><span class="social-links__title">X/Twitter</span><span class="social-links__arrow" aria-hidden="true">↗</span></a></section>"`;
