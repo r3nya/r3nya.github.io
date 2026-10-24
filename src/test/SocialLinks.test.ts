@@ -9,6 +9,7 @@ describe('SocialLinks', () => {
     const result = await renderAstroComponent(SocialLinks, {
       props: {
         links: messages.en.links,
+        label: messages.en.social_links,
       },
     });
 
@@ -19,6 +20,7 @@ describe('SocialLinks', () => {
     const result = await renderAstroComponent(SocialLinks, {
       props: {
         links: messages.ru.links,
+        label: messages.ru.social_links,
       },
     });
 
@@ -29,6 +31,7 @@ describe('SocialLinks', () => {
     const result = await renderAstroComponent(SocialLinks, {
       props: {
         links: messages.es.links,
+        label: messages.es.social_links,
       },
     });
 

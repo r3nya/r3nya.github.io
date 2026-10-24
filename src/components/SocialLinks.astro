@@ -4,22 +4,17 @@ import type { Messages } from '@/i18n/messages';
 
 interface Props {
   links: Messages['links'];
+  label: string;
 }
 
-const { links }: Props = Astro.props;
+const { links, label }: Props = Astro.props;
 ---
 
-<section
-  class="social-links"
-  role="navigation"
-  aria-label="Social links"
-  data-section="links"
->
+<nav class="social-links" aria-label={label} data-section="links">
   {links.map((link) => (
     <a
       href={link.url}
       class="social-links__link group"
-      aria-label={link.title}
       rel="me noopener noreferrer"
       target="_blank"
     >
@@ -29,4 +24,4 @@ const { links }: Props = Astro.props;
       </span>
     </a>
   ))}
-</section>
+</nav>

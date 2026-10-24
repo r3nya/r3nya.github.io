@@ -26,7 +26,7 @@
   @apply bg-pink;
 }
 
-.social-links__link:hover {
+.social-links__link:is(:hover, :focus-visible) {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--color-shadow);
 }
@@ -37,13 +37,13 @@
 }
 
 .social-links__title {
-  @apply group-hover:underline;
+  @apply group-hover:underline group-focus-visible:underline;
   text-underline-offset: 4px;
 }
 
 .social-links__arrow {
   @apply self-start font-normal;
-  font-size: 30px;
+  font-size: 1.875rem;
 }
 
 @media (max-width: 600px) {

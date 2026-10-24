@@ -17,6 +17,10 @@ interface Props {
 
 const { title = siteMeta.title, lang = 'en' }: Props = Astro.props;
 const t = messages[lang] ?? messages[defaultLocale];
+const canonicalUrl = new URL(
+  Astro.url.pathname === '/en/' ? '/' : Astro.url.pathname,
+  Astro.url,
+);
 ---
 
 <!doctype html>
@@ -28,14 +32,23 @@ const t = messages[lang] ?? messages[defaultLocale];
     <meta name="color-scheme" content="light dark" />
     <meta name="description" content={t.description} />
     <meta name="author" content={siteMeta.author} />
-    <meta name="theme-color" content={siteMeta.themeColor} />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content={siteMeta.themeColor.light}
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content={siteMeta.themeColor.dark}
+    />
     <meta name="yandex-verification" content={siteMeta.yandexVerification} />
 
     <!-- SEO components -->
     <OpenGraph {title} />
     <TwitterCard {title} />
     <JsonLD />
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={canonicalUrl.href} />
     <HreflangLinks lang={lang} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 

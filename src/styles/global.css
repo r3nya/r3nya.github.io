@@ -31,6 +31,6 @@
 }
 
 :where(a, button, [tabindex]):focus-visible {
-  outline: 3px solid currentColor;
+  outline: 3px solid var(--color-ink);
   outline-offset: 4px;
 }

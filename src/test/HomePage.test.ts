@@ -99,7 +99,6 @@ describe('HomePage', () => {
       messages.en.links.forEach((link, index) => {
         const linkElement = socialLinks[index];
         expect(linkElement?.getAttribute('href')).toBe(link.url);
-        expect(linkElement?.getAttribute('aria-label')).toBe(link.title);
         expect(
           linkElement
             ?.querySelector('.social-links__title')
