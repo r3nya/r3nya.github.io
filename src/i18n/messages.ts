@@ -32,10 +32,10 @@ const commonLinks = {
 
 export const messages: Record<Locale, Messages> = {
   en: {
-    title: 'Andrey Makarov aka r3nya',
-    name: 'Andrey Makarov',
+    title: 'Andrei Makarov aka r3nya',
+    name: 'Andrei Makarov',
     headline: 'Software Developer 👨‍💻',
-    description: "Andrey Makarov's homepage",
+    description: "Andrei Makarov's homepage",
     skip_to_content: 'Skip to content',
     dark_theme: 'Dark theme',
     alias_label: 'Also known as',
@@ -62,10 +62,10 @@ export const messages: Record<Locale, Messages> = {
     ],
   },
   es: {
-    title: 'Andrey Makárov aka r3nya',
-    name: 'Andrey Makárov',
+    title: 'Andrei Makárov aka r3nya',
+    name: 'Andrei Makárov',
     headline: 'Desarrollador 👨‍💻',
-    description: 'Página web de Andrey Makárov',
+    description: 'Página web de Andrei Makárov',
     skip_to_content: 'Saltar al contenido',
     dark_theme: 'Tema oscuro',
     alias_label: 'También conocido como',

@@ -20,7 +20,7 @@ test('Home page available', async (t) => {
     const title = await homePage.getTitle();
     assert.equal(
       title,
-      'Andrey Makarov aka r3nya',
+      'Andrei Makarov aka r3nya',
       'Page title should be correct',
     );
   });
