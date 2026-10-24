@@ -25,7 +25,7 @@
 }
 
 .base-layout__controls {
-  @apply flex items-center justify-end;
+  @apply flex items-center justify-between;
   gap: 9px;
   margin-bottom: 36px;
 }
@@ -53,6 +53,7 @@
   }
 
   .base-layout__main {
+    @apply pt-4;
     flex: none;
     justify-content: flex-start;
     padding-bottom: 0;
