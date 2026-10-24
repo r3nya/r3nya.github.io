@@ -1,7 +1,6 @@
 ---
 import '@/styles/global.css';
 import './BaseLayout.css';
-import themeInitUrl from '../scripts/theme-init.js?url&no-inline';
 import { siteMeta } from '@/config/site';
 import type { Locale } from '@/i18n/config';
 import { defaultLocale } from '@/i18n/config';
@@ -28,7 +27,6 @@ const t = messages[lang] ?? messages[defaultLocale];
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <script is:inline src={themeInitUrl}></script>
     <meta name="description" content={t.description} />
     <meta name="author" content={siteMeta.author} />
     <meta name="theme-color" content={siteMeta.themeColor} />

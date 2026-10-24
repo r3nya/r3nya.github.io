@@ -2,9 +2,7 @@ import { isTransitionBeforeSwapEvent } from 'astro:transitions/client';
 
 type Theme = 'light' | 'dark';
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
-const initialTheme = document.documentElement.dataset.theme;
-let preference: Theme | null =
-  initialTheme === 'light' || initialTheme === 'dark' ? initialTheme : null;
+let preference: Theme | null = null;
 
 function isDark(): boolean {
   return preference === 'dark' || (preference === null && systemTheme.matches);
@@ -30,11 +28,6 @@ document.addEventListener('click', (event: MouseEvent): void => {
   )
     return;
   preference = isDark() ? 'light' : 'dark';
-  try {
-    localStorage.setItem('theme', preference);
-  } catch {
-    // Keep the in-memory preference when storage is unavailable.
-  }
   applyTheme();
 });
 systemTheme.addEventListener('change', (): void => applyTheme());

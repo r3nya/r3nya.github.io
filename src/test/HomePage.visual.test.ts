@@ -83,22 +83,24 @@ describe('HomePage Visual Regression', () => {
     },
   );
 
-  it('persists the selected theme across reloads and locale navigation', async () => {
+  it('keeps a temporary theme across locale navigation and resets it on reload', async () => {
     await page.locator('[data-theme-toggle]').click();
     expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
     expect(
       await page.locator('[data-theme-toggle]').getAttribute('aria-pressed'),
     ).toBe('true');
-    await page.reload();
-    expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
     await page.locator('a[data-lang="ru"]').click();
     await page.waitForURL(`${baseUrl}/ru/`);
     expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
-    await page.locator('[data-theme-toggle]').click();
-    expect(await page.getAttribute('html', 'data-theme')).toBe('light');
     expect(
       await page.evaluate((): string | null => localStorage.getItem('theme')),
-    ).toBe('light');
+    ).toBeNull();
+    await page.reload();
+    await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
+    expect(await page.getAttribute('html', 'data-theme')).toBeNull();
+    expect(
+      await page.locator('[data-theme-toggle]').getAttribute('aria-pressed'),
+    ).toBe('false');
   });
 
   it('follows system theme changes until a preference is selected', async () => {
@@ -165,30 +167,27 @@ describe('HomePage Visual Regression', () => {
     expect(await tooltip.isVisible()).toBe(true);
   });
 
-  it('keeps the theme toggle working when browser storage is blocked', async () => {
-    const context = await browser.newContext();
-    try {
-      await context.addInitScript((): void => {
-        Object.defineProperty(window, 'localStorage', {
-          get(): never {
-            throw new DOMException('Blocked', 'SecurityError');
-          },
-        });
-      });
-      const isolatedPage = await context.newPage();
-      await isolatedPage.emulateMedia({ colorScheme: 'light' });
-      await isolatedPage.goto(baseUrl);
-      await isolatedPage.locator('[data-theme-toggle]').click();
-      expect(await isolatedPage.getAttribute('html', 'data-theme')).toBe(
-        'dark',
+  it.each([
+    { system: 'light', saved: 'dark', pressed: 'false' },
+    { system: 'dark', saved: 'light', pressed: 'true' },
+  ] as const)(
+    'uses the $system system theme despite an old $saved saved preference',
+    async ({ system, saved, pressed }) => {
+      await page.evaluate(
+        (theme: string): void => localStorage.setItem('theme', theme),
+        saved,
       );
-      await isolatedPage.locator('a[data-lang="es"]').click();
-      await isolatedPage.waitForURL(`${baseUrl}/es/`);
-      expect(await isolatedPage.getAttribute('html', 'data-theme')).toBe(
-        'dark',
-      );
-    } finally {
-      await context.close();
-    }
-  });
+      await page.emulateMedia({ colorScheme: system });
+      await page.reload();
+      await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
+      expect(await page.getAttribute('html', 'data-theme')).toBeNull();
+      expect(
+        await page.locator('[data-theme-toggle]').getAttribute('aria-pressed'),
+      ).toBe(pressed);
+      await page.locator('[data-theme-toggle]').click();
+      expect(
+        await page.evaluate((): string | null => localStorage.getItem('theme')),
+      ).toBe(saved);
+    },
+  );
 });
