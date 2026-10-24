@@ -2,7 +2,7 @@
 
 .profile-header {
   @apply relative border-2 border-outline bg-surface px-7 py-6;
-  box-shadow: 6px 6px 0 var(--color-shadow);
+  box-shadow: 6px 6px 0.5px var(--color-shadow);
   transform: rotate(-1deg);
 }
 
