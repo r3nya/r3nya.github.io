@@ -4,7 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/node:2": {
       "version": "22",
-      "pnpmVersion": "11.5.1",
+      "pnpmVersion": "12.15.0",
       "installYarnUsingApt": true
     }
   },

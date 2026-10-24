@@ -7,7 +7,7 @@ Personal homepage built with Astro 7, Tailwind CSS v4, and TypeScript. Static pa
 
 ## Local development
 
-Use Node.js 24 from [`.nvmrc`](.nvmrc) and the pnpm 11 version pinned in [`package.json`](package.json). With nvm installed:
+Use Node.js 24 from [`.nvmrc`](.nvmrc) and the pnpm 12 version pinned in [`package.json`](package.json). With nvm installed:
 
 ```bash
 nvm install
