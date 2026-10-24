@@ -83,7 +83,10 @@ describe('HomePage Visual Regression', () => {
     },
   );
 
-  it('keeps a temporary theme across locale navigation and resets it on reload', async () => {
+  it('loads a new document on locale navigation and resets the temporary theme', async () => {
+    await page.evaluate((): void => {
+      document.documentElement.dataset.navigationMarker = 'previous-document';
+    });
     await page.locator('[data-theme-toggle]').click();
     expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
     expect(
@@ -91,10 +94,16 @@ describe('HomePage Visual Regression', () => {
     ).toBe('true');
     await page.locator('a[data-lang="ru"]').click();
     await page.waitForURL(`${baseUrl}/ru/`);
-    expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
+    await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
+    expect(
+      await page.getAttribute('html', 'data-navigation-marker'),
+    ).toBeNull();
+    expect(await page.getAttribute('html', 'data-theme')).toBeNull();
     expect(
       await page.evaluate((): string | null => localStorage.getItem('theme')),
     ).toBeNull();
+    await page.locator('[data-theme-toggle]').click();
+    expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
     await page.reload();
     await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
     expect(await page.getAttribute('html', 'data-theme')).toBeNull();
