@@ -118,6 +118,11 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 
 ### Production checks and CI
 
+- **Lighthouse requirement:** the production build must score **100/100 in all four categories: Performance, Accessibility, Best Practices, and SEO**, in both mobile and desktop profiles.
+- Run Lighthouse against the served production build for changes affecting the shipped site. Record the Lighthouse version, URL, profiles, and scores; keep reports available for review. Documentation-only changes do not require a new run.
+- A score below 100 in any category blocks declaring the change ready. Investigate and fix the regression, then rerun. Do not hide failing audits, weaken throttling, or change the tested content to obtain a passing score. If an external condition prevents verification, report the blocker rather than claiming compliance.
+- Local Lighthouse results do not establish deployed-site scores; distinguish local and production measurements when reporting results.
+
 - `pnpm run test:e2e` uses Node's test runner and Playwright against the live `https://r3nya.ru` site. It is a production health check, not validation of local changes; no local server is needed.
 - The PR build workflow checks formatting, unit tests, and the production build. Visual tests are a separate local check.
 - For code changes, run relevant tests and a production build before reporting completion. For CSS/layout changes, also review and verify visual baselines before committing.
