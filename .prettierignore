@@ -12,6 +12,7 @@ node_modules/
 # Cache directories
 .astro/
 .cache/
+.vitest-attachments/
 
 # Logs
 *.log

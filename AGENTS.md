@@ -109,10 +109,15 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 
 ### Browser and visual tests
 
-- Build first. `HomePage.visual.test.ts` starts its own local HTTP server for `dist/` and loads real CSS and scripts with Playwright Chromium.
+- Build first. `serve-built-site.ts` serves `dist/` over HTTP for both projects in `vitest.visual.config.ts`.
+- `HomePage.visual.test.ts` runs in Vitest Browser Mode with the Playwright provider. It loads the built site in an iframe and compares real PNG images using `toMatchScreenshot()`.
+- `HomePage.behavior.test.ts` runs in the Node project with Playwright Chromium to check full-page navigation, reloads, theme changes, and keyboard behavior. `pnpm run test:visual` runs both projects; unit tests exclude both files.
+- Keep the provider's host viewport large enough for every test iframe, or Vitest can scale screenshots. Screenshot setup waits for theme initialization and fonts and rejects content overflow.
 - Do not replace this with `page.setContent()` of raw build HTML: relative assets and client behavior need the served page.
 - If Chromium is missing, install it with `pnpm exec playwright install chromium` (CI/Linux may need `--with-deps`).
-- Baselines live in `src/test/__screenshots__/`. Update only for intentional, visually reviewed changes, then rerun without update mode.
+- Baselines live in `src/test/__screenshots__/HomePage.visual.test.ts/` and include the browser and platform in their names. Update only for intentional, visually reviewed changes, then rerun without update mode.
+- Failures produce actual/diff images in `.vitest-attachments/`; the PR and deployment workflows upload these and the reference screenshots as `visual-test-results`.
+- Use the same OS/browser environment to generate and compare baselines. CI uses `macos-26`; the label does not pin every image update. Keep `@vitest/browser-playwright` aligned with the installed Vitest version.
 - Browser/font differences can change screenshots; investigate before replacing baselines.
 - For layout work, inspect desktop, mobile, narrow screens, both themes, and translated content in Brave. Check overflow and keyboard interaction, not only compilation.
 
@@ -124,6 +129,6 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 - Local Lighthouse results do not establish deployed-site scores; distinguish local and production measurements when reporting results.
 
 - `pnpm run test:e2e` uses Node's test runner and Playwright against the live `https://r3nya.ru` site. It is a production health check, not validation of local changes; no local server is needed.
-- The PR build workflow checks formatting, unit tests, and the production build. Visual tests are a separate local check.
+- The PR build workflow checks formatting, unit tests, and the production build on Ubuntu, plus browser and visual tests against a production build on `macos-26`.
 - For code changes, run relevant tests and a production build before reporting completion. For CSS/layout changes, also review and verify visual baselines before committing.
 - For documentation-only changes, check the facts, formatting, and diff; a full browser test run is unnecessary.
