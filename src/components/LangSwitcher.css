@@ -11,9 +11,7 @@
 
 .lang-switcher__current,
 .lang-switcher__link {
-  @apply inline-flex items-center justify-center uppercase px-1.75 py-1.25;
-  min-height: 32px;
-  min-width: 27px;
+  @apply inline-flex min-h-8 min-w-7 items-center justify-center uppercase px-2 py-1;
 }
 
 .lang-switcher__current {

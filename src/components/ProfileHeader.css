@@ -1,9 +1,8 @@
 @import '../styles/global.css' reference;
 
 .profile-header {
-  @apply relative border-2 border-ink bg-surface;
-  padding: 24px 28px;
-  box-shadow: 6px 6px 0 var(--color-ink);
+  @apply relative border-2 border-outline bg-surface px-7 py-6;
+  box-shadow: 6px 6px 0 var(--color-shadow);
   transform: rotate(-1deg);
 }
 
@@ -15,38 +14,24 @@
 }
 
 .profile-header__headline {
-  @apply inline-block bg-label text-card-ink font-normal;
-  margin-top: 14px;
-  padding: 5px 8px;
-  @apply text-lg;
-  line-height: normal;
+  @apply mt-4 inline-block bg-label px-2 py-1 text-lg leading-snug text-card-ink font-normal;
 }
 
 .profile-header__alias {
-  @apply absolute;
-  right: 17px;
-  top: -14px;
+  @apply absolute right-4 -top-4;
   transform: rotate(4deg);
 }
 
 .profile-header__nickname {
-  @apply block border-2 border-ink bg-pink text-card-ink font-bold;
-  padding: 5px 10px;
-  @apply text-lg;
+  @apply block border-2 border-outline bg-pink px-3 py-1 text-lg text-card-ink font-bold;
   line-height: normal;
   letter-spacing: 0.2px;
-  box-shadow: 2px 2px 0 var(--color-ink);
+  box-shadow: 2px 2px 0 var(--color-shadow);
   cursor: help;
 }
 
 .profile-header__tooltip {
-  @apply absolute border border-ink bg-surface text-ink;
-  right: 0;
-  bottom: 100%;
-  padding: 6px 9px;
-  width: max-content;
-  max-width: 220px;
-  @apply text-lg;
+  @apply absolute right-0 bottom-full w-max max-w-56 border border-outline bg-surface px-3 py-2 text-lg leading-snug text-ink;
   visibility: hidden;
   opacity: 0;
 }
@@ -64,7 +49,7 @@
 
 @media (max-width: 600px) {
   .profile-header {
-    padding: 24px 20px;
+    @apply px-5 py-6;
   }
 
   .profile-header__title {

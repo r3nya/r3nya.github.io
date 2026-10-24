@@ -4,7 +4,9 @@
   --color-paper: light-dark(#f4f1e8, #242424);
   --color-surface: light-dark(#fffef8, #33332d);
   --color-ink: light-dark(#242424, #f6f0df);
-  --color-grid: light-dark(#24242409, #f6f0df18);
+  --color-grid: light-dark(#24242409, #f6f0df0c);
+  --color-outline: light-dark(#242424, #89897d);
+  --color-shadow: light-dark(#242424, #68685f);
   --color-card-ink: #242424;
   --color-sage: #d6e4cb;
   --color-lavender: #d5dcf4;
