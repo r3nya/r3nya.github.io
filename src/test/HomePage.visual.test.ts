@@ -83,6 +83,41 @@ describe('HomePage Visual Regression', () => {
     },
   );
 
+  it.each([375, 1280])(
+    'keeps content stable while theme controls initialize at %i px',
+    async (width) => {
+      await page.setViewportSize({ width, height: 900 });
+      let releaseScripts: () => void = (): void => {};
+      const scriptsReady = new Promise<void>((resolve): void => {
+        releaseScripts = resolve;
+      });
+      await page.route('**/*.js', async (route): Promise<void> => {
+        await scriptsReady;
+        await route.continue();
+      });
+      try {
+        await page.goto(`${baseUrl}/ru/`, { waitUntil: 'commit' });
+        await page.locator('.profile-header').waitFor({ state: 'visible' });
+        await page.waitForFunction((): boolean => {
+          const main = document.querySelector('main');
+          return main !== null && getComputedStyle(main).display === 'flex';
+        });
+        const before = await page.locator('.profile-header').boundingBox();
+        expect(await page.locator('[data-theme-toggle]').isVisible()).toBe(
+          false,
+        );
+        releaseScripts();
+        await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
+        const after = await page.locator('.profile-header').boundingBox();
+        expect(before).not.toBeNull();
+        expect(after).toEqual(before);
+      } finally {
+        releaseScripts();
+        await page.unrouteAll({ behavior: 'wait' });
+      }
+    },
+  );
+
   it('loads a new document on locale navigation and resets the temporary theme', async () => {
     await page.evaluate((): void => {
       document.documentElement.dataset.navigationMarker = 'previous-document';
