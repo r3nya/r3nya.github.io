@@ -2,10 +2,10 @@ import type { SiteMeta } from '@/typings.d';
 
 export const siteMeta: SiteMeta = {
   author: 'Andrew M.',
-  themeColor: '#6f42c1',
+  themeColor: '#f4f1e8',
   yandexVerification: '1ff13f78c7797ab6',
   openGraphDescription: "Yeah! It's my homepage…",
-  safariPinnedTabColor: '#5bbad5',
+  safariPinnedTabColor: '#242424',
   title: 'Andrei Makarov aka r3nya',
   profile: {
     name: 'Andrei Makarov',
