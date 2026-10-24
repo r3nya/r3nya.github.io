@@ -1,8 +1,7 @@
 @import '../styles/global.css' reference;
 
 .lang-switcher {
-  @apply text-ink;
-  font-size: 11px;
+  @apply text-ink text-lg;
   line-height: normal;
 }
 

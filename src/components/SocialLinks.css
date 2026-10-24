@@ -12,7 +12,7 @@
   padding: 17px;
   gap: 7px;
   box-shadow: 4px 4px 0 var(--color-ink);
-  font-size: 12px;
+  @apply text-lg;
   line-height: normal;
   transition:
     transform 150ms,
@@ -59,6 +59,12 @@
   .social-links__link {
     min-height: 99px;
     padding: 15px;
+  }
+}
+
+@media (max-width: 22.5rem) {
+  .social-links {
+    @apply grid-cols-1;
   }
 }
 

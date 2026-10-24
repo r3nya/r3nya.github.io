@@ -18,7 +18,7 @@
   @apply inline-block bg-label text-card-ink font-normal;
   margin-top: 14px;
   padding: 5px 8px;
-  font-size: 13px;
+  @apply text-lg;
   line-height: normal;
 }
 
@@ -32,7 +32,7 @@
 .profile-header__nickname {
   @apply block border-2 border-ink bg-pink text-card-ink font-bold;
   padding: 5px 10px;
-  font-size: 12px;
+  @apply text-lg;
   line-height: normal;
   letter-spacing: 0.2px;
   box-shadow: 2px 2px 0 var(--color-ink);
@@ -46,7 +46,7 @@
   padding: 6px 9px;
   width: max-content;
   max-width: 220px;
-  font-size: 12px;
+  @apply text-lg;
   visibility: hidden;
   opacity: 0;
 }
@@ -70,9 +70,5 @@
   .profile-header__title {
     font-size: 30px;
     letter-spacing: -1px;
-  }
-
-  .profile-header__headline {
-    font-size: 11px;
   }
 }

@@ -37,6 +37,12 @@
   padding-bottom: 36px;
 }
 
+@media (min-width: 601px) {
+  .base-layout__main {
+    @apply justify-start pt-[20svh];
+  }
+}
+
 @media (max-width: 600px) {
   .base-layout__container {
     padding: 20px 22px;
