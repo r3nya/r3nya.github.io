@@ -1,5 +1,8 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { Window } from 'happy-dom';
+import { fileURLToPath } from 'node:url';
+
+const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
 
 interface RenderOptions {
   props?: Record<string, unknown>;
@@ -27,5 +30,12 @@ export async function renderAstroComponent(
 
   const div = happyWindow.document.createElement('div');
   div.innerHTML = cleanAstroAttributes(result);
+  // Astro's development script URLs include the checkout's absolute path.
+  for (const script of div.querySelectorAll('script[src]')) {
+    const src = script.getAttribute('src');
+    if (src?.startsWith(projectRoot)) {
+      script.setAttribute('src', `/${src.slice(projectRoot.length)}`);
+    }
+  }
   return div;
 }
