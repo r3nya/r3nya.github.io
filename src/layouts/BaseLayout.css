@@ -1,21 +1,50 @@
 @import '../styles/global.css' reference;
 
 .base-layout {
-  @apply bg-palette-1-light dark:bg-palette-1-dark;
+  @apply bg-paper text-ink;
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .base-layout__body {
-  @apply font-monocode text-base text-palette-2-light antialiased dark:text-palette-2-dark;
+  @apply font-monocode antialiased;
 }
 
 .base-layout__skip-link {
-  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-palette-4-light dark:focus:bg-palette-4-dark focus:text-palette-2-light dark:focus:text-palette-2-dark focus:px-3 focus:py-2 focus:rounded;
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-surface focus:text-ink focus:px-3 focus:py-2;
+  z-index: 10;
 }
 
 .base-layout__container {
-  @apply container mx-auto px-4 max-w-4xl py-8 sm:px-6 sm:mt-4 lg:px-8;
+  @apply mx-auto flex min-h-svh max-w-[51.5rem] flex-col px-8 py-6;
+}
+
+.base-layout__controls {
+  @apply mb-9 flex min-h-9 items-center justify-between gap-2;
 }
 
 .base-layout__main {
-  @apply grid grid-cols-1 gap-8 md:grid-cols-3;
+  @apply flex flex-1 flex-col justify-center gap-6 pb-9;
+}
+
+@media (min-width: 601px) {
+  .base-layout__main {
+    @apply justify-start pt-[20svh];
+  }
+}
+
+@media (max-width: 600px) {
+  .base-layout__container {
+    @apply p-5;
+  }
+
+  .base-layout__controls {
+    @apply mb-6;
+  }
+
+  .base-layout__main {
+    @apply flex-none justify-start pt-4 pb-0;
+  }
 }

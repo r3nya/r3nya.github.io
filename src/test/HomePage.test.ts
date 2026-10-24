@@ -5,6 +5,25 @@ import { renderAstroComponent } from './helpers';
 import { messages } from '../i18n/messages';
 
 describe('HomePage', () => {
+  it.each(['en', 'ru', 'es'] as const)(
+    'exposes an accessible theme toggle and nickname tooltip in %s',
+    async (locale) => {
+      const result = await renderAstroComponent(HomePage, {
+        props: { locale },
+      });
+      const toggle = result.querySelector('button[data-theme-toggle]');
+      expect(toggle?.getAttribute('aria-label')).toBeTruthy();
+      expect(toggle?.getAttribute('aria-pressed')).toBe('false');
+      const nickname = result.querySelector('.profile-header__nickname');
+      expect(nickname?.textContent?.trim()).toBe('r3nya');
+      expect(nickname?.getAttribute('tabindex')).toBe('0');
+      const tooltipId = nickname?.getAttribute('aria-describedby');
+      const tooltip = result.querySelector(`[id="${tooltipId}"]`);
+      expect(tooltip?.getAttribute('role')).toBe('tooltip');
+      expect(tooltip?.textContent?.trim()).toBeTruthy();
+    },
+  );
+
   describe('English locale', () => {
     it('renders correct title and meta tags', async () => {
       const result = await renderAstroComponent(HomePage, {

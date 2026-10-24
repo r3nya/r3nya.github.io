@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProfileHeader from './ProfileHeader.astro';
 import SocialLinks from './SocialLinks.astro';
 import LangSwitcher from './LangSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import SnowFall from './SnowFall.astro';
 import type { Locale } from '@/i18n/config';
 import { messages } from '@/i18n/messages';
@@ -16,9 +17,15 @@ const t = messages[locale];
 ---
 
 <BaseLayout title={t.title} lang={locale}>
+  <div slot="controls" class="base-layout__controls">
+    <LangSwitcher current={locale} />
+    <ThemeToggle label={t.dark_theme} />
+  </div>
   <SnowFall />
-  <ProfileHeader name={t.name} headline={t.headline} />
+  <ProfileHeader
+    name={t.name}
+    headline={t.headline}
+    aliasLabel={t.alias_label}
+  />
   <SocialLinks links={t.links} />
-
-  <LangSwitcher current={locale} />
 </BaseLayout>

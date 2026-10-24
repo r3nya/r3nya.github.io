@@ -1,0 +1,20 @@
+---
+import './ThemeToggle.css';
+
+interface Props {
+  label: string;
+}
+
+const { label }: Props = Astro.props;
+---
+
+<button
+  type="button"
+  class="theme-toggle"
+  data-theme-toggle
+  aria-label={label}
+  aria-pressed="false"
+  hidden><span aria-hidden="true">◐</span></button
+>
+
+<script src="../scripts/theme-toggle.ts"></script>

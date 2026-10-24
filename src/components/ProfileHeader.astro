@@ -1,16 +1,31 @@
 ---
 import './ProfileHeader.css';
+import { siteMeta } from '@/config/site';
 
 interface Props {
   name: string;
   headline: string;
+  aliasLabel?: string;
 }
 
-const { name, headline }: Props = Astro.props;
+const { name, headline, aliasLabel = 'Also known as' }: Props = Astro.props;
 ---
 
 <header class="profile-header">
+  <span class="profile-header__alias">
+    <span
+      class="profile-header__nickname"
+      tabindex="0"
+      aria-describedby="profile-alias-tooltip">{siteMeta.profile.username}</span
+    >
+    <span
+      id="profile-alias-tooltip"
+      class="profile-header__tooltip"
+      role="tooltip">{aliasLabel}</span
+    >
+  </span>
   <h1 class="profile-header__title">{name}</h1>
-  <div class="profile-header__divider"></div>
   <h2 class="profile-header__headline">{headline}</h2>
 </header>
+
+<script src="../scripts/nickname-tooltip.ts"></script>

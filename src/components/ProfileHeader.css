@@ -1,17 +1,59 @@
 @import '../styles/global.css' reference;
 
 .profile-header {
-  @apply col-span-1 md:col-span-2;
+  @apply relative border-2 border-outline bg-surface px-7 py-6;
+  box-shadow: 6px 6px 0 var(--color-shadow);
+  transform: rotate(-1deg);
 }
 
 .profile-header__title {
-  @apply text-5xl font-bold mb-4 md:text-6xl mt-2;
-}
-
-.profile-header__divider {
-  @apply mb-4 h-1 rounded-full bg-gradient-to-r from-gradient-from-light via-gradient-via-light to-gradient-to-light dark:from-gradient-from-dark dark:via-gradient-via-dark dark:to-gradient-to-dark;
+  @apply font-bold;
+  font-size: 38px;
+  letter-spacing: -1.4px;
+  line-height: 1.12;
 }
 
 .profile-header__headline {
-  @apply text-2xl font-bold text-palette-3-light md:text-3xl xl:text-4xl dark:text-palette-3-dark;
+  @apply mt-4 inline-block bg-label px-2 py-1 text-lg leading-snug text-card-ink font-normal;
+}
+
+.profile-header__alias {
+  @apply absolute right-4 -top-4;
+  transform: rotate(4deg);
+}
+
+.profile-header__nickname {
+  @apply block border-2 border-outline bg-pink px-3 py-1 text-lg text-card-ink font-bold;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  box-shadow: 2px 2px 0 var(--color-shadow);
+  cursor: help;
+}
+
+.profile-header__tooltip {
+  @apply absolute right-0 bottom-full w-max max-w-56 border border-outline bg-surface px-3 py-2 text-lg leading-snug text-ink;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.profile-header__alias:hover .profile-header__tooltip,
+.profile-header__alias:focus-within .profile-header__tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile-header__alias[data-dismissed] .profile-header__tooltip {
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media (max-width: 600px) {
+  .profile-header {
+    @apply px-5 py-6;
+  }
+
+  .profile-header__title {
+    font-size: 30px;
+    letter-spacing: -1px;
+  }
 }

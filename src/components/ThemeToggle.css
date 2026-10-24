@@ -1,0 +1,13 @@
+@import '../styles/global.css' reference;
+
+.theme-toggle {
+  @apply inline-flex size-9 shrink-0 items-center justify-center cursor-pointer border-0 bg-transparent p-0 text-2xl leading-none text-ink;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-toggle > span {
+  @apply -translate-y-[0.125em];
+}

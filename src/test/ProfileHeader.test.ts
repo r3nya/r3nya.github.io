@@ -7,7 +7,7 @@ describe('ProfileHeader', () => {
   it('renders with English props', async () => {
     const result = await renderAstroComponent(ProfileHeader, {
       props: {
-        name: 'Andrey Makarov',
+        name: 'Andrei Makarov',
         headline: 'Software Developer 👨‍💻',
       },
     });
@@ -29,7 +29,7 @@ describe('ProfileHeader', () => {
   it('renders with Spanish props', async () => {
     const result = await renderAstroComponent(ProfileHeader, {
       props: {
-        name: 'Andrey Makárov',
+        name: 'Andrei Makárov',
         headline: 'Desarrollador 👨‍💻',
       },
     });

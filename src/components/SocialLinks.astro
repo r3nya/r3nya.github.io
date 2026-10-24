@@ -1,6 +1,5 @@
 ---
 import './SocialLinks.css';
-import Icon from './Icon.astro';
 import type { Messages } from '@/i18n/messages';
 
 interface Props {
@@ -26,8 +25,10 @@ const { links }: Props = Astro.props;
         rel="me noopener noreferrer"
         target="_blank"
       >
-        <Icon name={link.icon} />
         <span class="social-links__title">{link.title}</span>
+        <span class="social-links__arrow" aria-hidden="true">
+          ↗
+        </span>
       </a>
     ))
   }
