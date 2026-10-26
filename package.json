@@ -22,7 +22,7 @@
     "astro": "^7.4.2",
     "astro-compress": "^2.4.3",
     "happy-dom": "^21.0.4",
-    "playwright": "^1.63.0",
+    "playwright": "^1.64.0",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",
     "tailwindcss": "^4.3.3",
