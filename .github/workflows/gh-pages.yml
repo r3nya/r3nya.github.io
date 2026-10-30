@@ -88,6 +88,23 @@ jobs:
         env:
           PUBLIC_SNOW_FALL_ENABLED: 'true'
 
+      - name: Check mobile Lighthouse scores
+        run: pnpm run test:lighthouse:mobile
+
+      - name: Check desktop Lighthouse scores
+        run: pnpm run test:lighthouse:desktop
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse-deployment
+          path: |
+            lighthouse-reports/
+            .lighthouseci/
+          include-hidden-files: true
+          retention-days: 7
+
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:

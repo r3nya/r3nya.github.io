@@ -14,9 +14,12 @@
     "test:e2e": "node --test e2e-tests/*.js",
     "test:unit": "vitest",
     "test:visual": "vitest run --config vitest.visual.config.ts",
-    "test:visual:update": "vitest run --config vitest.visual.config.ts -u"
+    "test:visual:update": "vitest run --config vitest.visual.config.ts -u",
+    "test:lighthouse:mobile": "lhci autorun --failOnUploadFailure --upload.outputDir=./lighthouse-reports/mobile",
+    "test:lighthouse:desktop": "lhci autorun --failOnUploadFailure --collect.settings.preset=desktop --upload.outputDir=./lighthouse-reports/desktop"
   },
   "devDependencies": {
+    "@lhci/cli": "0.15.1",
     "@tailwindcss/vite": "^4.3.3",
     "@vitest/browser-playwright": "4.1.9",
     "astro": "^7.4.2",

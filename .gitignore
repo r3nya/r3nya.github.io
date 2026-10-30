@@ -24,3 +24,5 @@ dist
 coverage/
 .nyc_output
 .vitest-attachments/
+.lighthouseci/
+lighthouse-reports/

@@ -32,6 +32,8 @@ pnpm run test:unit --run -u    # Update HTML snapshots intentionally
 pnpm run test:visual           # Browser and visual tests; build first
 pnpm run test:visual:update    # Update approved visual baselines
 pnpm run test:e2e              # Checks the live production site
+pnpm run test:lighthouse:mobile # Check mobile scores against dist/
+pnpm run test:lighthouse:desktop # Check desktop scores against dist/
 pnpm run clean                # Remove dist/
 ```
 
@@ -130,6 +132,7 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 - Run Lighthouse against the served production build for changes affecting the shipped site. Record the Lighthouse version, URL, profiles, and scores; keep reports available for review. Documentation-only changes do not require a new run.
 - A score below 100 in any category blocks declaring the change ready. Investigate and fix the regression, then rerun. Do not hide failing audits, weaken throttling, or change the tested content to obtain a passing score. If an external condition prevents verification, report the blocker rather than claiming compliance.
 - Local Lighthouse results do not establish deployed-site scores; distinguish local and production measurements when reporting results.
+- After building and installing Playwright Chromium, use `pnpm run test:lighthouse:mobile` and `pnpm run test:lighthouse:desktop`. Lighthouse CI serves every generated HTML page from `dist/`, checks each profile once with standard settings, and requires 100 in all four categories. Reports go to `lighthouse-reports/<profile>/`; raw results and assertion failures go to `.lighthouseci/`. PR CI runs both profiles, and deployment checks the final seasonal build before uploading it. Both workflows retain reports for seven days, including failures. `CHROME_PATH` can select Brave for local runs.
 
 - `pnpm run test:e2e` uses Node's test runner and Playwright against the live `https://r3nya.ru` site. It is a production health check, not validation of local changes; no local server is needed.
 - The PR build workflow checks formatting, unit tests, and the production build on Ubuntu, plus browser and visual tests against a production build on `macos-26`.
