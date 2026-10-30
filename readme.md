@@ -105,4 +105,4 @@ See [AGENTS.md](AGENTS.md) for component conventions, accessibility requirements
 - Pushes to `develop` deploy to GitHub Pages after a build and browser and visual tests. Deployment can also run manually. The workflow enables snow for builds made from December 15 through January 15, inclusive, using UTC dates.
 - Production E2E checks run every Sunday at 06:00 UTC and can also run manually.
 - Failed browser and visual runs upload `visual-test-results` artifacts containing failure images and reference screenshots.
-- Pull requests also check Lighthouse in mobile and desktop jobs. Deployment checks both profiles against the final build, including seasonal snow when enabled, before uploading the Pages artifact. Both workflows preserve Lighthouse reports for seven days, including failures.
+- Pull requests also check Lighthouse in mobile and desktop jobs. Deployment checks both profiles against the final build, including seasonal snow when enabled, before uploading the Pages artifact. Both workflows preserve Lighthouse reports for seven days, including failures. A passing profile also adds its scores to the workflow run summary.

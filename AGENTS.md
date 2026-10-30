@@ -57,6 +57,7 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 | `static/`                                       | Public assets; replaces Astro's default public/              |
 | `src/test/`                                     | Unit tests, browser tests, and snapshots                     |
 | `e2e-tests/`                                    | Production health checks                                     |
+| `scripts/lighthouse-job-summary.ts`             | Lighthouse scores for the Actions job summary                |
 
 ## Components and TypeScript
 
@@ -132,7 +133,7 @@ Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not decl
 - Run Lighthouse against the served production build for changes affecting the shipped site. Record the Lighthouse version, URL, profiles, and scores; keep reports available for review. Documentation-only changes do not require a new run.
 - A score below 100 in any category blocks declaring the change ready. Investigate and fix the regression, then rerun. Do not hide failing audits, weaken throttling, or change the tested content to obtain a passing score. If an external condition prevents verification, report the blocker rather than claiming compliance.
 - Local Lighthouse results do not establish deployed-site scores; distinguish local and production measurements when reporting results.
-- After building and installing Playwright Chromium, use `pnpm run test:lighthouse:mobile` and `pnpm run test:lighthouse:desktop`. Lighthouse CI serves every generated HTML page from `dist/`, checks each profile once with standard settings, and requires 100 in all four categories. Reports go to `lighthouse-reports/<profile>/`; raw results and assertion failures go to `.lighthouseci/`. PR CI runs both profiles, and deployment checks the final seasonal build before uploading it. Both workflows retain reports for seven days, including failures. `CHROME_PATH` can select Brave for local runs.
+- After building and installing Playwright Chromium, use `pnpm run test:lighthouse:mobile` and `pnpm run test:lighthouse:desktop`. Lighthouse CI serves every generated HTML page from `dist/`, checks each profile once with standard settings, and requires 100 in all four categories. Reports go to `lighthouse-reports/<profile>/`; raw results and assertion failures go to `.lighthouseci/`. PR CI runs both profiles, and deployment checks the final seasonal build before uploading it. Both workflows retain reports for seven days, including failures. When a profile passes, `scripts/lighthouse-job-summary.ts` appends its version, page scores, and core metrics to `$GITHUB_STEP_SUMMARY`, which GitHub shows on the workflow run summary. `CHROME_PATH` can select Brave for local runs.
 
 - `pnpm run test:e2e` uses Node's test runner and Playwright against the live `https://r3nya.ru` site. It is a production health check, not validation of local changes; no local server is needed.
 - The PR build workflow checks formatting, unit tests, and the production build on Ubuntu, plus browser and visual tests against a production build on `macos-26`.

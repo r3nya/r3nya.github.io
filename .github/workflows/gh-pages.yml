@@ -91,8 +91,14 @@ jobs:
       - name: Check mobile Lighthouse scores
         run: pnpm run test:lighthouse:mobile
 
+      - name: Publish mobile Lighthouse job summary
+        run: node scripts/lighthouse-job-summary.ts lighthouse-reports/mobile lighthouse-deployment
+
       - name: Check desktop Lighthouse scores
         run: pnpm run test:lighthouse:desktop
+
+      - name: Publish desktop Lighthouse job summary
+        run: node scripts/lighthouse-job-summary.ts lighthouse-reports/desktop lighthouse-deployment
 
       - name: Upload Lighthouse reports
         if: always()
