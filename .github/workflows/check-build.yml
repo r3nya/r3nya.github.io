@@ -31,6 +31,9 @@ jobs:
       - name: Prettier check
         run: pnpm run format:check
 
+      - name: Type check
+        run: pnpm run type-check
+
       - name: Run unit tests 🧪
         run: pnpm run test:unit
 

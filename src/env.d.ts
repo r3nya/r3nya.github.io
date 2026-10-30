@@ -13,9 +13,3 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
-
-// Custom module declarations for Astro components
-declare module '*.astro' {
-  const Component: unknown;
-  export default Component;
-}
