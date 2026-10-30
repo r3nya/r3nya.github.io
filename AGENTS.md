@@ -37,7 +37,7 @@ pnpm run test:lighthouse:desktop # Check desktop scores against dist/
 pnpm run clean                # Remove dist/
 ```
 
-Known tooling limitation: `type-check` invokes `tsc`, but TypeScript is not declared as a dependency. A clean install may report `tsc: command not found`; do not claim type-check passed or silently install an unpinned compiler.
+`pnpm run type-check` runs `astro check` against Astro components and TypeScript files. The checker and TypeScript versions are declared in `package.json` and locked in `pnpm-lock.yaml`; PR CI runs this check before tests and the production build.
 
 ## Source map
 

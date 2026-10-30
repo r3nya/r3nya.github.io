@@ -42,9 +42,7 @@ pnpm run preview
 | `pnpm run test:e2e`                | Check the live site at `https://r3nya.ru`                 |
 | `pnpm run test:lighthouse:mobile`  | Check mobile Lighthouse scores against `dist/`            |
 | `pnpm run test:lighthouse:desktop` | Check desktop Lighthouse scores against `dist/`           |
-| `pnpm run type-check`              | Invoke `tsc --noEmit`, subject to the limitation below    |
-
-`type-check` currently invokes `tsc`, but TypeScript is not declared as a dependency. A clean install may report `tsc: command not found`.
+| `pnpm run type-check`              | Check Astro components and TypeScript files               |
 
 ## Testing
 
@@ -54,6 +52,7 @@ Browser tests use Playwright Chromium against the served production build. They 
 
 ```bash
 pnpm run format:check
+pnpm run type-check
 pnpm run test:unit --run
 pnpm run build
 pnpm exec playwright install chromium
@@ -101,7 +100,7 @@ See [AGENTS.md](AGENTS.md) for component conventions, accessibility requirements
 
 ## CI and deployment
 
-- Pull requests run formatting checks, unit tests, and a production build on Ubuntu, plus browser and visual tests on `macos-26`.
+- Pull requests run formatting checks, type checks, unit tests, and a production build on Ubuntu, plus browser and visual tests on `macos-26`.
 - Pushes to `develop` deploy to GitHub Pages after a build and browser and visual tests. Deployment can also run manually. The workflow enables snow for builds made from December 15 through January 15, inclusive, using UTC dates.
 - Production E2E checks run every Sunday at 06:00 UTC and can also run manually.
 - Failed browser and visual runs upload `visual-test-results` artifacts containing failure images and reference screenshots.

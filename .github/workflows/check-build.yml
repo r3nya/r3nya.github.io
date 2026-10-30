@@ -31,6 +31,9 @@ jobs:
       - name: Prettier check
         run: pnpm run format:check
 
+      - name: Type check
+        run: pnpm run type-check
+
       - name: Run unit tests 🧪
         run: pnpm run test:unit
 
@@ -58,6 +61,12 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
       - name: Run browser and visual tests
         run: pnpm run test:visual
+      - name: Check reduced motion with snow enabled
+        env:
+          PUBLIC_SNOW_FALL_ENABLED: 'true'
+        run: |
+          pnpm run build
+          pnpm run test:visual --project behavior --testNamePattern 'respects reduced-motion preferences for snow'
       - name: Upload visual test failures
         if: failure()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
