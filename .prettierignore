@@ -13,6 +13,8 @@ node_modules/
 .astro/
 .cache/
 .vitest-attachments/
+.lighthouseci/
+lighthouse-reports/
 
 # Logs
 *.log

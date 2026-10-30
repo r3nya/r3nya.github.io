@@ -26,21 +26,23 @@ pnpm run preview
 
 ## Commands
 
-| Command                       | Description                                               |
-| ----------------------------- | --------------------------------------------------------- |
-| `pnpm run dev`                | Start the development server                              |
-| `pnpm run build`              | Generate the static site in `dist/`                       |
-| `pnpm run preview`            | Serve the production build locally                        |
-| `pnpm run clean`              | Remove `dist/`                                            |
-| `pnpm run format`             | Format files with Prettier                                |
-| `pnpm run format:check`       | Check formatting without changing files                   |
-| `pnpm run test:unit`          | Run unit tests in watch mode locally, once in CI          |
-| `pnpm run test:unit --run`    | Run unit tests once                                       |
-| `pnpm run test:unit --run -u` | Update HTML snapshots                                     |
-| `pnpm run test:visual`        | Run browser behavior and screenshot tests against `dist/` |
-| `pnpm run test:visual:update` | Update visual baselines against `dist/`                   |
-| `pnpm run test:e2e`           | Check the live site at `https://r3nya.ru`                 |
-| `pnpm run type-check`         | Check Astro components and TypeScript files               |
+| Command                            | Description                                               |
+| ---------------------------------- | --------------------------------------------------------- |
+| `pnpm run dev`                     | Start the development server                              |
+| `pnpm run build`                   | Generate the static site in `dist/`                       |
+| `pnpm run preview`                 | Serve the production build locally                        |
+| `pnpm run clean`                   | Remove `dist/`                                            |
+| `pnpm run format`                  | Format files with Prettier                                |
+| `pnpm run format:check`            | Check formatting without changing files                   |
+| `pnpm run test:unit`               | Run unit tests in watch mode locally, once in CI          |
+| `pnpm run test:unit --run`         | Run unit tests once                                       |
+| `pnpm run test:unit --run -u`      | Update HTML snapshots                                     |
+| `pnpm run test:visual`             | Run browser behavior and screenshot tests against `dist/` |
+| `pnpm run test:visual:update`      | Update visual baselines against `dist/`                   |
+| `pnpm run test:e2e`                | Check the live site at `https://r3nya.ru`                 |
+| `pnpm run test:lighthouse:mobile`  | Check mobile Lighthouse scores against `dist/`            |
+| `pnpm run test:lighthouse:desktop` | Check desktop Lighthouse scores against `dist/`           |
+| `pnpm run type-check`              | Check Astro components and TypeScript files               |
 
 ## Testing
 
@@ -64,6 +66,8 @@ Visual baselines live in `src/test/__screenshots__/HomePage.visual.test.ts/`. Ge
 `pnpm run test:e2e` uses Node's test runner and Playwright to check the deployed site. It does not validate local changes.
 
 Changes to the shipped site also require Lighthouse scores of 100 in Performance, Accessibility, Best Practices, and SEO for both mobile and desktop profiles. Run Lighthouse against the served production build and retain the reports with the version, URL, profiles, and scores. These are local measurements; deployed-site scores require a separate run. Documentation-only changes do not require Lighthouse or browser tests.
+
+After building and installing Playwright Chromium, run `pnpm run test:lighthouse:mobile` and `pnpm run test:lighthouse:desktop`. Lighthouse CI serves `dist/`, checks every generated HTML page once with each profile's standard settings, and fails if any required category scores below 100. HTML and JSON reports, including the Lighthouse version, URL, profile, and scores, are saved under `lighthouse-reports/mobile/` and `lighthouse-reports/desktop/`. Raw results and assertion failures are retained in `.lighthouseci/`. Set `CHROME_PATH` to use another installed Chromium browser, such as Brave.
 
 ## Languages and themes
 
@@ -100,3 +104,4 @@ See [AGENTS.md](AGENTS.md) for component conventions, accessibility requirements
 - Pushes to `develop` deploy to GitHub Pages after a build and browser and visual tests. Deployment can also run manually. The workflow enables snow for builds made from December 15 through January 15, inclusive, using UTC dates.
 - Production E2E checks run every Sunday at 06:00 UTC and can also run manually.
 - Failed browser and visual runs upload `visual-test-results` artifacts containing failure images and reference screenshots.
+- Pull requests also check Lighthouse in mobile and desktop jobs. Deployment checks both profiles against the final build, including seasonal snow when enabled, before uploading the Pages artifact. Both workflows preserve Lighthouse reports for seven days, including failures. A passing profile also adds its scores to the workflow run summary.
