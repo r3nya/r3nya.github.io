@@ -1,13 +1,8 @@
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
-import { Window } from 'happy-dom';
+import { Window, type HTMLDivElement } from 'happy-dom';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
-
-interface RenderOptions {
-  props?: Record<string, unknown>;
-  slots?: Record<string, unknown>;
-}
 
 function cleanAstroAttributes(html: string): string {
   // Remove Astro development attributes that contain absolute file paths
@@ -22,8 +17,8 @@ function cleanAstroAttributes(html: string): string {
 const happyWindow = new Window();
 
 export async function renderAstroComponent(
-  Component: unknown,
-  options: RenderOptions = {},
+  Component: Parameters<AstroContainer['renderToString']>[0],
+  options: Parameters<AstroContainer['renderToString']>[1] = {},
 ): Promise<HTMLDivElement> {
   const container = await AstroContainer.create();
   const result = await container.renderToString(Component, options);
