@@ -51,6 +51,19 @@ describe('HomePage browser behavior', (): void => {
     await browser?.close();
   });
 
+  it.runIf(process.env.PUBLIC_SNOW_FALL_ENABLED === 'true')(
+    'respects reduced-motion preferences for snow',
+    async (): Promise<void> => {
+      const flake = page.locator('snow-fall').locator('div').first();
+      await flake.waitFor({ state: 'attached' });
+      expect(await flake.isVisible()).toBe(false);
+      await page.emulateMedia({ reducedMotion: 'no-preference' });
+      await expect.poll((): Promise<boolean> => flake.isVisible()).toBe(true);
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await expect.poll((): Promise<boolean> => flake.isVisible()).toBe(false);
+    },
+  );
+
   it.each(['en', 'ru', 'es'])(
     'reaches every control and link with Tab in %s',
     async (locale: string): Promise<void> => {
