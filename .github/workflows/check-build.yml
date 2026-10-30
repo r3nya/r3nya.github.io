@@ -89,7 +89,7 @@ jobs:
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
       - name: Check Lighthouse scores
-        run: pnpm run test:lighthouse:${{ matrix.profile }}
+        run: pnpm run test:lighthouse:${{ matrix.profile }} --collect.settings.chromeFlags=--no-sandbox
       - name: Upload Lighthouse reports
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
