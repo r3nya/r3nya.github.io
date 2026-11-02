@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-26
+    runs-on: macos-latest
     env:
       # Suppress punycode deprecation warning from dependencies (Node.js 21+)
       NODE_OPTIONS: --disable-warning=DEP0040
