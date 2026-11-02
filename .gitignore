@@ -23,6 +23,7 @@ dist
 # Test/coverage artifacts
 coverage/
 .nyc_output
+.vitest/
 .vitest-attachments/
 .lighthouseci/
 lighthouse-reports/
