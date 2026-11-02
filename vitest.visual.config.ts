@@ -36,6 +36,7 @@ export default defineConfig({
               async prepareHomepage(
                 { page, iframe }: BrowserCommandContext,
                 theme: 'light' | 'dark',
+                allowVerticalScroll = false,
               ): Promise<void> {
                 await page.emulateMedia({ colorScheme: theme });
                 const site = iframe.getByTestId('homepage').contentFrame();
@@ -44,17 +45,17 @@ export default defineConfig({
                   .waitFor({ state: 'visible' });
                 await site
                   .locator('html')
-                  .evaluate(async (html): Promise<void> => {
+                  .evaluate(async (html, allowScroll): Promise<void> => {
                     await html.ownerDocument.fonts.ready;
                     if (
-                      html.scrollHeight > html.clientHeight ||
+                      (!allowScroll && html.scrollHeight > html.clientHeight) ||
                       html.scrollWidth > html.clientWidth
                     ) {
                       throw new Error(
                         'Homepage overflows the screenshot viewport',
                       );
                     }
-                  });
+                  }, allowVerticalScroll);
               },
             },
           },

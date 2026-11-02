@@ -28,6 +28,31 @@ interface AlternateLink {
   href: string | null;
 }
 
+interface Viewport {
+  width: number;
+  height: number;
+}
+
+interface DuoViewport extends Viewport {
+  name: string;
+  fits: boolean;
+}
+
+// iPhone Duo CSS-pixel viewports: outer and inner screens, plus split view.
+const duoViewports: readonly DuoViewport[] = [
+  { name: 'outer portrait', width: 382, height: 580, fits: true },
+  { name: 'outer landscape', width: 594, height: 368, fits: false },
+  { name: 'inner portrait', width: 669, height: 867, fits: true },
+  { name: 'inner landscape', width: 951, height: 585, fits: true },
+  { name: 'split view', width: 385, height: 571, fits: true },
+];
+
+const layoutViewports: readonly Viewport[] = [
+  { width: 375, height: 900 },
+  { width: 1280, height: 900 },
+  ...duoViewports,
+];
+
 describe('HomePage browser behavior', (): void => {
   let browser: Browser;
   let page: Page;
@@ -135,10 +160,10 @@ describe('HomePage browser behavior', (): void => {
     },
   );
 
-  it.each([375, 1280])(
-    'scales profile typography with the browser font size at %i px',
-    async (width: number): Promise<void> => {
-      await page.setViewportSize({ width, height: 900 });
+  it.each(layoutViewports)(
+    'scales profile typography with the browser font size at $width×$height',
+    async ({ width, height }: Viewport): Promise<void> => {
+      await page.setViewportSize({ width, height });
       const selectors = [
         '.profile-header__title',
         '.profile-header__nickname',
@@ -287,10 +312,10 @@ describe('HomePage browser behavior', (): void => {
     },
   );
 
-  it.each([375, 1280])(
-    'keeps content stable while theme controls initialize at %i px',
-    async (width: number): Promise<void> => {
-      await page.setViewportSize({ width, height: 900 });
+  it.each(layoutViewports)(
+    'keeps content stable while theme controls initialize at $width×$height',
+    async ({ width, height }: Viewport): Promise<void> => {
+      await page.setViewportSize({ width, height });
       let releaseScripts: () => void = (): void => {};
       const scriptsReady = new Promise<void>((resolve: () => void): void => {
         releaseScripts = resolve;
@@ -419,6 +444,42 @@ describe('HomePage browser behavior', (): void => {
         expect(tooltip.y).toBeGreaterThan(controls.y + controls.height);
         expect(tooltip.x).toBeGreaterThanOrEqual(0);
         expect(tooltip.x + tooltip.width).toBeLessThanOrEqual(width);
+      }
+    },
+  );
+
+  it.each(duoViewports)(
+    'fits the iPhone Duo $name screen at $width×$height',
+    async ({ width, height, fits }: DuoViewport): Promise<void> => {
+      await page.setViewportSize({ width, height });
+      for (const locale of ['en', 'ru', 'es']) {
+        await page.goto(`${baseUrl}/${locale}/`);
+        await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
+        const overflow = await page.evaluate((): Viewport => ({
+          width:
+            document.documentElement.scrollWidth -
+            document.documentElement.clientWidth,
+          height:
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight,
+        }));
+        expect(overflow.width).toBe(0);
+        if (fits) expect(overflow.height).toBe(0);
+        const targets = await page
+          .locator(
+            '.lang-switcher__current, .lang-switcher__link, [data-theme-toggle]',
+          )
+          .evaluateAll((elements: Element[]): Viewport[] =>
+            elements.map((element: Element): Viewport => {
+              const { width, height } = element.getBoundingClientRect();
+              return { width, height };
+            }),
+          );
+        expect(targets).toHaveLength(4);
+        for (const target of targets) {
+          expect(target.width).toBeGreaterThanOrEqual(44);
+          expect(target.height).toBeGreaterThanOrEqual(44);
+        }
       }
     },
   );

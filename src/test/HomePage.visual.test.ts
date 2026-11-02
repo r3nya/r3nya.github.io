@@ -3,7 +3,10 @@ import { page, server } from 'vitest/browser';
 
 declare module 'vitest/browser' {
   interface BrowserCommands {
-    prepareHomepage(theme: 'light' | 'dark'): Promise<void>;
+    prepareHomepage(
+      theme: 'light' | 'dark',
+      allowVerticalScroll: boolean,
+    ): Promise<void>;
   }
 }
 
@@ -24,9 +27,47 @@ describe('HomePage visual regression', () => {
       height: 812,
       theme: 'dark',
     },
+    // iPhone Duo CSS-pixel viewports.
+    {
+      name: 'duo-outer-portrait',
+      path: '/',
+      width: 382,
+      height: 580,
+      theme: 'light',
+    },
+    {
+      name: 'duo-outer-landscape',
+      path: '/',
+      width: 594,
+      height: 368,
+      theme: 'light',
+      // The ≤600 px layout is taller than the outer landscape screen.
+      allowVerticalScroll: true,
+    },
+    {
+      name: 'duo-inner-portrait',
+      path: '/',
+      width: 669,
+      height: 867,
+      theme: 'light',
+    },
+    {
+      name: 'duo-inner-landscape',
+      path: '/',
+      width: 951,
+      height: 585,
+      theme: 'light',
+    },
+    {
+      name: 'duo-split',
+      path: '/',
+      width: 385,
+      height: 571,
+      theme: 'light',
+    },
   ] as const)(
     'matches $name snapshot',
-    async ({ name, path, width, height, theme }) => {
+    async ({ name, path, width, height, theme, ...options }) => {
       await page.viewport(width, height);
       document.body.style.margin = '0';
       const site = document.createElement('iframe');
@@ -35,7 +76,10 @@ describe('HomePage visual regression', () => {
       site.style.cssText = `display:block;border:0;width:${width}px;height:${height}px`;
       site.src = new URL(path, inject('siteUrl')).href;
       document.body.append(site);
-      await server.commands.prepareHomepage(theme);
+      await server.commands.prepareHomepage(
+        theme,
+        'allowVerticalScroll' in options,
+      );
       await expect(page.getByTestId('homepage')).toMatchScreenshot(
         `homepage-${name}`,
       );
