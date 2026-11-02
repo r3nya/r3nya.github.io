@@ -36,13 +36,25 @@ updates:
       include:
         - '*'
     groups:
+      # Vitest + @vitest/* — bump together (incl. majors)
+      vitest:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
+        applies-to: 'version-updates'
       production:
         dependency-type: 'production'
+        exclude-patterns:
+          - 'vitest'
+          - '@vitest/*'
         update-types:
           - 'minor'
           - 'patch'
       development:
         dependency-type: 'development'
+        exclude-patterns:
+          - 'vitest'
+          - '@vitest/*'
         update-types:
           - 'minor'
           - 'patch'
