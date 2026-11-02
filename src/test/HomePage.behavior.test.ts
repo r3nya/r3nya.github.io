@@ -347,6 +347,156 @@ describe('HomePage browser behavior', (): void => {
     },
   );
 
+  it('matches the language hover and keyboard highlight on the theme toggle', async (): Promise<void> => {
+    const button = page.locator('[data-theme-toggle]');
+    const language = page.locator('.lang-switcher__link').first();
+    const appearance = (selector: string): Promise<Record<string, string>> =>
+      page
+        .locator(selector)
+        .first()
+        .evaluate((element: HTMLElement): Record<string, string> => {
+          const marker = getComputedStyle(element, '::before');
+          return {
+            color: getComputedStyle(element).color,
+            background: marker.backgroundColor,
+            scale: marker.scale,
+            duration: marker.transitionDuration,
+            property: marker.transitionProperty,
+          };
+        });
+    const initial = await appearance('[data-theme-toggle]');
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await language.hover();
+    await expect
+      .poll(
+        async (): Promise<string> =>
+          (await appearance('.lang-switcher__link')).scale,
+      )
+      .toBe('1');
+    const highlight = await appearance('.lang-switcher__link');
+    expect(highlight.background).toBe('rgb(213, 220, 244)');
+    expect(highlight.duration).toBe('0.2s');
+    await button.hover();
+    await expect
+      .poll(() => appearance('[data-theme-toggle]'))
+      .toEqual(highlight);
+    expect(highlight.scale).not.toBe(initial.scale);
+    await page.mouse.move(0, 0);
+    await page.keyboard.press('Tab');
+    await button.focus();
+    await expect
+      .poll(() => appearance('[data-theme-toggle]'))
+      .toEqual(highlight);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    expect((await appearance('[data-theme-toggle]')).property).toBe('none');
+  });
+
+  it.each(['en', 'ru', 'es'] as const)(
+    'reveals manual theme changes from top to bottom in %s',
+    async (locale: string): Promise<void> => {
+      await page.emulateMedia({ reducedMotion: 'no-preference' });
+      await page.goto(`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}`);
+      await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
+      for (const theme of ['dark', 'light']) {
+        await page.locator('[data-theme-toggle]').click();
+        await expect
+          .poll((): Promise<boolean> =>
+            page.evaluate((): boolean =>
+              document
+                .getAnimations()
+                .some(
+                  (animation: Animation): boolean =>
+                    animation instanceof CSSAnimation &&
+                    animation.animationName === 'theme-toggle-reveal',
+                ),
+            ),
+          )
+          .toBe(true);
+        const reveal = await page.evaluate(() => {
+          const animation = document
+            .getAnimations()
+            .find(
+              (candidate: Animation): boolean =>
+                candidate instanceof CSSAnimation &&
+                candidate.animationName === 'theme-toggle-reveal',
+            );
+          return {
+            duration: animation?.effect?.getTiming().duration,
+            clips:
+              animation?.effect instanceof KeyframeEffect
+                ? animation.effect
+                    .getKeyframes()
+                    .map(
+                      (keyframe: ComputedKeyframe): unknown =>
+                        keyframe.clipPath,
+                    )
+                : [],
+          };
+        });
+        expect(reveal).toEqual({
+          duration: 280,
+          clips: ['inset(0px 0px 100%)', 'inset(0px)'],
+        });
+        await page.evaluate(async (): Promise<void> => {
+          await Promise.all(
+            document
+              .getAnimations()
+              .map(
+                (animation: Animation): Promise<Animation> =>
+                  animation.finished,
+              ),
+          );
+        });
+        expect(await page.getAttribute('html', 'data-theme')).toBe(theme);
+      }
+    },
+  );
+
+  it('keeps the last theme after rapid toggle clicks', async (): Promise<void> => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page
+      .locator('[data-theme-toggle]')
+      .evaluate((button: HTMLButtonElement): void => {
+        button.click();
+        button.click();
+      });
+    await expect
+      .poll((): Promise<string | null> =>
+        page.getAttribute('html', 'data-theme'),
+      )
+      .toBe('light');
+    expect(
+      await page.locator('[data-theme-toggle]').getAttribute('aria-pressed'),
+    ).toBe('false');
+  });
+
+  it.each(['reduced motion', 'unsupported API'])(
+    'switches themes immediately with %s',
+    async (fallback: string): Promise<void> => {
+      if (fallback === 'unsupported API') {
+        await page.emulateMedia({ reducedMotion: 'no-preference' });
+        await page.evaluate((): void => {
+          Object.defineProperty(document, 'startViewTransition', {
+            value: undefined,
+            configurable: true,
+          });
+        });
+      }
+      await page.locator('[data-theme-toggle]').click();
+      expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
+      expect(
+        await page.evaluate((): boolean =>
+          document
+            .getAnimations()
+            .some(
+              (animation: Animation): boolean =>
+                animation instanceof CSSAnimation,
+            ),
+        ),
+      ).toBe(false);
+    },
+  );
+
   it('loads a new document on locale navigation and resets the temporary theme', async (): Promise<void> => {
     await page.evaluate((): void => {
       document.documentElement.dataset.navigationMarker = 'previous-document';

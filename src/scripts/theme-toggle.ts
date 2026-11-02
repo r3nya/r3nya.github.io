@@ -3,6 +3,7 @@ import { themeColors } from '@/config/site';
 type Theme = 'light' | 'dark';
 const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 let preference: Theme | null = null;
+let transition: ViewTransition | undefined;
 
 function isDark(): boolean {
   return preference === 'dark' || (preference === null && systemTheme.matches);
@@ -36,7 +37,15 @@ document.addEventListener('click', (event: MouseEvent): void => {
   )
     return;
   preference = isDark() ? 'light' : 'dark';
-  applyTheme();
+  transition?.skipTransition();
+  if (
+    !document.startViewTransition ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    applyTheme();
+    return;
+  }
+  transition = document.startViewTransition(applyTheme);
 });
 systemTheme.addEventListener('change', (): void => applyTheme());
 applyTheme();
