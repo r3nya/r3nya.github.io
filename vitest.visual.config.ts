@@ -4,6 +4,7 @@ import type { BrowserCommandContext } from 'vitest/node';
 
 export default defineConfig({
   test: {
+    attachmentsDir: '.vitest-attachments',
     projects: [
       {
         test: {
