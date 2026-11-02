@@ -35,6 +35,12 @@
   }
 }
 
+@media (min-width: 601px) and (max-height: 640px) {
+  .base-layout__main {
+    @apply pt-[4svh] pb-6;
+  }
+}
+
 @media (max-width: 600px) {
   .base-layout__container {
     @apply p-5;
