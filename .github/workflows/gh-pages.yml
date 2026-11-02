@@ -67,6 +67,9 @@ jobs:
         env:
           PUBLIC_SNOW_FALL_ENABLED: ${{ steps.snow-fall.outputs.enabled }}
 
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Check mobile Lighthouse scores
         run: pnpm run test:lighthouse:mobile --collect.settings.chromeFlags=--no-sandbox
 
