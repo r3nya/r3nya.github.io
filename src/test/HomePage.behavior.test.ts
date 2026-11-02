@@ -452,6 +452,49 @@ describe('HomePage browser behavior', (): void => {
     },
   );
 
+  it.each(['light', 'dark'] as const)(
+    'updates the theme icon after touch taps from %s without a sticky highlight',
+    async (system: 'light' | 'dark'): Promise<void> => {
+      const mobile = await browser.newPage({
+        viewport: { width: 375, height: 812 },
+        isMobile: true,
+        hasTouch: true,
+        colorScheme: system,
+        reducedMotion: 'no-preference',
+      });
+      try {
+        await mobile.goto(baseUrl);
+        const button = mobile.locator('[data-theme-toggle]');
+        await button.waitFor({ state: 'visible' });
+        for (const dark of [system === 'light', system === 'dark']) {
+          await button.tap();
+          await expect
+            .poll((): Promise<string | null> =>
+              button.getAttribute('aria-pressed'),
+            )
+            .toBe(String(dark));
+          await expect
+            .poll((): Promise<string> =>
+              button
+                .locator('span')
+                .evaluate(
+                  (icon: HTMLElement): string => getComputedStyle(icon).color,
+                ),
+            )
+            .toBe(dark ? 'rgb(246, 240, 223)' : 'rgb(36, 36, 36)');
+          expect(
+            await button.evaluate(
+              (element: HTMLElement): string =>
+                getComputedStyle(element, '::before').scale,
+            ),
+          ).toBe('1 0');
+        }
+      } finally {
+        await mobile.close();
+      }
+    },
+  );
+
   it('keeps the last theme after rapid toggle clicks', async (): Promise<void> => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await page
