@@ -89,7 +89,7 @@ pnpm run clean                # Remove dist/
 - Keep the approved tilted profile card, pink nickname badge, pastel contact cards, and hard offset shadows.
 - Theme tokens separate text (`ink`), outlines (`outline`), shadows (`shadow`), and the background grid (`grid`). Do not reuse text color for every border and shadow.
 - In dark mode, the grid and outlines are subdued, but warm gray shadows remain visible enough to preserve the raised-card effect.
-- Current layout: languages left, theme right; desktop content has `20svh` top padding, mobile content has `pt-12`. Mobile nickname tooltips can grow to `16rem`, capped by the viewport width. The mobile layout breakpoint is 600px; contacts stack into one column at widths up to `22.5rem`.
+- Keep languages left and theme right. `src/layouts/BaseLayout.css` defines content spacing, including adjustments for narrow and low-height viewports. Mobile nickname tooltips can grow to `16rem`, capped by the viewport width. The mobile layout breakpoint is 600px; contacts stack into one column at widths up to `22.5rem`.
 - The active language has a pink marker; links get a lavender bottom-up fill on hover and keyboard focus.
 
 ## Theme and accessibility
@@ -118,24 +118,31 @@ pnpm run clean                # Remove dist/
 - Build first. `serve-built-site.ts` serves `dist/` over HTTP for both projects in `vitest.visual.config.ts`.
 - `HomePage.visual.test.ts` runs in Vitest Browser Mode with the Playwright provider. It loads the built site in an iframe and compares real PNG images using `toMatchScreenshot()`.
 - `HomePage.behavior.test.ts` runs in the Node project with Playwright Chromium to check full-page navigation, reloads, theme changes, and keyboard behavior. `pnpm run test:visual` runs both projects; unit tests exclude both files.
+- For changes affecting snow or reduced motion, also run the test below. The build flag includes snow in `dist/`; the test flag enables the otherwise skipped test.
+
+  ```bash
+  PUBLIC_SNOW_FALL_ENABLED=true pnpm run build
+  PUBLIC_SNOW_FALL_ENABLED=true pnpm run test:visual --project behavior --testNamePattern 'respects reduced-motion preferences for snow'
+  ```
+
 - Keep the provider's host viewport large enough for every test iframe, or Vitest can scale screenshots. Screenshot setup waits for theme initialization and fonts and rejects content overflow.
 - Do not replace this with `page.setContent()` of raw build HTML: relative assets and client behavior need the served page.
 - If Chromium is missing, install it with `pnpm exec playwright install chromium` (CI/Linux may need `--with-deps`).
 - Baselines live in `src/test/__screenshots__/HomePage.visual.test.ts/` and include the browser and platform in their names. Update only for intentional, visually reviewed changes, then rerun without update mode.
 - Failures produce actual/diff images in `.vitest-attachments/`; the PR and deployment workflows upload these and the reference screenshots as `visual-test-results`.
-- Use the same OS/browser environment to generate and compare baselines. CI uses `macos-26`; the label does not pin every image update. Keep `@vitest/browser-playwright` aligned with the installed Vitest version.
+- Use the same OS/browser environment to generate and compare baselines. CI uses `macos-latest`; its OS version, image, and fonts can change. Keep `@vitest/browser-playwright` aligned with the installed Vitest version.
 - Browser/font differences can change screenshots; investigate before replacing baselines.
 - For layout work, inspect desktop, mobile, narrow screens, both themes, and translated content in Brave. Check overflow and keyboard interaction, not only compilation.
 
 ### Production checks and CI
 
 - **Lighthouse requirement:** the production build must score **100/100 in all four categories: Performance, Accessibility, Best Practices, and SEO**, in both mobile and desktop profiles.
-- Run Lighthouse against the served production build for changes affecting the shipped site. Record the Lighthouse version, URL, profiles, and scores; keep reports available for review. Documentation-only changes do not require a new run.
-- A score below 100 in any category blocks declaring the change ready. Investigate and fix the regression, then rerun. Do not hide failing audits, weaken throttling, or change the tested content to obtain a passing score. If an external condition prevents verification, report the blocker rather than claiming compliance.
+- Run Lighthouse against the served production build for changes affecting the shipped site. Record the Lighthouse version, URL, profiles, and scores; keep reports available for review.
+- Failing scores block declaring the change ready. Investigate and fix the regression, then rerun. Do not hide failing audits, weaken throttling, or change the tested content to obtain a passing score. If an external condition prevents verification, report the blocker rather than claiming compliance.
 - Local Lighthouse results do not establish deployed-site scores; distinguish local and production measurements when reporting results.
-- After building and installing Playwright Chromium, use `pnpm run test:lighthouse:mobile` and `pnpm run test:lighthouse:desktop`. Lighthouse CI serves every generated HTML page from `dist/`, checks each profile once with standard settings, and requires 100 in all four categories. Reports go to `lighthouse-reports/<profile>/`; raw results and assertion failures go to `.lighthouseci/`. PR CI runs both profiles, and deployment checks the final seasonal build before uploading it. Both workflows retain reports for seven days, including failures. When a profile passes, `scripts/lighthouse-job-summary.ts` appends its version, page scores, and core metrics to `$GITHUB_STEP_SUMMARY`, which GitHub shows on the workflow run summary. `CHROME_PATH` can select Brave for local runs.
-
+- After building and installing Playwright Chromium, use `pnpm run test:lighthouse:mobile` and `pnpm run test:lighthouse:desktop`. Lighthouse CI serves every generated HTML page from `dist/` and checks each profile once with standard settings. `CHROME_PATH` can select Brave for local runs.
+- Reports go to `lighthouse-reports/<profile>/`; raw results and assertion failures go to `.lighthouseci/`. PR CI runs both profiles, and deployment checks the final seasonal build before uploading it. Both workflows retain reports for seven days, including failures. After a profile passes, CI runs `scripts/lighthouse-job-summary.ts` to append the Lighthouse version, page scores, and core metrics to `$GITHUB_STEP_SUMMARY`.
 - `pnpm run test:e2e` uses Node's test runner and Playwright against the live `https://r3nya.ru` site. It is a production health check, not validation of local changes; no local server is needed.
-- The PR build workflow checks formatting, unit tests, and the production build on Ubuntu, plus browser and visual tests against a production build on `macos-26`.
+- The PR build workflow checks formatting, types, unit tests, and the production build on Ubuntu, plus browser and visual tests against a production build on `macos-latest`.
 - For code changes, run relevant tests and a production build before reporting completion. For CSS/layout changes, also review and verify visual baselines before committing.
-- For documentation-only changes, check the facts, formatting, and diff; a full browser test run is unnecessary.
+- For documentation-only changes, check the facts, formatting, and diff. Build, browser tests, and Lighthouse runs are unnecessary.
