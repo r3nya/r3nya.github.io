@@ -29,6 +29,14 @@ jobs:
         run: corepack enable
       - name: Verify pnpm version
         run: pnpm --version
+      - name: Get pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+      - name: Cache pnpm store
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: ${{ runner.os }}-${{ runner.arch }}-pnpm-${{ hashFiles('pnpm-lock.yaml', 'package.json') }}
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -57,6 +65,14 @@ jobs:
         run: corepack enable
       - name: Verify pnpm version
         run: pnpm --version
+      - name: Get pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+      - name: Cache pnpm store
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: ${{ runner.os }}-${{ runner.arch }}-pnpm-${{ hashFiles('pnpm-lock.yaml', 'package.json') }}
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build site without snow
@@ -95,6 +111,14 @@ jobs:
           node-version-file: .nvmrc
       - name: Enable Corepack
         run: corepack enable
+      - name: Get pnpm store path
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+      - name: Cache pnpm store
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: ${{ runner.os }}-${{ runner.arch }}-pnpm-${{ hashFiles('pnpm-lock.yaml', 'package.json') }}
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build site
