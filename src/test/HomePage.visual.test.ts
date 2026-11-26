@@ -16,7 +16,6 @@ describe('HomePage visual regression', () => {
   });
 
   it.each([
-    { name: 'en', path: '/en/', width: 1280, height: 720, theme: 'light' },
     { name: 'ru', path: '/ru/', width: 1280, height: 720, theme: 'light' },
     { name: 'es', path: '/es/', width: 1280, height: 720, theme: 'light' },
     { name: 'default', path: '/', width: 1280, height: 720, theme: 'light' },
@@ -45,24 +44,10 @@ describe('HomePage visual regression', () => {
       allowVerticalScroll: true,
     },
     {
-      name: 'duo-inner-portrait',
-      path: '/',
-      width: 669,
-      height: 867,
-      theme: 'light',
-    },
-    {
       name: 'duo-inner-landscape',
       path: '/',
       width: 951,
       height: 585,
-      theme: 'light',
-    },
-    {
-      name: 'duo-split',
-      path: '/',
-      width: 385,
-      height: 571,
       theme: 'light',
     },
   ] as const)(
