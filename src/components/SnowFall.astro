@@ -1,35 +1,28 @@
 ---
-/**
- * SnowFall component - adds a snow effect to the page
- *
- * Uses @zachleat/snow-fall web component
- * Enabled via PUBLIC_SNOW_FALL_ENABLED environment variable
- */
+import './SnowFall.css';
 
+interface Props {
+  pauseLabel?: string;
+}
+
+const { pauseLabel = 'Pause snow' }: Props = Astro.props;
 const enableSnowFall =
   (import.meta.env.PUBLIC_SNOW_FALL_ENABLED ?? 'false') === 'true';
 ---
 
 {enableSnowFall && (
   <>
-    <snow-fall class="snow-fall" count="100" />
-    <script>
-      import '@zachleat/snow-fall';
-    </script>
+    <snow-fall class="snow-fall" count="100" aria-hidden="true" />
+    <button
+      type="button"
+      class="snow-fall__toggle"
+      data-snow-toggle
+      aria-label={pauseLabel}
+      aria-pressed="false"
+      hidden
+    >
+      <span aria-hidden="true">❄</span>
+    </button>
+    <script src="../scripts/snow-fall.ts"></script>
   </>
 )}
-
-<style>
-  .snow-fall {
-    --snow-fall-color: light-dark(
-      rgba(135, 206, 235, 0.9),
-      rgba(255, 255, 255, 0.9)
-    );
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .snow-fall {
-      display: none;
-    }
-  }
-</style>

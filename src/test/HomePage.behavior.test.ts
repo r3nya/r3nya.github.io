@@ -10,7 +10,7 @@ import {
 import { chromium, type Browser, type Page, type Route } from 'playwright';
 
 interface CardAppearance {
-  transform: string;
+  translate: string;
   shadow: string;
   decoration: string;
 }
@@ -65,7 +65,11 @@ describe('HomePage browser behavior', (): void => {
 
   beforeEach(async (): Promise<void> => {
     await page.setViewportSize({ width: 1280, height: 720 });
-    await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'reduce' });
+    await page.emulateMedia({
+      colorScheme: 'light',
+      reducedMotion: 'reduce',
+      forcedColors: 'none',
+    });
     await page.goto(baseUrl);
     await page.evaluate((): void => localStorage.clear());
     await page.reload();
@@ -79,13 +83,24 @@ describe('HomePage browser behavior', (): void => {
   it.runIf(process.env.PUBLIC_SNOW_FALL_ENABLED === 'true')(
     'respects reduced-motion preferences for snow',
     async (): Promise<void> => {
+      const toggle = page.locator('[data-snow-toggle]');
       const flake = page.locator('snow-fall').locator('div').first();
-      await flake.waitFor({ state: 'attached' });
-      expect(await flake.isVisible()).toBe(false);
+      expect(await toggle.isVisible()).toBe(false);
+      expect(await page.locator('snow-fall').isVisible()).toBe(false);
+      expect(await page.locator('snow-fall div').count()).toBe(0);
       await page.emulateMedia({ reducedMotion: 'no-preference' });
+      await toggle.waitFor({ state: 'visible' });
+      expect(await toggle.getAttribute('aria-pressed')).toBe('false');
+      await expect.poll((): Promise<boolean> => flake.isVisible()).toBe(true);
+      await toggle.click();
+      expect(await toggle.getAttribute('aria-pressed')).toBe('true');
+      await expect.poll((): Promise<boolean> => flake.isVisible()).toBe(false);
+      await toggle.click();
+      expect(await toggle.getAttribute('aria-pressed')).toBe('false');
       await expect.poll((): Promise<boolean> => flake.isVisible()).toBe(true);
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await expect.poll((): Promise<boolean> => flake.isVisible()).toBe(false);
+      expect(await toggle.isVisible()).toBe(false);
     },
   );
 
@@ -104,10 +119,10 @@ describe('HomePage browser behavior', (): void => {
           ),
         '[data-theme-toggle]',
         '.profile-header__nickname',
-        '.social-links__link:nth-child(1)',
-        '.social-links__link:nth-child(2)',
-        '.social-links__link:nth-child(3)',
-        '.social-links__link:nth-child(4)',
+        '.social-links__item:nth-child(1) .social-links__link',
+        '.social-links__item:nth-child(2) .social-links__link',
+        '.social-links__item:nth-child(3) .social-links__link',
+        '.social-links__item:nth-child(4) .social-links__link',
       ]) {
         await page.keyboard.press('Tab');
         expect(
@@ -127,7 +142,7 @@ describe('HomePage browser behavior', (): void => {
     const appearance = async (): Promise<CardAppearance> => ({
       ...(await link.evaluate(
         (element: Element): Omit<CardAppearance, 'decoration'> => ({
-          transform: getComputedStyle(element).transform,
+          translate: getComputedStyle(element).translate,
           shadow: getComputedStyle(element).boxShadow,
         }),
       )),
@@ -140,6 +155,7 @@ describe('HomePage browser behavior', (): void => {
     });
     await link.hover();
     const hover = await appearance();
+    expect(hover.translate).toBe('-2px -2px');
     expect(hover.decoration).toBe('underline');
     await page.mouse.move(0, 0);
     await page.keyboard.press('Tab');
@@ -242,12 +258,26 @@ describe('HomePage browser behavior', (): void => {
       await page.locator('[data-theme-toggle]').click();
       const expected = system === 'light' ? '#242424' : '#f4f1e8';
       expect(await colors()).toEqual([expected, expected]);
+      expect(
+        await page.locator('meta[name="color-scheme"]').getAttribute('content'),
+      ).toBe(system === 'light' ? 'dark' : 'light');
       await page.emulateMedia({
         colorScheme: system === 'light' ? 'dark' : 'light',
       });
       expect(await colors()).toEqual([expected, expected]);
+      await page.emulateMedia({ colorScheme: system });
+      await page.locator('[data-theme-toggle]').click();
+      expect(await colors()).toEqual(['#f4f1e8', '#242424']);
+      expect(
+        await page.locator('meta[name="color-scheme"]').getAttribute('content'),
+      ).toBe('light dark');
+      await page.locator('[data-theme-toggle]').click();
+      expect(await colors()).toEqual([expected, expected]);
       await page.reload();
       expect(await colors()).toEqual(['#f4f1e8', '#242424']);
+      expect(
+        await page.locator('meta[name="color-scheme"]').getAttribute('content'),
+      ).toBe('light dark');
     },
   );
 
@@ -263,16 +293,36 @@ describe('HomePage browser behavior', (): void => {
       social: string,
     ): Promise<void> => {
       await page.goto(`${baseUrl}/${locale}/`);
+      const banner = page.getByRole('banner');
+      expect(await banner.count()).toBe(1);
+      expect(await banner.locator('[data-theme-toggle]').count()).toBe(1);
+      expect(await page.getByRole('main').count()).toBe(1);
       expect(
         await page
           .getByRole('navigation', { name: languages, exact: true })
           .count(),
       ).toBe(1);
+      const socialNav = page.getByRole('navigation', {
+        name: social,
+        exact: true,
+      });
+      expect(await socialNav.count()).toBe(1);
+      expect(await socialNav.getByRole('list').count()).toBe(1);
+      expect(await socialNav.getByRole('listitem').count()).toBe(4);
+      await page.keyboard.press('Tab');
       expect(
         await page
-          .getByRole('navigation', { name: social, exact: true })
-          .count(),
-      ).toBe(1);
+          .locator(':focus')
+          .evaluate((el: Element): boolean =>
+            el.matches('.base-layout__skip-link'),
+          ),
+      ).toBe(true);
+      await page.keyboard.press('Enter');
+      expect(
+        await page.evaluate(
+          (): string | undefined => document.activeElement?.id,
+        ),
+      ).toBe('main-content');
     },
   );
 
@@ -388,7 +438,13 @@ describe('HomePage browser behavior', (): void => {
       .poll(() => appearance('[data-theme-toggle]'))
       .toEqual(highlight);
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    expect((await appearance('[data-theme-toggle]')).property).toBe('none');
+    expect((await appearance('[data-theme-toggle]')).duration).toBe('0s');
+    expect(
+      await button.evaluate(
+        (element: HTMLElement): string =>
+          getComputedStyle(element).transitionProperty,
+      ),
+    ).toContain('color');
   });
 
   it.each(['en', 'ru', 'es'] as const)(
@@ -397,7 +453,7 @@ describe('HomePage browser behavior', (): void => {
       await page.emulateMedia({ reducedMotion: 'no-preference' });
       await page.goto(`${baseUrl}/${locale === 'en' ? '' : `${locale}/`}`);
       await page.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
-      for (const theme of ['dark', 'light']) {
+      for (const expectedTheme of ['dark', null] as const) {
         await page.locator('[data-theme-toggle]').click();
         await expect
           .poll((): Promise<boolean> =>
@@ -447,7 +503,14 @@ describe('HomePage browser behavior', (): void => {
               ),
           );
         });
-        expect(await page.getAttribute('html', 'data-theme')).toBe(theme);
+        expect(await page.getAttribute('html', 'data-theme')).toBe(
+          expectedTheme,
+        );
+        expect(
+          await page
+            .locator('meta[name="color-scheme"]')
+            .getAttribute('content'),
+        ).toBe(expectedTheme ?? 'light dark');
       }
     },
   );
@@ -507,7 +570,10 @@ describe('HomePage browser behavior', (): void => {
       .poll((): Promise<string | null> =>
         page.getAttribute('html', 'data-theme'),
       )
-      .toBe('light');
+      .toBeNull();
+    expect(
+      await page.locator('meta[name="color-scheme"]').getAttribute('content'),
+    ).toBe('light dark');
     expect(
       await page.locator('[data-theme-toggle]').getAttribute('aria-pressed'),
     ).toBe('false');
@@ -589,9 +655,37 @@ describe('HomePage browser behavior', (): void => {
     );
     expect(grid).toContain('246, 240, 223');
     await page.locator('[data-theme-toggle]').click();
+    expect(
+      await page.locator('meta[name="color-scheme"]').getAttribute('content'),
+    ).toBe('light');
     await page.emulateMedia({ colorScheme: 'light' });
     await page.emulateMedia({ colorScheme: 'dark' });
     expect(await page.getAttribute('html', 'data-theme')).toBe('light');
+    // Toggling back to match the OS dark scheme resumes following OS changes.
+    await page.locator('[data-theme-toggle]').click();
+    expect(await page.getAttribute('html', 'data-theme')).toBeNull();
+    expect(
+      await page.locator('meta[name="color-scheme"]').getAttribute('content'),
+    ).toBe('light dark');
+    expect(
+      await page
+        .locator('meta[name="theme-color"]')
+        .evaluateAll((metas: HTMLMetaElement[]): string[] =>
+          metas.map((meta: HTMLMetaElement): string => meta.content),
+        ),
+    ).toEqual(['#f4f1e8', '#242424']);
+    await page.emulateMedia({ colorScheme: 'light' });
+    await expect
+      .poll((): Promise<string | null> =>
+        page.locator('[data-theme-toggle]').getAttribute('aria-pressed'),
+      )
+      .toBe('false');
+    await page.emulateMedia({ colorScheme: 'dark' });
+    await expect
+      .poll((): Promise<string | null> =>
+        page.locator('[data-theme-toggle]').getAttribute('aria-pressed'),
+      )
+      .toBe('true');
   });
 
   it.each([
@@ -623,6 +717,13 @@ describe('HomePage browser behavior', (): void => {
           ),
         ).toBe(true);
         expect(await page.locator('.social-links__link').count()).toBe(4);
+        const columns = await page
+          .locator('.social-links__list')
+          .evaluate(
+            (list: Element): number =>
+              getComputedStyle(list).gridTemplateColumns.split(' ').length,
+          );
+        expect(columns).toBe(width === 375 && fontSize === 16 ? 2 : 1);
         const nickname = page.locator('.profile-header__nickname');
         await nickname.focus();
         expect(await page.locator('[role="tooltip"]').isVisible()).toBe(true);
@@ -682,8 +783,10 @@ describe('HomePage browser behavior', (): void => {
     const tooltip = page.locator('[role="tooltip"]');
     await nickname.focus();
     expect(await tooltip.isVisible()).toBe(true);
+    expect(await nickname.getAttribute('aria-expanded')).toBe('true');
     await page.keyboard.press('Escape');
     expect(await tooltip.isVisible()).toBe(false);
+    expect(await nickname.getAttribute('aria-expanded')).toBe('false');
     expect(
       await nickname.evaluate(
         (element: Element): boolean => element === document.activeElement,
@@ -692,6 +795,16 @@ describe('HomePage browser behavior', (): void => {
     await nickname.blur();
     await nickname.focus();
     expect(await tooltip.isVisible()).toBe(true);
+    expect(await nickname.getAttribute('aria-expanded')).toBe('true');
+    await nickname.blur();
+    expect(await tooltip.isVisible()).toBe(false);
+    expect(await nickname.getAttribute('aria-expanded')).toBe('false');
+    await nickname.click();
+    expect(await tooltip.isVisible()).toBe(true);
+    expect(await nickname.getAttribute('aria-expanded')).toBe('true');
+    await nickname.click();
+    expect(await tooltip.isVisible()).toBe(false);
+    expect(await nickname.getAttribute('aria-expanded')).toBe('false');
   });
 
   it.each([
@@ -725,4 +838,94 @@ describe('HomePage browser behavior', (): void => {
       ).toBe(saved);
     },
   );
+
+  it('preserves visible indicators in forced-colors mode', async (): Promise<void> => {
+    try {
+      await page.emulateMedia({ forcedColors: 'active' });
+      const currentDecoration = await page
+        .locator('.lang-switcher__current')
+        .evaluate(
+          (el: Element): string => getComputedStyle(el).textDecorationLine,
+        );
+      expect(currentDecoration).toBe('underline');
+
+      const toggleBorder = await page
+        .locator('[data-theme-toggle]')
+        .evaluate((el: Element): { style: string; width: string } => {
+          const style = getComputedStyle(el);
+          return { style: style.borderTopStyle, width: style.borderTopWidth };
+        });
+      expect(toggleBorder).toEqual({ style: 'solid', width: '1px' });
+
+      await page.keyboard.press('Tab');
+      const skipBorder = await page
+        .locator('.base-layout__skip-link')
+        .evaluate((el: Element): { style: string; width: string } => {
+          const style = getComputedStyle(el);
+          return { style: style.borderTopStyle, width: style.borderTopWidth };
+        });
+      expect(skipBorder).toEqual({ style: 'solid', width: '2px' });
+
+      const langLink = page.locator('.lang-switcher__link').first();
+      await langLink.focus();
+      const langFocus = await langLink.evaluate(
+        (
+          el: Element,
+        ): {
+          decoration: string;
+          outlineStyle: string;
+          outlineWidth: string;
+        } => {
+          const style = getComputedStyle(el);
+          return {
+            decoration: style.textDecorationLine,
+            outlineStyle: style.outlineStyle,
+            outlineWidth: style.outlineWidth,
+          };
+        },
+      );
+      expect(langFocus).toEqual({
+        decoration: 'underline',
+        outlineStyle: 'solid',
+        outlineWidth: '3px',
+      });
+    } finally {
+      await page.emulateMedia({ forcedColors: 'none' });
+    }
+  });
+
+  it('toggles the nickname tooltip by tap and dismisses on outside tap on touch devices', async (): Promise<void> => {
+    const mobile = await browser.newPage({
+      viewport: { width: 375, height: 812 },
+      isMobile: true,
+      hasTouch: true,
+    });
+    try {
+      await mobile.goto(baseUrl);
+      await mobile.locator('[data-theme-toggle]').waitFor({ state: 'visible' });
+      const nickname = mobile.locator('.profile-header__nickname');
+      const tooltip = mobile.locator('[role="tooltip"]');
+
+      expect(await tooltip.isVisible()).toBe(false);
+      expect(await nickname.getAttribute('aria-expanded')).toBe('false');
+
+      await nickname.tap();
+      expect(await tooltip.isVisible()).toBe(true);
+      expect(await nickname.getAttribute('aria-expanded')).toBe('true');
+
+      await mobile.locator('.profile-header__title').tap();
+      expect(await tooltip.isVisible()).toBe(false);
+      expect(await nickname.getAttribute('aria-expanded')).toBe('false');
+
+      await nickname.tap();
+      expect(await tooltip.isVisible()).toBe(true);
+      expect(await nickname.getAttribute('aria-expanded')).toBe('true');
+
+      await nickname.tap();
+      expect(await tooltip.isVisible()).toBe(false);
+      expect(await nickname.getAttribute('aria-expanded')).toBe('false');
+    } finally {
+      await mobile.close();
+    }
+  });
 });

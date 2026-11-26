@@ -9,17 +9,21 @@ interface Props {
 }
 
 const { name, headline, aliasLabel = 'Also known as' }: Props = Astro.props;
+const headlineMatch = headline.match(
+  /^(.*?)(\s+)(\p{Extended_Pictographic}(?:\u200D\p{Extended_Pictographic}|\uFE0F)*)$/u,
+);
 ---
 
 <header class="profile-header">
   <span class="profile-header__alias">
-    <span
+    <button
+      type="button"
       class="profile-header__nickname"
-      tabindex="0"
       aria-describedby="profile-alias-tooltip"
+      aria-expanded="false"
     >
       {siteMeta.profile.username}
-    </span>
+    </button>
     <span
       id="profile-alias-tooltip"
       class="profile-header__tooltip"
@@ -29,7 +33,17 @@ const { name, headline, aliasLabel = 'Also known as' }: Props = Astro.props;
     </span>
   </span>
   <h1 class="profile-header__title">{name}</h1>
-  <h2 class="profile-header__headline">{headline}</h2>
+  <p class="profile-header__headline">
+    {headlineMatch ? (
+      <>
+        {headlineMatch[1]}
+        {headlineMatch[2]}
+        <span aria-hidden="true">{headlineMatch[3]}</span>
+      </>
+    ) : (
+      headline
+    )}
+  </p>
 </header>
 
 <script src="../scripts/nickname-tooltip.ts"></script>

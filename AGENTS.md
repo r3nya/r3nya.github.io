@@ -89,20 +89,20 @@ pnpm run clean                # Remove dist/
 - Keep the approved tilted profile card, pink nickname badge, pastel contact cards, and hard offset shadows.
 - Theme tokens separate text (`ink`), outlines (`outline`), shadows (`shadow`), and the background grid (`grid`). Do not reuse text color for every border and shadow.
 - In dark mode, the grid and outlines are subdued, but warm gray shadows remain visible enough to preserve the raised-card effect.
-- Keep languages left and theme right. `src/layouts/BaseLayout.css` defines content spacing, including adjustments for narrow and low-height viewports. Mobile nickname tooltips can grow to `16rem`, capped by the viewport width. The mobile layout breakpoint is 600px; contacts stack into one column at widths up to `22.5rem`.
+- Keep languages left and theme right. `src/layouts/BaseLayout.css` defines content spacing, including adjustments for narrow and low-height viewports. Mobile nickname tooltips can grow to `16rem`, capped by the viewport width. The mobile layout breakpoint is `37.5em` (600px at 16px); contacts stack into one column when the `.social-links` container is at most `20rem` wide.
 - The active language has a pink marker; links get a lavender bottom-up fill on hover and keyboard focus.
 
 ## Theme and accessibility
 
-- Default colors follow the system through `color-scheme: light dark` and CSS `light-dark()` tokens.
-- `src/scripts/theme-toggle.ts` applies a temporary `data-theme` override and updates `aria-pressed`. It does not read or write localStorage.
+- Default colors follow the system through `color-scheme: light dark` and CSS `light-dark()` tokens, with `prefers-color-scheme` and `data-theme` fallbacks for browsers without `light-dark()` support and `@media (forced-colors: active)` overrides for High Contrast Mode.
+- `src/scripts/theme-toggle.ts` applies a temporary `data-theme` override, reverts to following the system when toggled back to the OS scheme, syncs `<meta name="color-scheme">` and `aria-pressed`, and never reads or writes localStorage.
 - Reloading or following a language link resets manual theme selection to the system default.
 - Browser theme-color metadata follows the system by default and the selected theme during a manual override.
 - Without JavaScript, system theming still works and the inactive theme button remains hidden.
-- Tooltip appearance uses hover/focus CSS; `nickname-tooltip.ts` supports Escape dismissal and restoration on re-entry/refocus.
+- Nickname tooltip uses a `<button type="button">` toggletip with hover/focus/click CSS; `nickname-tooltip.ts` syncs `aria-expanded` and supports Escape dismissal and restoration on re-entry/refocus.
 - Preserve semantic landmarks, skip navigation, visible keyboard focus, descriptive labels, and current/pressed state attributes.
 - Respect `prefers-reduced-motion` and verify both color themes.
-- The optional snow component is controlled by `PUBLIC_SNOW_FALL_ENABLED`; it is disabled by default.
+- The optional snow component is controlled by `PUBLIC_SNOW_FALL_ENABLED`; it is disabled by default and exposes a pause/resume toggle (`data-snow-toggle`) when enabled and motion is allowed.
 
 ## Verification
 

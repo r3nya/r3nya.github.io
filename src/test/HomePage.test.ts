@@ -15,8 +15,11 @@ describe('HomePage', () => {
       expect(toggle?.getAttribute('aria-label')).toBeTruthy();
       expect(toggle?.getAttribute('aria-pressed')).toBe('false');
       const nickname = result.querySelector('.profile-header__nickname');
+      expect(nickname?.tagName).toBe('BUTTON');
+      expect(nickname?.getAttribute('type')).toBe('button');
+      expect(nickname?.getAttribute('tabindex')).toBeNull();
+      expect(nickname?.getAttribute('aria-expanded')).toBe('false');
       expect(nickname?.textContent?.trim()).toBe('r3nya');
-      expect(nickname?.getAttribute('tabindex')).toBe('0');
       const tooltipId = nickname?.getAttribute('aria-describedby');
       const tooltip = result.querySelector(`[id="${tooltipId}"]`);
       expect(tooltip?.getAttribute('role')).toBe('tooltip');
@@ -36,6 +39,11 @@ describe('HomePage', () => {
       const t = messages.en;
 
       expect(html).toContain(`<title>${t.title}</title>`);
+      expect(html).toContain(
+        '<meta name="referrer" content="strict-origin-when-cross-origin">',
+      );
+      expect(html).toContain('"@context":"https://schema.org"');
+      expect(html).not.toContain('http://schema.org');
 
       expect(html).toContain(`<meta property="og:title" content="${t.title}">`);
       expect(html).toContain(
@@ -131,6 +139,11 @@ describe('HomePage', () => {
       const t = messages.ru;
 
       expect(html).toContain(`<title>${t.title}</title>`);
+      expect(html).toContain(
+        '<meta name="referrer" content="strict-origin-when-cross-origin">',
+      );
+      expect(html).toContain('"@context":"https://schema.org"');
+      expect(html).not.toContain('http://schema.org');
 
       expect(html).toContain(`<meta property="og:title" content="${t.title}">`);
       expect(html).toContain(
@@ -205,6 +218,11 @@ describe('HomePage', () => {
       const t = messages.es;
 
       expect(html).toContain(`<title>${t.title}</title>`);
+      expect(html).toContain(
+        '<meta name="referrer" content="strict-origin-when-cross-origin">',
+      );
+      expect(html).toContain('"@context":"https://schema.org"');
+      expect(html).not.toContain('http://schema.org');
 
       expect(html).toContain(`<meta property="og:title" content="${t.title}">`);
       expect(html).toContain(

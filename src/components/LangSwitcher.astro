@@ -16,9 +16,9 @@ const { current }: Props = Astro.props;
   class="lang-switcher"
   data-testid="lang-switcher"
 >
-  <ul role="list" class="lang-switcher__list">
+  <ul class="lang-switcher__list">
     {locales.map((code) => (
-      <li role="listitem">
+      <li>
         {code === current ? (
           <span
             class="lang-switcher__current"

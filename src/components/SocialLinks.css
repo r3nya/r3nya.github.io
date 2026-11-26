@@ -1,44 +1,59 @@
 @import '../styles/global.css' reference;
 
 .social-links {
+  container: social-links / inline-size;
+}
+
+.social-links__list {
   @apply grid grid-cols-2 gap-4;
 }
 
 .social-links__link {
-  @apply flex min-w-0 min-h-26 items-end justify-between gap-2 border-2 border-outline bg-sage p-4 text-card-ink font-medium;
+  @apply flex h-full min-w-0 min-h-26 items-end justify-between gap-2 border-2 border-outline bg-sage p-4 text-card-ink font-medium text-lg;
   box-shadow: 4px 4px 0 var(--color-shadow);
-  @apply text-lg;
   line-height: normal;
-  transition:
-    transform 150ms,
-    box-shadow 150ms;
+  translate: 0 0;
 }
 
-.social-links__link:nth-child(2) {
+.social-links__item:nth-child(2) .social-links__link {
   @apply bg-lavender;
 }
 
-.social-links__link:nth-child(3) {
+.social-links__item:nth-child(3) .social-links__link {
   @apply bg-peach;
 }
 
-.social-links__link:nth-child(4) {
+.social-links__item:nth-child(4) .social-links__link {
   @apply bg-pink;
 }
 
-.social-links__link:is(:hover, :focus-visible) {
-  transform: translate(-2px, -2px);
+.social-links__link:focus-visible {
+  translate: -2px -2px;
   box-shadow: 6px 6px 0 var(--color-shadow);
 }
 
+@media (hover: hover) {
+  .social-links__link:hover {
+    translate: -2px -2px;
+    box-shadow: 6px 6px 0 var(--color-shadow);
+  }
+
+  .social-links__link:hover .social-links__title {
+    text-decoration: underline;
+  }
+}
+
 .social-links__link:active {
-  transform: translate(2px, 2px);
+  translate: 2px 2px;
   box-shadow: 2px 2px 0 var(--color-shadow);
 }
 
 .social-links__title {
-  @apply group-hover:underline group-focus-visible:underline;
   text-underline-offset: 4px;
+}
+
+.social-links__link:focus-visible .social-links__title {
+  text-decoration: underline;
 }
 
 .social-links__arrow {
@@ -46,20 +61,22 @@
   font-size: 1.875rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5em) {
   .social-links__link {
     @apply min-h-25;
   }
 }
 
-@media (max-width: 22.5rem) {
-  .social-links {
+@container social-links (max-inline-size: 20rem) {
+  .social-links__list {
     @apply grid-cols-1;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: no-preference) {
   .social-links__link {
-    transition: none;
+    transition:
+      translate 150ms,
+      box-shadow 150ms;
   }
 }
