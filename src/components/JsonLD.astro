@@ -2,7 +2,7 @@
 import { siteMeta } from '@/config/site';
 
 const personSchema = {
-  '@context': 'http://schema.org',
+  '@context': 'https://schema.org',
   '@type': 'Person',
   name: siteMeta.profile.name,
   url: Astro.site?.toString(),
@@ -21,4 +21,7 @@ const personSchema = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(personSchema).replace(/</g, '\\u003c')}
+/>

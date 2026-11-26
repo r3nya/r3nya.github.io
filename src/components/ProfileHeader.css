@@ -3,7 +3,7 @@
 .profile-header {
   @apply relative border-2 border-outline bg-surface px-7 py-6;
   box-shadow: 6px 6px 0.5px var(--color-shadow);
-  transform: rotate(-1deg);
+  rotate: -1deg;
 }
 
 .profile-header__title {
@@ -18,12 +18,15 @@
 }
 
 .profile-header__alias {
-  @apply absolute right-4 -top-4;
-  transform: rotate(4deg);
+  @apply absolute;
+  inset-inline-end: 1rem;
+  inset-block-start: -1rem;
+  rotate: 4deg;
 }
 
 .profile-header__nickname {
   @apply block border-2 border-outline bg-pink px-3 py-1 text-lg text-card-ink font-bold;
+  appearance: none;
   line-height: normal;
   letter-spacing: 0.0125rem;
   box-shadow: 2px 2px 0.5px var(--color-shadow);
@@ -31,13 +34,22 @@
 }
 
 .profile-header__tooltip {
-  @apply absolute right-0 bottom-full w-max max-w-56 border border-outline bg-surface px-3 py-2 text-lg leading-snug text-ink;
+  @apply absolute w-max max-w-56 border border-outline bg-surface px-3 py-2 text-lg leading-snug text-ink;
+  inset-inline-end: 0;
+  inset-block-end: 100%;
   visibility: hidden;
   opacity: 0;
 }
 
-.profile-header__alias:hover .profile-header__tooltip,
-.profile-header__alias:focus-within .profile-header__tooltip {
+@media (hover: hover) {
+  .profile-header__alias:hover .profile-header__tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.profile-header__alias:focus-within .profile-header__tooltip,
+.profile-header__alias[data-open] .profile-header__tooltip {
   visibility: visible;
   opacity: 1;
 }
@@ -47,9 +59,9 @@
   opacity: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5em) {
   .profile-header__tooltip {
-    max-width: min(16rem, calc(100vw - 3rem));
+    max-inline-size: min(16rem, calc(100vw - 3rem));
   }
 
   .profile-header {

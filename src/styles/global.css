@@ -1,12 +1,28 @@
 @import 'tailwindcss';
 
+:root {
+  color-scheme: light dark;
+  --paper-light: #f4f1e8;
+  --paper-dark: #242424;
+  --surface-light: #fffef8;
+  --surface-dark: #33332d;
+  --ink-light: #242424;
+  --ink-dark: #f6f0df;
+  --grid-light: #24242409;
+  --grid-dark: #f6f0df0c;
+  --outline-light: #242424;
+  --outline-dark: #89897d;
+  --shadow-light: #242424;
+  --shadow-dark: #68685f;
+}
+
 @theme {
-  --color-paper: light-dark(#f4f1e8, #242424);
-  --color-surface: light-dark(#fffef8, #33332d);
-  --color-ink: light-dark(#242424, #f6f0df);
-  --color-grid: light-dark(#24242409, #f6f0df0c);
-  --color-outline: light-dark(#242424, #89897d);
-  --color-shadow: light-dark(#242424, #68685f);
+  --color-paper: var(--paper-light);
+  --color-surface: var(--surface-light);
+  --color-ink: var(--ink-light);
+  --color-grid: var(--grid-light);
+  --color-outline: var(--outline-light);
+  --color-shadow: var(--shadow-light);
   --color-card-ink: #242424;
   --color-sage: #d6e4cb;
   --color-lavender: #d5dcf4;
@@ -18,10 +34,6 @@
     monospace;
 }
 
-:root {
-  color-scheme: light dark;
-}
-
 :root[data-theme='light'] {
   color-scheme: light;
 }
@@ -30,7 +42,55 @@
   color-scheme: dark;
 }
 
+@supports (color: light-dark(white, black)) {
+  :root {
+    --color-paper: light-dark(var(--paper-light), var(--paper-dark));
+    --color-surface: light-dark(var(--surface-light), var(--surface-dark));
+    --color-ink: light-dark(var(--ink-light), var(--ink-dark));
+    --color-grid: light-dark(var(--grid-light), var(--grid-dark));
+    --color-outline: light-dark(var(--outline-light), var(--outline-dark));
+    --color-shadow: light-dark(var(--shadow-light), var(--shadow-dark));
+  }
+}
+
+@supports not (color: light-dark(white, black)) {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --color-paper: var(--paper-dark);
+      --color-surface: var(--surface-dark);
+      --color-ink: var(--ink-dark);
+      --color-grid: var(--grid-dark);
+      --color-outline: var(--outline-dark);
+      --color-shadow: var(--shadow-dark);
+    }
+  }
+
+  :root[data-theme='dark'] {
+    --color-paper: var(--paper-dark);
+    --color-surface: var(--surface-dark);
+    --color-ink: var(--ink-dark);
+    --color-grid: var(--grid-dark);
+    --color-outline: var(--outline-dark);
+    --color-shadow: var(--shadow-dark);
+  }
+
+  :root[data-theme='light'] {
+    --color-paper: var(--paper-light);
+    --color-surface: var(--surface-light);
+    --color-ink: var(--ink-light);
+    --color-grid: var(--grid-light);
+    --color-outline: var(--outline-light);
+    --color-shadow: var(--shadow-light);
+  }
+}
+
 :where(a, button, [tabindex]):focus-visible {
   outline: 3px solid var(--color-ink);
   outline-offset: 4px;
+}
+
+@media (forced-colors: active) {
+  :where(a, button, [tabindex]):focus-visible {
+    outline-color: Highlight;
+  }
 }
