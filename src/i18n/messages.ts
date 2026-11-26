@@ -7,6 +7,7 @@ export type Messages = {
   description: string;
   skip_to_content: string;
   dark_theme: string;
+  pause_snow: string;
   alias_label: string;
   language_switcher: string;
   social_links: string;
@@ -37,6 +38,7 @@ export const messages: Record<Locale, Messages> = {
     description: "Andrei Makarov's homepage",
     skip_to_content: 'Skip to content',
     dark_theme: 'Dark theme',
+    pause_snow: 'Pause snow',
     alias_label: 'Also known as',
     language_switcher: 'Language switcher',
     social_links: 'Social links',
@@ -54,6 +56,7 @@ export const messages: Record<Locale, Messages> = {
     description: 'Домашняя страница Андрея Макарова',
     skip_to_content: 'Перейти к содержанию',
     dark_theme: 'Тёмная тема',
+    pause_snow: 'Остановить снег',
     alias_label: 'Также известен как',
     language_switcher: 'Выбор языка',
     social_links: 'Социальные сети',
@@ -71,6 +74,7 @@ export const messages: Record<Locale, Messages> = {
     description: 'Página web de Andrei Makárov',
     skip_to_content: 'Saltar al contenido',
     dark_theme: 'Tema oscuro',
+    pause_snow: 'Pausar nieve',
     alias_label: 'También conocido como',
     language_switcher: 'Selector de idioma',
     social_links: 'Redes sociales',

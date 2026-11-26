@@ -1,0 +1,51 @@
+@import '../styles/global.css' reference;
+
+.snow-fall {
+  --snow-fall-light: rgba(135, 206, 235, 0.9);
+  --snow-fall-dark: rgba(255, 255, 255, 0.9);
+  --snow-fall-color: var(--snow-fall-light);
+}
+
+@supports (color: light-dark(white, black)) {
+  .snow-fall {
+    --snow-fall-color: light-dark(
+      var(--snow-fall-light),
+      var(--snow-fall-dark)
+    );
+  }
+}
+
+@supports not (color: light-dark(white, black)) {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .snow-fall {
+      --snow-fall-color: var(--snow-fall-dark);
+    }
+  }
+
+  :root[data-theme='dark'] .snow-fall {
+    --snow-fall-color: var(--snow-fall-dark);
+  }
+}
+
+.snow-fall__toggle {
+  @apply fixed end-4 bottom-4 z-10 inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center border-2 border-outline bg-surface text-lg text-ink;
+  box-shadow: 2px 2px 0 var(--color-shadow);
+}
+
+.snow-fall__toggle[hidden],
+.snow-fall[hidden] {
+  display: none;
+}
+
+@media (forced-colors: active) {
+  .snow-fall__toggle {
+    border-color: ButtonBorder;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snow-fall,
+  .snow-fall__toggle {
+    display: none;
+  }
+}

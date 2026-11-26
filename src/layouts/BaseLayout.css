@@ -10,6 +10,7 @@
 
 .base-layout__body {
   @apply font-monocode antialiased;
+  overflow-wrap: break-word;
 }
 
 .base-layout__skip-link {
@@ -18,46 +19,63 @@
 }
 
 .base-layout__container {
-  @apply mx-auto flex min-h-svh max-w-[51.5rem] flex-col px-8 py-6;
+  @apply mx-auto flex flex-col;
+  min-block-size: 100svh;
+  max-inline-size: 51.5rem;
+  padding-inline: 2rem;
+  padding-block: 1.5rem;
 }
 
 .base-layout__controls {
-  @apply mb-9 flex min-h-9 items-center justify-between gap-2;
+  @apply flex items-center justify-between gap-2;
+  margin-block-end: 2.25rem;
+  min-block-size: 2.25rem;
 }
 
 .base-layout__main {
-  @apply flex flex-1 flex-col justify-center gap-6 pb-9;
+  @apply flex flex-1 flex-col justify-center gap-6;
+  padding-block-end: 2.25rem;
 }
 
-@media (min-width: 601px) {
+@media (min-width: 37.5625em) {
   .base-layout__main {
-    @apply justify-start pt-[20svh];
+    @apply justify-start;
+    padding-block-start: 20svh;
   }
 }
 
-@media (min-width: 601px) and (max-height: 640px) {
+@media (min-width: 37.5625em) and (max-height: 40em) {
   .base-layout__main {
-    @apply pt-[4svh] pb-6;
+    padding-block-start: 4svh;
+    padding-block-end: 1.5rem;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5em) {
   .base-layout__container {
-    @apply p-5;
-    container-type: inline-size;
+    padding: 1.25rem;
+    container: page / inline-size;
   }
 
   .base-layout__controls {
-    @apply mb-6;
+    margin-block-end: 1.5rem;
   }
 
   .base-layout__main {
-    @apply flex-none justify-start pt-12 pb-0;
+    @apply flex-none justify-start;
+    padding-block-start: 3rem;
+    padding-block-end: 0;
   }
 
-  @container (max-width: 17rem) {
+  @container page (max-inline-size: 17rem) {
     .base-layout__main {
-      @apply pt-18;
+      padding-block-start: 4.5rem;
     }
+  }
+}
+
+@media (forced-colors: active) {
+  .base-layout__skip-link:focus {
+    border: 2px solid CanvasText;
   }
 }

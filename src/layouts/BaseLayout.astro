@@ -30,6 +30,7 @@ const canonicalUrl = new URL(
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="description" content={t.description} />
     <meta name="author" content={siteMeta.author} />
     <meta
@@ -56,7 +57,7 @@ const canonicalUrl = new URL(
     <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link
       rel="mask-icon"
       href="/safari-pinned-tab.svg"
@@ -73,7 +74,7 @@ const canonicalUrl = new URL(
       <slot name="controls" />
       <main
         id="main-content"
-        role="main"
+        tabindex="-1"
         data-testid="main"
         class="base-layout__main"
       >

@@ -17,11 +17,11 @@ const t = messages[locale];
 ---
 
 <BaseLayout title={t.title} lang={locale}>
-  <div slot="controls" class="base-layout__controls">
+  <header slot="controls" class="base-layout__controls">
     <LangSwitcher current={locale} />
     <ThemeToggle label={t.dark_theme} />
-  </div>
-  <SnowFall />
+  </header>
+  <SnowFall pauseLabel={t.pause_snow} />
   <ProfileHeader
     name={t.name}
     headline={t.headline}
