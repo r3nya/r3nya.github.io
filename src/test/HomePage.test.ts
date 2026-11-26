@@ -2,286 +2,102 @@
 import { describe, it, expect } from 'vitest';
 import HomePage from '../components/HomePage.astro';
 import { renderAstroComponent } from './helpers';
+import { defaultLocale, locales } from '../i18n/config';
 import { messages } from '../i18n/messages';
 
 describe('HomePage', () => {
-  it.each(['en', 'ru', 'es'] as const)(
-    'exposes an accessible theme toggle and nickname tooltip in %s',
+  it.each(locales)(
+    'renders localized metadata, landmarks, and controls in %s',
     async (locale) => {
       const result = await renderAstroComponent(HomePage, {
         props: { locale },
       });
-      const toggle = result.querySelector('button[data-theme-toggle]');
-      expect(toggle?.getAttribute('aria-label')).toBeTruthy();
-      expect(toggle?.getAttribute('aria-pressed')).toBe('false');
+      const html = result.innerHTML;
+      const t = messages[locale];
+
+      expect(html).toContain(`<title>${t.title}</title>`);
+      expect(html).toContain(`<meta property="og:title" content="${t.title}">`);
+      expect(html).toContain(
+        `<meta name="twitter:title" content="${t.title}">`,
+      );
+      expect(html).toContain(
+        '<meta name="referrer" content="strict-origin-when-cross-origin">',
+      );
+      expect(html).toContain('"@context":"https://schema.org"');
+      expect(html).not.toContain('http://schema.org');
+
+      expect(result.querySelector('header.base-layout__controls')).toBeTruthy();
+      const main = result.querySelector('main#main-content');
+      expect(main?.getAttribute('tabindex')).toBe('-1');
+      expect(main?.getAttribute('role')).toBeNull();
+
+      const skipLink = result.querySelector('.base-layout__skip-link');
+      expect(skipLink?.getAttribute('href')).toBe('#main-content');
+      expect(skipLink?.textContent?.trim()).toBe(t.skip_to_content);
+
+      expect(
+        result.querySelector('.profile-header__title')?.textContent?.trim(),
+      ).toBe(t.name);
+      const headline = result.querySelector('p.profile-header__headline');
+      expect(headline?.textContent?.trim()).toBe(t.headline);
+      expect(headline?.querySelector('[aria-hidden="true"]')?.textContent).toBe(
+        '👨‍💻',
+      );
+
       const nickname = result.querySelector('.profile-header__nickname');
       expect(nickname?.tagName).toBe('BUTTON');
       expect(nickname?.getAttribute('type')).toBe('button');
       expect(nickname?.getAttribute('tabindex')).toBeNull();
       expect(nickname?.getAttribute('aria-expanded')).toBe('false');
       expect(nickname?.textContent?.trim()).toBe('r3nya');
+
       const tooltipId = nickname?.getAttribute('aria-describedby');
       const tooltip = result.querySelector(`[id="${tooltipId}"]`);
       expect(tooltip?.getAttribute('role')).toBe('tooltip');
-      expect(tooltip?.textContent?.trim()).toBeTruthy();
+      expect(tooltip?.textContent?.trim()).toBe(t.alias_label);
+
+      const langNav = result.querySelector('[data-testid="lang-switcher"]');
+      expect(langNav?.getAttribute('aria-label')).toBe(t.language_switcher);
+      expect(langNav?.querySelector('ul')?.getAttribute('role')).toBeNull();
+      const currentLang = langNav?.querySelector('[aria-current="true"]');
+      expect(currentLang?.getAttribute('data-lang')).toBe(locale);
+      expect(currentLang?.textContent?.trim()).toBe(locale);
+
+      for (const code of locales.filter((item) => item !== locale)) {
+        const link = langNav?.querySelector(`a[data-lang="${code}"]`);
+        expect(link?.getAttribute('href')).toBe(
+          code === defaultLocale ? '/' : `/${code}/`,
+        );
+        expect(link?.getAttribute('lang')).toBe(code);
+        expect(link?.getAttribute('hreflang')).toBe(code);
+      }
+
+      const toggle = result.querySelector('button[data-theme-toggle]');
+      expect(toggle?.getAttribute('aria-label')).toBe(t.dark_theme);
+      expect(toggle?.getAttribute('aria-pressed')).toBe('false');
+      expect(toggle?.hasAttribute('hidden')).toBe(true);
+
+      const socialNav = result.querySelector('nav.social-links');
+      expect(socialNav?.getAttribute('aria-label')).toBe(t.social_links);
+      expect(socialNav?.querySelectorAll('ul > li')).toHaveLength(
+        t.links.length,
+      );
+
+      const links = socialNav?.querySelectorAll('.social-links__link') ?? [];
+      t.links.forEach((expected, index) => {
+        const link = links[index];
+        expect(link?.getAttribute('href')).toBe(expected.url);
+        expect(link?.getAttribute('rel')).toBe('me noopener noreferrer');
+        expect(link?.getAttribute('target')).toBe('_blank');
+        expect(
+          link?.querySelector('.social-links__title')?.textContent?.trim(),
+        ).toBe(expected.title);
+        expect(
+          link
+            ?.querySelector('.social-links__arrow')
+            ?.getAttribute('aria-hidden'),
+        ).toBe('true');
+      });
     },
   );
-
-  describe('English locale', () => {
-    it('renders correct title and meta tags', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'en',
-        },
-      });
-
-      const html = result.innerHTML;
-      const t = messages.en;
-
-      expect(html).toContain(`<title>${t.title}</title>`);
-      expect(html).toContain(
-        '<meta name="referrer" content="strict-origin-when-cross-origin">',
-      );
-      expect(html).toContain('"@context":"https://schema.org"');
-      expect(html).not.toContain('http://schema.org');
-
-      expect(html).toContain(`<meta property="og:title" content="${t.title}">`);
-      expect(html).toContain(
-        `<meta name="twitter:title" content="${t.title}">`,
-      );
-    });
-
-    it('renders correct header content', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'en',
-        },
-      });
-
-      const header = result.querySelector('.profile-header');
-      expect(header).toBeTruthy();
-
-      const title = header?.querySelector('.profile-header__title');
-      expect(title?.textContent?.trim()).toBe(messages.en.name);
-
-      const headline = header?.querySelector('.profile-header__headline');
-      expect(headline?.textContent?.trim()).toBe(messages.en.headline);
-    });
-
-    it('renders correct skip link text', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'en',
-        },
-      });
-
-      const skipLink = result.querySelector('.base-layout__skip-link');
-      expect(skipLink?.textContent?.trim()).toBe(messages.en.skip_to_content);
-    });
-
-    it('renders correct language switcher', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'en',
-        },
-      });
-
-      const langSwitcher = result.querySelector(
-        '[data-testid="lang-switcher"]',
-      );
-      const currentLang = langSwitcher?.querySelector('[aria-current="true"]');
-      expect(currentLang?.getAttribute('data-lang')).toBe('en');
-      expect(currentLang?.textContent?.trim()).toBe('en');
-    });
-
-    it('renders social links correctly', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'en',
-        },
-      });
-
-      const socialLinks = result.querySelectorAll('.social-links__link');
-      expect(socialLinks).toHaveLength(4);
-
-      messages.en.links.forEach((link, index) => {
-        const linkElement = socialLinks[index];
-        expect(linkElement?.getAttribute('href')).toBe(link.url);
-        expect(
-          linkElement
-            ?.querySelector('.social-links__title')
-            ?.textContent?.trim(),
-        ).toBe(link.title);
-      });
-    });
-
-    it('renders profile header section snapshot', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'en',
-        },
-      });
-
-      const header = result.querySelector('.profile-header');
-      expect(header?.outerHTML).toMatchSnapshot();
-    });
-  });
-
-  describe('Russian locale', () => {
-    it('renders correct title and meta tags', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'ru',
-        },
-      });
-
-      const html = result.innerHTML;
-      const t = messages.ru;
-
-      expect(html).toContain(`<title>${t.title}</title>`);
-      expect(html).toContain(
-        '<meta name="referrer" content="strict-origin-when-cross-origin">',
-      );
-      expect(html).toContain('"@context":"https://schema.org"');
-      expect(html).not.toContain('http://schema.org');
-
-      expect(html).toContain(`<meta property="og:title" content="${t.title}">`);
-      expect(html).toContain(
-        `<meta name="twitter:title" content="${t.title}">`,
-      );
-    });
-
-    it('renders correct header content', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'ru',
-        },
-      });
-
-      const header = result.querySelector('.profile-header');
-      expect(header).toBeTruthy();
-
-      const title = header?.querySelector('.profile-header__title');
-      expect(title?.textContent?.trim()).toBe(messages.ru.name);
-
-      const headline = header?.querySelector('.profile-header__headline');
-      expect(headline?.textContent?.trim()).toBe(messages.ru.headline);
-    });
-
-    it('renders correct skip link text', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'ru',
-        },
-      });
-
-      const skipLink = result.querySelector('.base-layout__skip-link');
-      expect(skipLink?.textContent?.trim()).toBe(messages.ru.skip_to_content);
-    });
-
-    it('renders correct language switcher', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'ru',
-        },
-      });
-
-      const langSwitcher = result.querySelector(
-        '[data-testid="lang-switcher"]',
-      );
-      const currentLang = langSwitcher?.querySelector('[aria-current="true"]');
-      expect(currentLang?.getAttribute('data-lang')).toBe('ru');
-      expect(currentLang?.textContent?.trim()).toBe('ru');
-    });
-
-    it('renders profile header section snapshot', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'ru',
-        },
-      });
-
-      const header = result.querySelector('.profile-header');
-      expect(header?.outerHTML).toMatchSnapshot();
-    });
-  });
-
-  describe('Spanish locale', () => {
-    it('renders correct title and meta tags', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'es',
-        },
-      });
-
-      const html = result.innerHTML;
-      const t = messages.es;
-
-      expect(html).toContain(`<title>${t.title}</title>`);
-      expect(html).toContain(
-        '<meta name="referrer" content="strict-origin-when-cross-origin">',
-      );
-      expect(html).toContain('"@context":"https://schema.org"');
-      expect(html).not.toContain('http://schema.org');
-
-      expect(html).toContain(`<meta property="og:title" content="${t.title}">`);
-      expect(html).toContain(
-        `<meta name="twitter:title" content="${t.title}">`,
-      );
-    });
-
-    it('renders correct header content', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'es',
-        },
-      });
-
-      const header = result.querySelector('.profile-header');
-      expect(header).toBeTruthy();
-
-      const title = header?.querySelector('.profile-header__title');
-      expect(title?.textContent?.trim()).toBe(messages.es.name);
-
-      const headline = header?.querySelector('.profile-header__headline');
-      expect(headline?.textContent?.trim()).toBe(messages.es.headline);
-    });
-
-    it('renders correct skip link text', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'es',
-        },
-      });
-
-      const skipLink = result.querySelector('.base-layout__skip-link');
-      expect(skipLink?.textContent?.trim()).toBe(messages.es.skip_to_content);
-    });
-
-    it('renders correct language switcher', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'es',
-        },
-      });
-
-      const langSwitcher = result.querySelector(
-        '[data-testid="lang-switcher"]',
-      );
-      const currentLang = langSwitcher?.querySelector('[aria-current="true"]');
-      expect(currentLang?.getAttribute('data-lang')).toBe('es');
-      expect(currentLang?.textContent?.trim()).toBe('es');
-    });
-
-    it('renders profile header section snapshot', async () => {
-      const result = await renderAstroComponent(HomePage, {
-        props: {
-          locale: 'es',
-        },
-      });
-
-      const header = result.querySelector('.profile-header');
-      expect(header?.outerHTML).toMatchSnapshot();
-    });
-  });
 });
