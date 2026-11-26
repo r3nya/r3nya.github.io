@@ -28,7 +28,6 @@ pnpm run format                # Apply Prettier formatting
 pnpm run format:check          # Check formatting
 pnpm run test:unit --run       # Run unit tests once
 pnpm run test:unit             # Watch locally; single run in CI
-pnpm run test:unit --run -u    # Update HTML snapshots intentionally
 pnpm run test:visual           # Browser and visual tests; build first
 pnpm run test:visual:update    # Update approved visual baselines
 pnpm run test:e2e              # Checks the live production site
@@ -55,7 +54,7 @@ pnpm run clean                # Remove dist/
 | `src/i18n/`                                     | Locale types and translated content                          |
 | `src/pages/`                                    | Static routes                                                |
 | `static/`                                       | Public assets; replaces Astro's default public/              |
-| `src/test/`                                     | Unit tests, browser tests, and snapshots                     |
+| `src/test/`                                     | Unit tests, browser tests, and visual baselines              |
 | `e2e-tests/`                                    | Production health checks                                     |
 | `scripts/lighthouse-job-summary.ts`             | Lighthouse scores for the Actions job summary                |
 
@@ -109,9 +108,8 @@ pnpm run clean                # Remove dist/
 ### Unit tests
 
 - Vitest runs in a Node environment; `src/test/helpers.ts` renders components with the Astro Container API and uses happy-dom for DOM queries.
-- Use the shared helper: it removes Astro development attributes and normalizes checkout-specific script URLs. Never commit absolute local paths in snapshots.
-- Tests include HTML snapshots and behavioral markup assertions. Use present-tense names such as `it('renders ...')`.
-- Cover locale-dependent changes in English, Russian, and Spanish. Review snapshot changes before accepting them.
+- Use the shared helper: it removes Astro development attributes and normalizes checkout-specific script URLs.
+- Unit tests verify rendered markup directly across `en`, `ru`, and `es` in `HomePage.test.ts` rather than maintaining duplicate component HTML snapshots. Use present-tense names such as `it('renders ...')`.
 
 ### Browser and visual tests
 
