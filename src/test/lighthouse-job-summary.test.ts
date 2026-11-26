@@ -2,13 +2,65 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import {
   buildLighthouseSummary,
   formatScore,
   loadLighthouseSummary,
   pageLabel,
 } from '../../scripts/lighthouse-job-summary.ts';
+
+interface ManifestEntry {
+  url: string;
+  isRepresentativeRun: boolean;
+  jsonPath: string;
+  summary: Partial<Record<string, number>>;
+}
+
+const tempDirs: string[] = [];
+
+afterEach(() => {
+  while (tempDirs.length > 0) {
+    const dir = tempDirs.pop();
+    if (dir) fs.rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+function createReportFixture(
+  reportFile: string,
+  metrics: {
+    fcp: string;
+    lcp: string;
+    tbt: string;
+    cls: string;
+    speedIndex: string;
+  },
+  entries: (reportPath: string) => ManifestEntry[],
+): string {
+  const reportDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), 'lighthouse-summary-'),
+  );
+  tempDirs.push(reportDir);
+  const reportPath = path.join(reportDir, reportFile);
+  fs.writeFileSync(
+    reportPath,
+    JSON.stringify({
+      lighthouseVersion: '12.6.1',
+      audits: {
+        'first-contentful-paint': { displayValue: metrics.fcp },
+        'largest-contentful-paint': { displayValue: metrics.lcp },
+        'total-blocking-time': { displayValue: metrics.tbt },
+        'cumulative-layout-shift': { displayValue: metrics.cls },
+        'speed-index': { displayValue: metrics.speedIndex },
+      },
+    }),
+  );
+  fs.writeFileSync(
+    path.join(reportDir, 'manifest.json'),
+    JSON.stringify(entries(reportPath)),
+  );
+  return reportDir;
+}
 
 describe('Lighthouse job summary', () => {
   it('renders locale routes as page paths', () => {
@@ -72,26 +124,16 @@ describe('Lighthouse job summary', () => {
   });
 
   it('reads representative reports from the manifest', () => {
-    const reportDir = fs.mkdtempSync(
-      path.join(os.tmpdir(), 'lighthouse-summary-'),
-    );
-    const representativePath = path.join(reportDir, 'home.report.json');
-    fs.writeFileSync(
-      representativePath,
-      JSON.stringify({
-        lighthouseVersion: '12.6.1',
-        audits: {
-          'first-contentful-paint': { displayValue: '0.9 s' },
-          'largest-contentful-paint': { displayValue: '0.9 s' },
-          'total-blocking-time': { displayValue: '0 ms' },
-          'cumulative-layout-shift': { displayValue: '0' },
-          'speed-index': { displayValue: '1.1 s' },
-        },
-      }),
-    );
-    fs.writeFileSync(
-      path.join(reportDir, 'manifest.json'),
-      JSON.stringify([
+    const reportDir = createReportFixture(
+      'home.report.json',
+      {
+        fcp: '0.9 s',
+        lcp: '0.9 s',
+        tbt: '0 ms',
+        cls: '0',
+        speedIndex: '1.1 s',
+      },
+      () => [
         {
           url: 'http://localhost/es/index.html',
           isRepresentativeRun: false,
@@ -109,7 +151,7 @@ describe('Lighthouse job summary', () => {
             seo: 1,
           },
         },
-      ]),
+      ],
     );
 
     expect(loadLighthouseSummary(reportDir)).toEqual({
@@ -132,30 +174,20 @@ describe('Lighthouse job summary', () => {
   });
 
   it('appends the summary for the Actions run page', () => {
-    const reportDir = fs.mkdtempSync(
-      path.join(os.tmpdir(), 'lighthouse-summary-'),
-    );
-    const summaryPath = path.join(reportDir, 'step-summary.md');
-    fs.writeFileSync(
-      path.join(reportDir, 'page.report.json'),
-      JSON.stringify({
-        lighthouseVersion: '12.6.1',
-        audits: {
-          'first-contentful-paint': { displayValue: '0.8 s' },
-          'largest-contentful-paint': { displayValue: '0.8 s' },
-          'total-blocking-time': { displayValue: '0 ms' },
-          'cumulative-layout-shift': { displayValue: '0' },
-          'speed-index': { displayValue: '0.9 s' },
-        },
-      }),
-    );
-    fs.writeFileSync(
-      path.join(reportDir, 'manifest.json'),
-      JSON.stringify([
+    const reportDir = createReportFixture(
+      'page.report.json',
+      {
+        fcp: '0.8 s',
+        lcp: '0.8 s',
+        tbt: '0 ms',
+        cls: '0',
+        speedIndex: '0.9 s',
+      },
+      (reportPath) => [
         {
           url: 'http://localhost/en/index.html',
           isRepresentativeRun: true,
-          jsonPath: path.join(reportDir, 'page.report.json'),
+          jsonPath: reportPath,
           summary: {
             performance: 1,
             accessibility: 1,
@@ -163,8 +195,9 @@ describe('Lighthouse job summary', () => {
             seo: 1,
           },
         },
-      ]),
+      ],
     );
+    const summaryPath = path.join(reportDir, 'step-summary.md');
 
     const result = spawnSync(
       'node',
